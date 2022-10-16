@@ -1,0 +1,55 @@
+.background-links {
+  background-image: url("../../img/theme/background-link.png");
+  background-size: cover;
+}
+
+.button-links {
+  margin-bottom: 10px;
+  min-width: 300px;
+  width: 45vw;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  border-radius: 10px;
+  border-top: 2px solid #e3186d;
+  border-left: 2px solid #e3186d;
+  border-right: 2px solid #e3186d;
+  border-bottom: 5px solid #e3186d;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.colorActive {
+  color: #ffb21c;
+  background-color: #ffffff;
+}
+
+.colorActive:hover {
+  cursor: pointer !important;
+  color: #ffffff;
+  background-color: #ffb21c;
+}
+
+.footer-links {
+  height: 150px;
+}
+
+@media screen and (max-width: 350px) {
+  .footer-links {
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .button-links {
+    width: 80vw;
+    min-width: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+}

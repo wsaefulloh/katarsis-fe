@@ -1,0 +1,112 @@
+@font-face {
+  font-family: "MaisonNeue";
+  src: url("../../fonts/MaisonNeueExtended-Medium.ttf");
+  font-style: medium;
+  font-weight: 400;
+  font-display: swap;
+}
+
+body {
+  font-family: "MaisonNeue";
+  font-style: normal;
+}
+
+.titleSide {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 144.7%;
+  color: #464646;
+}
+
+.descSide {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 144.7%;
+  color: #464646;
+}
+
+.selectMenu:hover {
+  background-color: #f7fafc;
+  cursor: pointer;
+  color: #212529;
+}
+
+.selectMenu {
+  color: #8898aa;
+}
+
+.selectActive {
+  background-color: #f7fafc;
+  cursor: pointer;
+  color: #212529;
+}
+
+.menu {
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.logout {
+  position: fixed;
+  right: unset;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.sideIcon {
+  width: 21px !important;
+  height: 21px !important;
+}
+
+.textMenu {
+  font-style: bold;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.container-custom {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 1500px) {
+}
+
+@media (max-width: 1380px) {
+  .sideIcon {
+    width: 21px !important;
+    height: 21px !important;
+  }
+
+  .textMenu {
+    font-style: bold;
+    font-weight: 500;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 768px) {
+}
+
+/* Large screens */
+@media (min-width: 2500px) {
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
