@@ -60,7 +60,7 @@ function HomeFooter() {
             </Link>
           </div>
           <Row className="py-3">
-            <Col>
+            <Col className="padding_footer">
               <div className="border-footer">
                 <div className="mx-3">
                   <h5>INFO</h5>
@@ -68,7 +68,7 @@ function HomeFooter() {
                 </div>
               </div>
             </Col>
-            <Col>
+            <Col className="padding_footer">
               <div className="border-footer">
                 <div className="mx-3">
                   <h5>MARKETING</h5>
@@ -76,7 +76,7 @@ function HomeFooter() {
                 </div>
               </div>
             </Col>
-            <Col>
+            <Col className="padding_footer">
               <div className="border-footer">
                 <div className="mx-3">
                   <h5>PARTNERSHIP</h5>
@@ -84,7 +84,7 @@ function HomeFooter() {
                 </div>
               </div>
             </Col>
-            <Col>
+            <Col className="padding_footer">
               <div className="border-footer">
                 <div className="mx-3">
                   <h5>CUSTOMER SERVICE</h5>
@@ -92,7 +92,7 @@ function HomeFooter() {
                 </div>
               </div>
             </Col>
-            <Col>
+            <Col className="padding_footer">
               <div>
                 <div className="mx-3">
                   <h5>CAREERS</h5>

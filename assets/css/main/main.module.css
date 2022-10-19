@@ -43,16 +43,13 @@ h2 {
 }
 
 .card {
-  margin-bottom: 15px;
+  background-color: unset;
+  border-radius: 0;
+  box-shadow: unset;
 }
 
 .card-body {
   padding: 15px;
-}
-
-.col {
-  padding-left: 7.5px !important;
-  padding-right: 7.5px !important;
 }
 
 .row {
@@ -177,6 +174,19 @@ button.slick-prev {
 
 button.slick-next {
   display: none !important;
+}
+
+.background_image {
+  background-image: url("../../img/theme/foto landing page.png");
+  padding: 15px;
+  display: flex;
+  align-items: flex-end;
+  background-position: center;
+}
+
+.padding_footer {
+  padding-left: 7.5px !important;
+  padding-right: 7.5px !important;
 }
 
 @media screen and (min-width: 995px) {

@@ -104,38 +104,227 @@ function Home() {
 
       <div className="py-5" style={{ backgroundColor: "#000000" }}>
         <Container className="py-4">
-          <Row>
-            <Col className="py-5" style={{ borderRight: "2px solid #000000" }}>
-              <Row className="align-items-center">
-                <Col>
-                  <div className="mx-4">
-                    <h3 className="m-0">Original IP</h3>
+          <div style={{ color: "#ffffff", paddingLeft: "15px" }}>
+            Original IP / Work
+          </div>
+        </Container>
+
+        <Container>
+          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 box">
+            <Col>
+              <Card>
+                <div
+                  style={{
+                    height: "300px",
+                    width: "100%",
+                  }}
+                  className="background_image"
+                >
+                  <div>
+                    <h1 style={{ color: "#ffffff", fontSize: "36px" }}>
+                      Relive the magic of movie theatre 1950s
+                    </h1>
+                    <div style={{ color: "#ffffff" }}>
+                      Drive-In Senja, Alam Sutera
+                    </div>
                   </div>
-                </Col>
-                <Col>
-                  <div className="mx-4">
-                    <div>Experiences</div>
-                    <div>Content</div>
-                  </div>
-                </Col>
-              </Row>
+                </div>
+              </Card>
             </Col>
-            <Col className="py-5">
-              <Row className="align-items-center">
-                <Col>
-                  <div className="mx-4">
-                    <h3 className="m-0">Business to Business (B2B)</h3>
+            <Col>
+              <Card>
+                <div
+                  style={{
+                    height: "300px",
+                    width: "100%",
+                  }}
+                  className="background_image"
+                >
+                  <div>
+                    <h1 style={{ color: "#ffffff", fontSize: "36px" }}>
+                      Relive the magic of movie theatre 1950s
+                    </h1>
+                    <div style={{ color: "#ffffff" }}>
+                      Drive-In Senja, Alam Sutera
+                    </div>
                   </div>
-                </Col>
-                <Col>
-                  <div className="mx-4">
-                    <div>Marketing & Sponsorship</div>
-                    <div>Ceremonies & Events</div>
+                </div>
+              </Card>
+            </Col>
+            <Col>
+              <Card>
+                <div
+                  style={{
+                    height: "300px",
+                    width: "100%",
+                  }}
+                  className="background_image"
+                >
+                  <div>
+                    <h1 style={{ color: "#ffffff", fontSize: "36px" }}>
+                      Relive the magic of movie theatre 1950s
+                    </h1>
+                    <div style={{ color: "#ffffff" }}>
+                      Drive-In Senja, Alam Sutera
+                    </div>
                   </div>
-                </Col>
-              </Row>
+                </div>
+              </Card>
+            </Col>
+          </div>
+        </Container>
+      </div>
+
+      <div className="py-5">
+        <Container>
+          <div className="text-center justify-content-center">
+            <h1
+              style={{
+                fontSize: "48px",
+                color: "#000000",
+                fontStyle: "bold",
+              }}
+            >
+              How We Do It
+            </h1>
+            <div
+              style={{
+                width: "300px",
+                height: "5px",
+                backgroundColor: "#000000",
+                marginRight: "auto",
+                marginLeft: "auto",
+              }}
+              className="my-4"
+            ></div>
+            <h2
+              style={{
+                color: "#000000",
+                marginRight: "auto",
+                marginLeft: "auto",
+              }}
+              className="py-4"
+            >
+              LOREM IPSUM DOLOR SIT AMET
+            </h2>
+            <div
+              style={{
+                maxWidth: "70%",
+                marginLeft: "auto",
+                marginRight: "auto",
+                color: "#000000",
+                fontSize: "16px",
+              }}
+            >
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+              commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+              penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+              Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
+              sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
+              vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
+              imperdiet a, venenatis vitae, justo.
+            </div>
+            <div
+              style={{
+                maxWidth: "70%",
+                marginLeft: "auto",
+                marginRight: "auto",
+                color: "#000000",
+                fontSize: "16px",
+              }}
+              className="py-4"
+            >
+              Process :
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      <div>
+        <Container>
+          <Row style={{ alignItems: "center" }}>
+            <Col lg="2">
+              <h2
+                style={{
+                  color: "#000000",
+                }}
+              >
+                LOREM IPSUM
+              </h2>
+            </Col>
+            <Col>
+              <div
+                style={{
+                  color: "#000000",
+                  fontSize: "16px",
+                  borderLeft: "1px solid #000000",
+                  paddingLeft: "30px",
+                  paddingRight: "30px",
+                  textAlign: "justify",
+                }}
+              >
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus
+                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+                quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+                fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
+                rhoncus ut, imperdiet a, venenatis vitae, justo.
+              </div>
             </Col>
           </Row>
+        </Container>
+      </div>
+
+      <div className="py-5">
+        <Container>
+          <div className="text-center justify-content-center">
+            <h1
+              style={{
+                fontSize: "48px",
+                color: "#000000",
+                fontStyle: "bold",
+              }}
+            >
+              Media Coverage
+            </h1>
+            <div
+              style={{
+                width: "300px",
+                height: "5px",
+                backgroundColor: "#000000",
+                marginRight: "auto",
+                marginLeft: "auto",
+              }}
+              className="my-4"
+            ></div>
+          </div>
+        </Container>
+      </div>
+
+      <div className="py-5">
+        <Container>
+          <div className="text-center justify-content-center">
+            <h1
+              style={{
+                fontSize: "48px",
+                color: "#000000",
+                fontStyle: "bold",
+              }}
+            >
+              Our Team
+            </h1>
+            <div
+              style={{
+                width: "300px",
+                height: "5px",
+                backgroundColor: "#000000",
+                marginRight: "auto",
+                marginLeft: "auto",
+              }}
+              className="my-4"
+            ></div>
+          </div>
         </Container>
       </div>
     </>
