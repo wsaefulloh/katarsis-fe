@@ -58,7 +58,7 @@ export default class MyApp extends App {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
-          <title>Drive-In Senja | Thematic Drive-In Theatre</title>
+          <title>Katarsis | Experiental Entertainment</title>
           <link
             rel="stylesheet"
             type="text/css"

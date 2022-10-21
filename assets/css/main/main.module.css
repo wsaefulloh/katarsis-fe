@@ -57,15 +57,15 @@ h2 {
   margin-right: unset;
 }
 
-.slider-playnow .slick-list {
+.visi_misi .slider-playnow .slick-list {
   padding-bottom: 20px !important;
 }
 
-.slider-playnow .slick-next:before {
+.visi_misi .slider-playnow .slick-next:before {
   color: #444444;
 }
 
-.slider-playnow .slick-prev:before {
+.visi_misi .slider-playnow .slick-prev:before {
   color: #444444;
 }
 
@@ -160,20 +160,25 @@ nav {
   margin-right: auto;
 }
 
-.slick-dots li button:before {
+.visi_misi .slick-dots li button:before {
   color: rgba(217, 217, 217, 0.534) !important;
 }
 
-.slick-dots li.slick-active button:before {
+.visi_misi .slick-dots li.slick-active button:before {
   color: #ffffff !important;
 }
 
-button.slick-prev {
+.visi_misi button.slick-prev {
   display: none !important;
 }
 
-button.slick-next {
+.visi_misi button.slick-next {
   display: none !important;
+}
+
+.slick-next:before,
+.slick-prev:before {
+  color: #000000;
 }
 
 .background_image {

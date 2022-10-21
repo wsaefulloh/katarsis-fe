@@ -15,7 +15,7 @@ import Link from "next/link";
 import "../assets/css/main/main.module.css";
 
 function Home() {
-  const settings = {
+  const visiMission = {
     dots: true,
     infinite: true,
     slidesToShow: 1,
@@ -25,10 +25,18 @@ function Home() {
     pauseOnHover: true,
   };
 
+  const mediaCoverage = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
+
   return (
     <>
-      <div className="py-5" style={{ backgroundColor: "#000000" }}>
-        <Slider {...settings}>
+      <div className="py-5 visi_misi" style={{ backgroundColor: "#000000" }}>
+        <Slider {...visiMission}>
           <div>
             <div className="text-center header-cover">
               <div
@@ -69,8 +77,11 @@ function Home() {
 
       <Container className="py-4">
         <Row>
-          <Col className="py-5" style={{ borderRight: "2px solid #000000" }}>
-            <Row className="align-items-center">
+          <Col
+            className="py-5 d-flex"
+            style={{ borderRight: "2px solid #000000" }}
+          >
+            <Row className="align-items-center w-100">
               <Col>
                 <div className="mx-4">
                   <h3 className="m-0">Original IP</h3>
@@ -84,8 +95,8 @@ function Home() {
               </Col>
             </Row>
           </Col>
-          <Col className="py-5">
-            <Row className="align-items-center">
+          <Col className="py-5 d-flex">
+            <Row className="align-items-center w-100">
               <Col>
                 <div className="mx-4">
                   <h3 className="m-0">Business to Business (B2B)</h3>
@@ -298,6 +309,82 @@ function Home() {
               }}
               className="my-4"
             ></div>
+            <div className="media_coverage">
+              <Slider {...mediaCoverage}>
+                <Col>
+                  <Row
+                    className="justify-content-center align-items-center"
+                    style={{ height: "100px", width: "100%" }}
+                  >
+                    <img
+                      alt="..."
+                      src={`https://drive.google.com/uc?export=view&id=1Lx3nwfu2wNY6udxg150QbSG2zUXFHZy_`}
+                      width="100%"
+                    />
+                  </Row>
+                </Col>
+                <Col>
+                  <Row
+                    className="justify-content-center align-items-center"
+                    style={{ height: "100px", width: "100%" }}
+                  >
+                    <img
+                      alt="..."
+                      src={`https://drive.google.com/uc?export=view&id=1Lx3nwfu2wNY6udxg150QbSG2zUXFHZy_`}
+                      width="100%"
+                    />
+                  </Row>
+                </Col>
+                <Col>
+                  <Row
+                    className="justify-content-center align-items-center"
+                    style={{ height: "100px", width: "100%" }}
+                  >
+                    <img
+                      alt="..."
+                      src={`https://drive.google.com/uc?export=view&id=1Lx3nwfu2wNY6udxg150QbSG2zUXFHZy_`}
+                      width="100%"
+                    />
+                  </Row>
+                </Col>
+                <Col>
+                  <Row
+                    className="justify-content-center align-items-center"
+                    style={{ height: "100px", width: "100%" }}
+                  >
+                    <img
+                      alt="..."
+                      src={`https://drive.google.com/uc?export=view&id=1Lx3nwfu2wNY6udxg150QbSG2zUXFHZy_`}
+                      width="100%"
+                    />
+                  </Row>
+                </Col>
+                <Col>
+                  <Row
+                    className="justify-content-center align-items-center"
+                    style={{ height: "100px", width: "100%" }}
+                  >
+                    <img
+                      alt="..."
+                      src={`https://drive.google.com/uc?export=view&id=1Lx3nwfu2wNY6udxg150QbSG2zUXFHZy_`}
+                      width="100%"
+                    />
+                  </Row>
+                </Col>
+                <Col>
+                  <Row
+                    className="justify-content-center align-items-center"
+                    style={{ height: "100px", width: "100%" }}
+                  >
+                    <img
+                      alt="..."
+                      src={`https://drive.google.com/uc?export=view&id=1Lx3nwfu2wNY6udxg150QbSG2zUXFHZy_`}
+                      width="100%"
+                    />
+                  </Row>
+                </Col>
+              </Slider>
+            </div>
           </div>
         </Container>
       </div>
