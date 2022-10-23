@@ -7,9 +7,9 @@ import { useRouter } from "next/router";
 
 const MENU_LIST = [
   { text: "About", href: "/" },
-  { text: "Work", href: "/list-film" },
-  { text: "Career", href: "/event-promotion" },
-  { text: "Contact", href: "/booking-partnership" },
+  { text: "Work", href: "/work" },
+  { text: "Career", href: "#" },
+  { text: "Contact", href: "#" },
 ];
 
 const NavItem = ({ text, href, active }) => {
