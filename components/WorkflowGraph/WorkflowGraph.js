@@ -20,7 +20,7 @@ function WorkflowGraph() {
   return (
     <>
       <div
-        className="py-4 text-center justify-content-center"
+        className="pb-4 pt-3 text-center justify-content-center"
         style={{ maxWidth: "800px", marginLeft: "auto", marginRight: "auto" }}
       >
         <h1

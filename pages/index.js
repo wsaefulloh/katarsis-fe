@@ -4,8 +4,10 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Container, Row, Col, Modal } from "reactstrap";
 // layout for this page
 import HomeLayout from "layouts/Homepage.js";
+import Filter from "../components/Filter/Filter";
 import SliderProcess from "../components/SliderProcess/SliderProcess";
 import WorkflowGraph from "../components/WorkflowGraph/WorkflowGraph";
+import CardsProject from "../components/Cards/CardsProjects";
 // core components
 
 import { fetchWrapper } from "../helpers/fetch-wrapper";
@@ -77,46 +79,10 @@ function Home() {
         </Slider>
       </div>
 
-      <Container className="py-4">
-        <Row>
-          <Col
-            className="py-5 d-flex"
-            style={{ borderRight: "2px solid #000000" }}
-          >
-            <Row className="align-items-center w-100">
-              <Col>
-                <div className="mx-4">
-                  <h3 className="m-0">Original IP</h3>
-                </div>
-              </Col>
-              <Col>
-                <div className="mx-4">
-                  <div>Experiences</div>
-                  <div>Content</div>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-          <Col className="py-5 d-flex">
-            <Row className="align-items-center w-100">
-              <Col>
-                <div className="mx-4">
-                  <h3 className="m-0">Business to Business (B2B)</h3>
-                </div>
-              </Col>
-              <Col>
-                <div className="mx-4">
-                  <div>Marketing & Sponsorship</div>
-                  <div>Ceremonies & Events</div>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
+      <Filter />
 
       <div className="py-5" style={{ backgroundColor: "#000000" }}>
-        <Container className="py-4">
+        <Container className="pb-5">
           <div style={{ color: "#ffffff", paddingLeft: "15px" }}>
             Original IP / Work
           </div>
@@ -124,107 +90,13 @@ function Home() {
 
         <Container>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 box">
-            <Col>
-              <Card>
-                <div
-                  style={{
-                    height: "300px",
-                    width: "100%",
-                  }}
-                  className="background_image"
-                >
-                  <div
-                    className="background_cover"
-                    style={{
-                      height: "300px",
-                      width: "100%",
-                    }}
-                  >
-                    <div
-                      style={{
-                        padding: "15px",
-                      }}
-                    >
-                      <h1 style={{ color: "#ffffff", fontSize: "36px" }}>
-                        Relive the magic of movie theatre 1950s
-                      </h1>
-                      <div style={{ color: "#ffffff" }}>
-                        Drive-In Senja, Alam Sutera
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <div
-                  style={{
-                    height: "300px",
-                    width: "100%",
-                  }}
-                  className="background_image"
-                >
-                  <div
-                    className="background_cover"
-                    style={{
-                      height: "300px",
-                      width: "100%",
-                    }}
-                  >
-                    <div
-                      style={{
-                        padding: "15px",
-                      }}
-                    >
-                      <h1 style={{ color: "#ffffff", fontSize: "36px" }}>
-                        Relive the magic of movie theatre 1950s
-                      </h1>
-                      <div style={{ color: "#ffffff" }}>
-                        Drive-In Senja, Alam Sutera
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <div
-                  style={{
-                    height: "300px",
-                    width: "100%",
-                  }}
-                  className="background_image"
-                >
-                  <div
-                    className="background_cover"
-                    style={{
-                      height: "300px",
-                      width: "100%",
-                    }}
-                  >
-                    <div
-                      style={{
-                        padding: "15px",
-                      }}
-                    >
-                      <h1 style={{ color: "#ffffff", fontSize: "36px" }}>
-                        Relive the magic of movie theatre 1950s
-                      </h1>
-                      <div style={{ color: "#ffffff" }}>
-                        Drive-In Senja, Alam Sutera
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </Col>
+            <CardsProject />
+            <CardsProject />
           </div>
         </Container>
       </div>
 
-      <div className="py-5">
+      <div className="pt-5 pb-4">
         <Container>
           <div className="text-center justify-content-center">
             <h1
@@ -273,27 +145,25 @@ function Home() {
               vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
               imperdiet a, venenatis vitae, justo.
             </div>
-            <div
-              style={{
-                maxWidth: "70%",
-                marginLeft: "auto",
-                marginRight: "auto",
-                color: "#000000",
-                fontSize: "16px",
-              }}
-              className="py-4"
-            >
-              Process :
-            </div>
           </div>
         </Container>
       </div>
 
       <SliderProcess />
 
+      <div
+        className="my-5"
+        style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
+      ></div>
+
       <WorkflowGraph />
 
-      <div className="py-5">
+      <div
+        className="my-5"
+        style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
+      ></div>
+
+      <div className="pb-5 pt-3">
         <Container>
           <div className="text-center justify-content-center">
             <h1
@@ -395,7 +265,12 @@ function Home() {
         </Container>
       </div>
 
-      <div className="py-5">
+      <div
+        className="my-5"
+        style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
+      ></div>
+
+      <div className="pt-3">
         <Container>
           <div className="text-center justify-content-center">
             <h1
@@ -421,7 +296,7 @@ function Home() {
         </Container>
       </div>
 
-      <div className="py-5">
+      <div className="py-3">
         <Container>
           <div className="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 box">
             <Col>
@@ -524,8 +399,14 @@ function Home() {
         </Container>
       </div>
 
+      <div
+        className="my-5"
+        style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
+      ></div>
+
       <Container>
         <div
+          className="pb-5"
           style={{
             color: "#000000",
             fontSize: "16px",
