@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Container, Row, Col, Modal } from "reactstrap";
 // layout for this page
 import HomeLayout from "layouts/Homepage.js";
+import SliderProcess from "../components/SliderProcess/SliderProcess";
+import WorkflowGraph from "../components/WorkflowGraph/WorkflowGraph";
 // core components
 
 import { fetchWrapper } from "../helpers/fetch-wrapper";
@@ -287,41 +289,9 @@ function Home() {
         </Container>
       </div>
 
-      <div>
-        <Container>
-          <Row style={{ alignItems: "center" }}>
-            <Col lg="2">
-              <h2
-                style={{
-                  color: "#000000",
-                }}
-              >
-                LOREM IPSUM
-              </h2>
-            </Col>
-            <Col>
-              <div
-                style={{
-                  color: "#000000",
-                  fontSize: "16px",
-                  borderLeft: "1px solid #000000",
-                  paddingLeft: "30px",
-                  paddingRight: "30px",
-                  textAlign: "justify",
-                }}
-              >
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                penatibus et magnis dis parturient montes, nascetur ridiculus
-                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
-                quis, sem. Nulla consequat massa quis enim. Donec pede justo,
-                fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
-                rhoncus ut, imperdiet a, venenatis vitae, justo.
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <SliderProcess />
+
+      <WorkflowGraph />
 
       <div className="py-5">
         <Container>
