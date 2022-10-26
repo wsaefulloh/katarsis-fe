@@ -9,7 +9,6 @@ import "../../assets/css/main/main.module.css";
 import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
 function HomeFooter() {
-  const [eventsPromotions, setEventsPromotions] = useState([]);
   const [twitter, setTwitter] = useState("");
   const [instagram, setInstagram] = useState("");
   const [tiktok, setTiktok] = useState("");
@@ -18,8 +17,8 @@ function HomeFooter() {
 
   return (
     <>
-      <footer>
-        <Container className="pt-6 ">
+      <footer id="footer_id">
+        <Container className="pt-5 ">
           <div className="text-center py-3">
             <img
               alt="..."
@@ -62,7 +61,7 @@ function HomeFooter() {
           <Row className="py-3">
             <Col className="padding_footer">
               <div className="border-footer">
-                <div className="mx-3">
+                <div className="mx-3 py-2">
                   <h5>INFO</h5>
                   <div>halo@duniamencekam.com</div>
                 </div>
@@ -70,7 +69,7 @@ function HomeFooter() {
             </Col>
             <Col className="padding_footer">
               <div className="border-footer">
-                <div className="mx-3">
+                <div className="mx-3 py-2">
                   <h5>MARKETING</h5>
                   <div>halo@duniamencekam.com</div>
                 </div>
@@ -78,7 +77,7 @@ function HomeFooter() {
             </Col>
             <Col className="padding_footer">
               <div className="border-footer">
-                <div className="mx-3">
+                <div className="mx-3 py-2">
                   <h5>PARTNERSHIP</h5>
                   <div>halo@duniamencekam.com</div>
                 </div>
@@ -86,7 +85,7 @@ function HomeFooter() {
             </Col>
             <Col className="padding_footer">
               <div className="border-footer">
-                <div className="mx-3">
+                <div className="mx-3 py-2">
                   <h5>CUSTOMER SERVICE</h5>
                   <div>halo@duniamencekam.com</div>
                 </div>
@@ -94,7 +93,7 @@ function HomeFooter() {
             </Col>
             <Col className="padding_footer">
               <div>
-                <div className="mx-3">
+                <div className="mx-3 py-2">
                   <h5>CAREERS</h5>
                   <div>halo@duniamencekam.com</div>
                 </div>

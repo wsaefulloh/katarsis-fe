@@ -165,11 +165,11 @@ nav {
 }
 
 .border-footer {
-  border-right: 2px solid #434343;
+  border-right: unset;
 }
 
 .header-cover {
-  max-width: 800px;
+  max-width: 80%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -198,15 +198,20 @@ nav {
 .background_image {
   width: 100%;
   height: 100%;
-  background-image: url("../../img/theme/foto landing page.png");
+  /* background-image: url("../../img/theme/foto landing page.png"); */
   background-position: center;
-  background-size: cover;
-  transition: all 0.5s;
+  /* background-size: cover; */
+  background-size: 100%;
+  -webkit-transition: all 0.3s ease-in-out;
 }
 
-.background_parent:hover .background_image,
+/* .background_parent:hover .background_image,
 .background_parent:focus .background_image {
   transform: scale(1.2);
+} */
+
+.background_parent:hover .background_image {
+  background-size: 150%;
 }
 
 .background_cover {
@@ -341,6 +346,60 @@ nav {
 
 .parent_slider:hover .title_slider {
   color: #000000;
+}
+
+.text_vision_mision {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.text_title_vision_mision {
+  color: #ffffff;
+  font-size: 28px;
+}
+
+.border_filter {
+  border-right: unset;
+}
+
+.display-small {
+  display: block;
+}
+
+.display-large {
+  display: none;
+}
+
+@media screen and (min-width: 789px) {
+  .border_filter {
+    border-right: 2px solid #000000;
+  }
+}
+
+@media screen and (min-width: 1215px) {
+  .border-footer {
+    border-right: 2px solid #000000;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .text_vision_mision {
+    font-size: 18px;
+  }
+
+  .text_title_vision_mision {
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .display-small {
+    display: none;
+  }
+
+  .display-large {
+    display: block;
+  }
 }
 
 @media screen and (min-width: 995px) {

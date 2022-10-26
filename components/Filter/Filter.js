@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 // reactstrap components
@@ -17,7 +17,10 @@ import {
 import "../../assets/css/main/main.module.css";
 
 function Filter() {
+  const [menu, setMenu] = useState("Original IP");
+
   const onClickMenu1 = () => {
+    setMenu("Original IP");
     const filter = document.getElementById("filter");
     const menu = document.getElementById("menu1");
     const img = document.getElementById("close1");
@@ -32,6 +35,7 @@ function Filter() {
   };
 
   const onClickMenu2 = () => {
+    setMenu("Business to Business (B2B)");
     const filter = document.getElementById("filter");
     const menu = document.getElementById("menu2");
     const img = document.getElementById("close2");
@@ -73,132 +77,146 @@ function Filter() {
     filter.classList.add("m-fadeIn");
   };
 
-  return (
-    <>
-      <Container className="py-4">
-        <Row id="filter" className="filter_height">
-          <Col
-            className="py-5 d-flex"
-            style={{ borderRight: "2px solid #000000" }}
-          >
-            <Row className="align-items-center w-100">
-              <Col>
-                <div className="mx-4">
-                  <h3
-                    onClick={() => onClickMenu1()}
-                    className="m-0 underline_hover"
-                    style={{ width: "fit-content", cursor: "pointer" }}
-                  >
-                    Original IP
-                  </h3>
-                </div>
-              </Col>
-              <Col>
-                <div className="mx-4">
-                  <div
-                    className="py-1 arrow_hover "
-                    style={{ width: "fit-content", cursor: "pointer" }}
-                  >
-                    Experiences
+  return {
+    menu,
+    renderFilter: (
+      <>
+        <Container className="py-4">
+          <Row id="filter" className="filter_height">
+            <Col className="py-4 d-flex border_filter">
+              <Row className="align-items-center w-100">
+                <Col style={{ minWidth: "262px" }}>
+                  <div className="mx-4">
+                    <h3
+                      onClick={() => onClickMenu1()}
+                      className="m-0 py-1 underline_hover"
+                      style={{ width: "fit-content", cursor: "pointer" }}
+                    >
+                      Original IP
+                    </h3>
                   </div>
-                  <div
-                    className="py-1 arrow_hover"
-                    style={{ width: "fit-content", cursor: "pointer" }}
-                  >
-                    Content
+                </Col>
+                <Col style={{ minWidth: "262px" }}>
+                  <div className="mx-4">
+                    <div
+                      className="py-1 arrow_hover "
+                      onClick={() => setMenu("Original IP -> Experiences")}
+                      style={{ width: "fit-content", cursor: "pointer" }}
+                    >
+                      Experiences
+                    </div>
+                    <div
+                      onClick={() => setMenu("Original IP -> Content")}
+                      className="py-1 arrow_hover"
+                      style={{ width: "fit-content", cursor: "pointer" }}
+                    >
+                      Content
+                    </div>
                   </div>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-          <Col className="py-5 d-flex">
-            <Row className="align-items-center w-100">
-              <Col>
-                <div className="mx-4">
-                  <h3
-                    onClick={() => onClickMenu2()}
-                    className="m-0 underline_hover"
-                    style={{ width: "fit-content", cursor: "pointer" }}
-                  >
-                    Business to Business (B2B)
-                  </h3>
-                </div>
-              </Col>
-              <Col>
-                <div className="mx-4">
-                  <div
-                    className="py-1 arrow_hover "
-                    style={{ width: "fit-content", cursor: "pointer" }}
-                  >
-                    Marketing & Sponsorship
+                </Col>
+              </Row>
+            </Col>
+            <Col className="py-4 d-flex">
+              <Row className="align-items-center w-100">
+                <Col style={{ minWidth: "262px" }}>
+                  <div className="mx-4">
+                    <h3
+                      onClick={() => onClickMenu2()}
+                      className="m-0 py-1 underline_hover"
+                      style={{ width: "fit-content", cursor: "pointer" }}
+                    >
+                      Business to Business (B2B)
+                    </h3>
                   </div>
-                  <div
-                    className="py-1 arrow_hover "
-                    style={{ width: "fit-content", cursor: "pointer" }}
-                  >
-                    Ceremonies & Events
+                </Col>
+                <Col style={{ minWidth: "262px" }}>
+                  <div className="mx-4">
+                    <div
+                      onClick={() =>
+                        setMenu(
+                          "Business to Business (B2B) -> Marketing & Sponsorship"
+                        )
+                      }
+                      className="py-1 arrow_hover "
+                      style={{ width: "fit-content", cursor: "pointer" }}
+                    >
+                      Marketing & Sponsorship
+                    </div>
+                    <div
+                      onClick={() =>
+                        setMenu(
+                          "Business to Business (B2B) -> Ceremonies & Events"
+                        )
+                      }
+                      className="py-1 arrow_hover "
+                      style={{ width: "fit-content", cursor: "pointer" }}
+                    >
+                      Ceremonies & Events
+                    </div>
                   </div>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
 
-        <Row id="menu1" className="filter_display_none">
-          <Col className="py-5">
-            <h2 className="m-0 p-0 mb-3">Original IP</h2>
-            <div
-              style={{
-                position: "absolute",
-                top: "20px",
-                right: "20px",
-                cursor: "pointer",
-              }}
-            >
-              <img
-                onClick={() => closeMenu1()}
-                id="close1"
-                className="d-none"
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACbklEQVRYhe3XSY8NURQH8N/rJkTaFOloJLQprGkrSRMRU/RG+AAiIj6BnWFtQ8TwJYgxvaJZGRJiiCFEzEOwY2PjWdxTqUeq6tV7zYp/cpPKPf/zP3c4de+5/OtodMhdiRGsxVzMCdt7fMAYLuI2mn9ykCO4F6J12mPs0NkEC7EQt1qE3+A4tmAZpqIvvjfjGF618G9isNvgq/ExhD5hHybV8OuRZv88fL9gXafB1+B7CIxiRqcC0uqcD43voVkLC/E5HE+ht4vgGXpwRL6KbbejId/z0XEGbx3E2dC8oU1i7gjiO90texmmSgncxPYyUkP6fZrY+weDZ9gV2o+UrMKqILzFxBKR+VJi9RfY+nEBi0p8e/EyYgwVEQ6F8WSJAHlWP/htEP3R18TlCv+jwTlQZLwWxpEKgdZA2SBa+x5LR3QZNgZvrMj4LIzLKwSKBpF9P8JAG99FwX1aZPwWxultRLJB3Pfr2T+n0iNhMn7ga9bR02LMbq86F0i3N10jWqF/3S2Yhbv+whZc1T4JZ+JO8B5idrSH6iXhBhVJeDCMJyoEzgXniV9nOxB9peKB7F7YX2Qckt/5ZQfRUlxRPMu5YVta4tuLFxFjZRGhIe1jE3tKRMaDnfKtK0307fLjuM7vWBd9eB3a26qIDamMakrFZU8VuSYaOB2a19X4zQel4qEp1XjjGUQDh+UFyYK6jsPykuwipnURvA9n5CXZcKcCw/KVeIPdmFDDr1dKuOzq/dRN8AyDUhmVnfmvpG3ZjCWYEm0xNkn/+YsW/nUdLHsV1vtLD5NOn2YrsFX+NJsXtnfS82wMl+TH9X+0xU/nf8f7CQu+owAAAABJRU5ErkJggg=="
-              />
-            </div>
-            <div style={{ maxWidth: "800px" }}>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-              commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-              penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            </div>
-          </Col>
-        </Row>
+          <Row id="menu1" className="filter_display_none">
+            <Col className="py-5">
+              <h2 className="m-0 p-0 mb-3">Original IP</h2>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  right: "20px",
+                  cursor: "pointer",
+                }}
+              >
+                <img
+                  onClick={() => closeMenu1()}
+                  id="close1"
+                  className="d-none"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACbklEQVRYhe3XSY8NURQH8N/rJkTaFOloJLQprGkrSRMRU/RG+AAiIj6BnWFtQ8TwJYgxvaJZGRJiiCFEzEOwY2PjWdxTqUeq6tV7zYp/cpPKPf/zP3c4de+5/OtodMhdiRGsxVzMCdt7fMAYLuI2mn9ykCO4F6J12mPs0NkEC7EQt1qE3+A4tmAZpqIvvjfjGF618G9isNvgq/ExhD5hHybV8OuRZv88fL9gXafB1+B7CIxiRqcC0uqcD43voVkLC/E5HE+ht4vgGXpwRL6KbbejId/z0XEGbx3E2dC8oU1i7gjiO90texmmSgncxPYyUkP6fZrY+weDZ9gV2o+UrMKqILzFxBKR+VJi9RfY+nEBi0p8e/EyYgwVEQ6F8WSJAHlWP/htEP3R18TlCv+jwTlQZLwWxpEKgdZA2SBa+x5LR3QZNgZvrMj4LIzLKwSKBpF9P8JAG99FwX1aZPwWxultRLJB3Pfr2T+n0iNhMn7ga9bR02LMbq86F0i3N10jWqF/3S2Yhbv+whZc1T4JZ+JO8B5idrSH6iXhBhVJeDCMJyoEzgXniV9nOxB9peKB7F7YX2Qckt/5ZQfRUlxRPMu5YVta4tuLFxFjZRGhIe1jE3tKRMaDnfKtK0307fLjuM7vWBd9eB3a26qIDamMakrFZU8VuSYaOB2a19X4zQel4qEp1XjjGUQDh+UFyYK6jsPykuwipnURvA9n5CXZcKcCw/KVeIPdmFDDr1dKuOzq/dRN8AyDUhmVnfmvpG3ZjCWYEm0xNkn/+YsW/nUdLHsV1vtLD5NOn2YrsFX+NJsXtnfS82wMl+TH9X+0xU/nf8f7CQu+owAAAABJRU5ErkJggg=="
+                />
+              </div>
+              <div style={{ maxWidth: "800px" }}>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus
+                mus.
+              </div>
+            </Col>
+          </Row>
 
-        <Row id="menu2" className="filter_display_none">
-          <Col className="py-5">
-            <h2 className="m-0 p-0 mb-3">Business to Business (B2B)</h2>
-            <div
-              style={{
-                position: "absolute",
-                top: "20px",
-                right: "20px",
-                cursor: "pointer",
-              }}
-            >
-              {" "}
-              <img
-                onClick={() => closeMenu2()}
-                id="close2"
-                className="d-none"
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACbklEQVRYhe3XSY8NURQH8N/rJkTaFOloJLQprGkrSRMRU/RG+AAiIj6BnWFtQ8TwJYgxvaJZGRJiiCFEzEOwY2PjWdxTqUeq6tV7zYp/cpPKPf/zP3c4de+5/OtodMhdiRGsxVzMCdt7fMAYLuI2mn9ykCO4F6J12mPs0NkEC7EQt1qE3+A4tmAZpqIvvjfjGF618G9isNvgq/ExhD5hHybV8OuRZv88fL9gXafB1+B7CIxiRqcC0uqcD43voVkLC/E5HE+ht4vgGXpwRL6KbbejId/z0XEGbx3E2dC8oU1i7gjiO90texmmSgncxPYyUkP6fZrY+weDZ9gV2o+UrMKqILzFxBKR+VJi9RfY+nEBi0p8e/EyYgwVEQ6F8WSJAHlWP/htEP3R18TlCv+jwTlQZLwWxpEKgdZA2SBa+x5LR3QZNgZvrMj4LIzLKwSKBpF9P8JAG99FwX1aZPwWxultRLJB3Pfr2T+n0iNhMn7ga9bR02LMbq86F0i3N10jWqF/3S2Yhbv+whZc1T4JZ+JO8B5idrSH6iXhBhVJeDCMJyoEzgXniV9nOxB9peKB7F7YX2Qckt/5ZQfRUlxRPMu5YVta4tuLFxFjZRGhIe1jE3tKRMaDnfKtK0307fLjuM7vWBd9eB3a26qIDamMakrFZU8VuSYaOB2a19X4zQel4qEp1XjjGUQDh+UFyYK6jsPykuwipnURvA9n5CXZcKcCw/KVeIPdmFDDr1dKuOzq/dRN8AyDUhmVnfmvpG3ZjCWYEm0xNkn/+YsW/nUdLHsV1vtLD5NOn2YrsFX+NJsXtnfS82wMl+TH9X+0xU/nf8f7CQu+owAAAABJRU5ErkJggg=="
-              />
-            </div>
-            <div style={{ maxWidth: "800px" }}>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-              commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-              penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
+          <Row id="menu2" className="filter_display_none">
+            <Col className="py-5">
+              <h2 className="m-0 p-0 mb-3">Business to Business (B2B)</h2>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "20px",
+                  right: "20px",
+                  cursor: "pointer",
+                }}
+              >
+                {" "}
+                <img
+                  onClick={() => closeMenu2()}
+                  id="close2"
+                  className="d-none"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACbklEQVRYhe3XSY8NURQH8N/rJkTaFOloJLQprGkrSRMRU/RG+AAiIj6BnWFtQ8TwJYgxvaJZGRJiiCFEzEOwY2PjWdxTqUeq6tV7zYp/cpPKPf/zP3c4de+5/OtodMhdiRGsxVzMCdt7fMAYLuI2mn9ykCO4F6J12mPs0NkEC7EQt1qE3+A4tmAZpqIvvjfjGF618G9isNvgq/ExhD5hHybV8OuRZv88fL9gXafB1+B7CIxiRqcC0uqcD43voVkLC/E5HE+ht4vgGXpwRL6KbbejId/z0XEGbx3E2dC8oU1i7gjiO90texmmSgncxPYyUkP6fZrY+weDZ9gV2o+UrMKqILzFxBKR+VJi9RfY+nEBi0p8e/EyYgwVEQ6F8WSJAHlWP/htEP3R18TlCv+jwTlQZLwWxpEKgdZA2SBa+x5LR3QZNgZvrMj4LIzLKwSKBpF9P8JAG99FwX1aZPwWxultRLJB3Pfr2T+n0iNhMn7ga9bR02LMbq86F0i3N10jWqF/3S2Yhbv+whZc1T4JZ+JO8B5idrSH6iXhBhVJeDCMJyoEzgXniV9nOxB9peKB7F7YX2Qckt/5ZQfRUlxRPMu5YVta4tuLFxFjZRGhIe1jE3tKRMaDnfKtK0307fLjuM7vWBd9eB3a26qIDamMakrFZU8VuSYaOB2a19X4zQel4qEp1XjjGUQDh+UFyYK6jsPykuwipnURvA9n5CXZcKcCw/KVeIPdmFDDr1dKuOzq/dRN8AyDUhmVnfmvpG3ZjCWYEm0xNkn/+YsW/nUdLHsV1vtLD5NOn2YrsFX+NJsXtnfS82wMl+TH9X+0xU/nf8f7CQu+owAAAABJRU5ErkJggg=="
+                />
+              </div>
+              <div style={{ maxWidth: "800px" }}>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus
+                mus.
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </>
+    ),
+  };
 }
 
 export default Filter;

@@ -17,46 +17,67 @@ import {
 
 import "../../assets/css/main/main.module.css";
 
-function CardsProject() {
+import PropTypes from "prop-types";
+
+function CardsProject(props) {
+  let { id, img, place, title, childTitle } = props;
   return (
     <>
       <Col>
         <Card>
-          <div
-            className="background_parent"
-            style={{
-              height: "300px",
-              width: "100%",
-              cursor: "pointer",
-            }}
-          >
-            <div className="background_image">
+          <Link href={`/work/${id}`}>
+            <div
+              className="background_parent"
+              style={{
+                height: "300px",
+                width: "100%",
+                cursor: "pointer",
+              }}
+            >
               <div
-                className="background_cover"
+                className="background_image"
                 style={{
-                  height: "300px",
-                  width: "100%",
+                  backgroundImage:
+                    "url(" +
+                    `https://drive.google.com/uc?export=view&id=${img}` +
+                    ")",
                 }}
               >
                 <div
+                  className="background_cover"
                   style={{
-                    padding: "30px",
+                    height: "300px",
+                    width: "100%",
                   }}
                 >
-                  <h1 style={{ color: "#ffffff", fontSize: "28px" }}>
-                    Relive the magic of movie theatre 1950s
-                  </h1>
-                  <div style={{ color: "#ffffff" }}>
-                    Drive-In Senja, Alam Sutera
+                  <div
+                    style={{
+                      padding: "30px",
+                    }}
+                  >
+                    <h1 style={{ color: "#ffffff", fontSize: "28px" }}>
+                      {`${childTitle}`}
+                    </h1>
+                    <div
+                      style={{ color: "#ffffff" }}
+                    >{`${title}, ${place}`}</div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         </Card>
       </Col>
     </>
   );
 }
+
+CardsProject.propTypes = {
+  id: PropTypes.any,
+  img: PropTypes.any,
+  place: PropTypes.any,
+  title: PropTypes.any,
+  childTitle: PropTypes.any,
+};
 
 export default CardsProject;

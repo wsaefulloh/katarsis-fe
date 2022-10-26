@@ -6,7 +6,7 @@ import { Button, Card, Container, Row, Col, Modal } from "reactstrap";
 // core components
 
 import HomeFooter from "../../components/Footers/HomeFooter";
-import CardsProject from "../../components/Cards/CardsProjects";
+import CardsGallery from "../../components/Cards/CardsGallery";
 
 import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
@@ -20,8 +20,33 @@ import { useRouter } from "next/router";
 function Work() {
   const router = useRouter();
   const url_page = router.asPath;
-  const id = url_page.substring(14, url_page.length);
-  console.log(url_page);
+  const id = url_page.substring(6, url_page.length);
+
+  const [projects, setProjects] = useState({});
+  const [gallery, setGallery] = useState([]);
+
+  const getDetailProject = async () => {
+    const data = await fetchWrapper.get(
+      `../api/project/detail-project?id_project=${id}`
+    );
+    if (data) {
+      let object = data.data;
+      setProjects(object[0]);
+      console.log();
+    }
+  };
+
+  const getFile = async () => {
+    const data = await fetchWrapper.get(`../api/gallery?id_project=${id}`);
+    if (data) {
+      setGallery(data.data);
+    }
+  };
+
+  useEffect(() => {
+    getDetailProject();
+    getFile();
+  }, []);
 
   return (
     <>
@@ -29,6 +54,10 @@ function Work() {
         style={{
           height: "500px",
           width: "100%",
+          backgroundImage:
+            "url(" +
+            `https://drive.google.com/uc?export=view&id=${projects.url_image_cover}` +
+            ")",
         }}
         className="background_image"
       >
@@ -44,11 +73,15 @@ function Work() {
               padding: "15px",
             }}
           >
-            <div className="button_header">
-              <h5 className="m-0 p-0" style={{ color: "#ffffff" }}>
-                WATCH THE VIDEO
-              </h5>
-            </div>
+            <Link href={`${projects.url_video}`}>
+              <a target="_blank">
+                <div className="button_header">
+                  <h5 className="m-0 p-0" style={{ color: "#ffffff" }}>
+                    WATCH THE VIDEO
+                  </h5>
+                </div>
+              </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -64,7 +97,7 @@ function Work() {
                 className="d-flex align-items-center "
                 style={{ height: "100px" }}
               >
-                <h1 className="m-0 p-0">DRIVE-IN SENJA</h1>
+                <h1 className="m-0 p-0">{`${projects.title_project}`}</h1>
               </div>
             </Col>
             <Col className="m-0 p-0">
@@ -73,8 +106,7 @@ function Work() {
                 style={{ height: "100px" }}
               >
                 <div className="mx-4 p-0" style={{ fontSize: "16px" }}>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                  Aenean commodo ligula eget dolor.{" "}
+                  {`${projects.short_desc}`}
                 </div>
               </div>
             </Col>
@@ -92,12 +124,14 @@ function Work() {
                 className="d-flex align-items-center "
                 style={{ height: "100px" }}
               >
-                <div
-                  className="py-1 arrow_hover "
-                  style={{ width: "fit-content", cursor: "pointer" }}
-                >
-                  Original IP
-                </div>
+                <Link href={`/`}>
+                  <div
+                    className="py-1 arrow_hover "
+                    style={{ width: "fit-content", cursor: "pointer" }}
+                  >
+                    {`${projects.type_project}`}
+                  </div>
+                </Link>
               </div>
             </Col>
             <Col className="m-0 p-0">
@@ -105,7 +139,7 @@ function Work() {
                 className="d-flex align-items-center "
                 style={{ height: "100px" }}
               >
-                <div className="mx-4 p-0">2021, Alam Sutera</div>
+                <div className="mx-4 p-0">{`${projects.year_project}, ${projects.place_project}`}</div>
               </div>
             </Col>
           </Row>
@@ -115,15 +149,7 @@ function Work() {
       <div className="py-4">
         <Container>
           <h3>About</h3>
-          <div>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-            Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-            aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-            imperdiet a, venenatis vitae, justo.{" "}
-          </div>
+          <div>{`${projects.about}`}</div>
         </Container>
       </div>
 
@@ -149,7 +175,7 @@ function Work() {
         <Container>
           <Row className="m-0 p-0 align-items-center">
             <Col className="m-0 p-0">
-              <h1>43 Million</h1>
+              <h1>{`${projects.impression_result}`}</h1>
               <div
                 style={{
                   color: "#FF0000",
@@ -159,7 +185,7 @@ function Work() {
               </div>
             </Col>
             <Col className="m-0 p-0">
-              <h1>76 Million</h1>
+              <h1>{`${projects.media_result}`}</h1>
               <div
                 style={{
                   color: "#FF0000",
@@ -169,7 +195,7 @@ function Work() {
               </div>
             </Col>
             <Col className="m-0 p-0">
-              <h1>And a 349 ticket sold on Loket.com</h1>
+              <h1>{`${projects.desc_result}`}</h1>
             </Col>
           </Row>
         </Container>
@@ -178,25 +204,37 @@ function Work() {
       <div className="py-4">
         <Container className="p-0">
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 box">
-            <CardsProject />
-            <CardsProject />
-            <CardsProject />
+            {gallery.map((val) => {
+              return (
+                <CardsGallery
+                  img={val.url}
+                  place={val.place}
+                  id={val.id}
+                  childTitle={val.title}
+                  title={val.name_project}
+                />
+              );
+            })}
           </div>
         </Container>
       </div>
       <div>
         <Container className="d-flex align-items-center justify-content-center">
-          <h3
-            style={{
-              padding: "15px",
-              backgroundColor: "#000000",
-              color: "#ffffff",
-              borderRadius: "50px",
-              cursor: "pointer",
-            }}
-          >
-            https://duniamencekam.com/
-          </h3>
+          <Link href={`${projects.url_website}`}>
+            <a target="_blank">
+              <h3
+                style={{
+                  padding: "15px",
+                  backgroundColor: "#000000",
+                  color: "#ffffff",
+                  borderRadius: "50px",
+                  cursor: "pointer",
+                }}
+              >
+                {`${projects.url_website}`}
+              </h3>
+            </a>
+          </Link>
         </Container>
       </div>
 
