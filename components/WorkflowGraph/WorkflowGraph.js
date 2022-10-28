@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 // reactstrap components
@@ -15,8 +15,23 @@ import {
 } from "reactstrap";
 
 import "../../assets/css/main/main.module.css";
+import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
 function WorkflowGraph() {
+  const [result, setResult] = useState({});
+
+  const getWorkflow = async () => {
+    const data = await fetchWrapper.get(`api/content/get-workflow`);
+    if (data) {
+      let obj = data.data;
+      setResult(obj[0]);
+    }
+  };
+
+  useEffect(() => {
+    getWorkflow();
+  }, []);
+
   return (
     <>
       <Container>
@@ -30,8 +45,7 @@ function WorkflowGraph() {
               fontStyle: "bold",
             }}
           >
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa.
+            {`${result.title}`}
           </h1>
         </div>
       </Container>
@@ -895,13 +909,7 @@ function WorkflowGraph() {
               marginRight: "auto",
             }}
           >
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-            Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-            aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-            imperdiet a, venenatis vitae, justo.
+            {`${result.description}`}
           </div>
         </Container>
       </div>

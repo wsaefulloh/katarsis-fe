@@ -24,7 +24,7 @@ function Career() {
     <>
       <div
         style={{
-          height: "100vh",
+          height: "80vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -42,9 +42,10 @@ function Career() {
           ></div>
         </Col>
       </div>
-      <HomeFooter />
     </>
   );
 }
+
+Career.layout = HomeLayout;
 
 export default Career;

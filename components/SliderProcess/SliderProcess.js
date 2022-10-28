@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 // reactstrap components
@@ -17,6 +17,7 @@ import {
 
 import "../../assets/css/main/main.module.css";
 import Slider from "react-slick";
+import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
 function SliderProcess() {
   const slider = {
@@ -28,6 +29,24 @@ function SliderProcess() {
   };
 
   const [index, setIndex] = useState(1);
+
+  const [result1, setResult1] = useState({});
+  const [result2, setResult2] = useState({});
+  const [result3, setResult3] = useState({});
+
+  const getAllProcess = async () => {
+    const data = await fetchWrapper.get(`api/content/get-all-process`);
+    if (data) {
+      let obj = data.data;
+      setResult1(obj[0]);
+      setResult2(obj[1]);
+      setResult3(obj[2]);
+    }
+  };
+
+  useEffect(() => {
+    getAllProcess();
+  }, []);
 
   const onClickMenuCarousel1 = () => {
     setIndex(1);
@@ -110,7 +129,7 @@ function SliderProcess() {
                 {index == 1 ? (
                   <>
                     <div className="title_slider title_slider_active">
-                      Carousel 1
+                      {`${result1.title}`}
                     </div>
                     <div
                       className="my-2 dot_slider dot_slider_active"
@@ -125,7 +144,7 @@ function SliderProcess() {
                   </>
                 ) : (
                   <>
-                    <div className="title_slider ">Carousel 1</div>
+                    <div className="title_slider ">{`${result1.title}`}</div>
                     <div
                       className="my-2 dot_slider "
                       style={{
@@ -157,7 +176,7 @@ function SliderProcess() {
                 {index == 2 ? (
                   <>
                     <div className="title_slider title_slider_active">
-                      Carousel 2
+                      {`${result2.title}`}
                     </div>
                     <div
                       className="my-2 dot_slider dot_slider_active"
@@ -172,7 +191,7 @@ function SliderProcess() {
                   </>
                 ) : (
                   <>
-                    <div className="title_slider ">Carousel 2</div>
+                    <div className="title_slider ">{`${result2.title}`}</div>
                     <div
                       className="my-2 dot_slider "
                       style={{
@@ -204,7 +223,7 @@ function SliderProcess() {
                 {index == 3 ? (
                   <>
                     <div className="title_slider title_slider_active">
-                      Carousel 3
+                      {`${result3.title}`}
                     </div>
                     <div
                       className="my-2 dot_slider dot_slider_active"
@@ -219,7 +238,7 @@ function SliderProcess() {
                   </>
                 ) : (
                   <>
-                    <div className="title_slider ">Carousel 3</div>
+                    <div className="title_slider ">{`${result3.title}`}</div>
                     <div
                       className="my-2 dot_slider "
                       style={{
@@ -243,7 +262,7 @@ function SliderProcess() {
           <div className="py-4">
             <Container>
               <img
-                src="https://medias.momentfactory.com/2015/12/about-team-all.png"
+                src={`https://drive.google.com/uc?export=view&id=${result1.url_image}`}
                 alt="A random image from Flickr"
                 style={{
                   width: "100%",
@@ -262,7 +281,7 @@ function SliderProcess() {
                       color: "#000000",
                     }}
                   >
-                    CAROUSEL 1
+                    {`${result1.title}`}
                   </h2>
                 </Col>
                 <Col>
@@ -276,14 +295,7 @@ function SliderProcess() {
                       textAlign: "justify",
                     }}
                   >
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                    Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                    natoque penatibus et magnis dis parturient montes, nascetur
-                    ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                    eu, pretium quis, sem. Nulla consequat massa quis enim.
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate
-                    eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-                    venenatis vitae, justo.
+                    {`${result1.description}`}
                   </div>
                 </Col>
               </Row>
@@ -295,7 +307,7 @@ function SliderProcess() {
           <div className="py-4">
             <Container>
               <img
-                src="https://medias.momentfactory.com/2015/12/about-team-all.png"
+                src={`https://drive.google.com/uc?export=view&id=${result2.url_image}`}
                 alt="A random image from Flickr"
                 style={{
                   width: "100%",
@@ -314,7 +326,7 @@ function SliderProcess() {
                       color: "#000000",
                     }}
                   >
-                    CAROUSEL 2
+                    {result2.title}
                   </h2>
                 </Col>
                 <Col>
@@ -328,14 +340,7 @@ function SliderProcess() {
                       textAlign: "justify",
                     }}
                   >
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                    Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                    natoque penatibus et magnis dis parturient montes, nascetur
-                    ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                    eu, pretium quis, sem. Nulla consequat massa quis enim.
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate
-                    eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-                    venenatis vitae, justo.
+                    {`${result2.description}`}
                   </div>
                 </Col>
               </Row>
@@ -347,7 +352,7 @@ function SliderProcess() {
           <div className="py-4">
             <Container>
               <img
-                src="https://medias.momentfactory.com/2015/12/about-team-all.png"
+                src={`https://drive.google.com/uc?export=view&id=${result3.url_image}`}
                 alt="A random image from Flickr"
                 style={{
                   width: "100%",
@@ -366,7 +371,7 @@ function SliderProcess() {
                       color: "#000000",
                     }}
                   >
-                    CAROUSEL 3
+                    {`${result3.title}`}
                   </h2>
                 </Col>
                 <Col>
@@ -380,14 +385,7 @@ function SliderProcess() {
                       textAlign: "justify",
                     }}
                   >
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                    Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                    natoque penatibus et magnis dis parturient montes, nascetur
-                    ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                    eu, pretium quis, sem. Nulla consequat massa quis enim.
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate
-                    eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-                    venenatis vitae, justo.
+                    {`${result3.description}`}
                   </div>
                 </Col>
               </Row>
@@ -398,12 +396,12 @@ function SliderProcess() {
 
       <div className="display-small media_coverage">
         <Container>
-          <Card>
+          <Card className="content">
             <Container>
               <Slider {...slider}>
                 <div>
                   <div className="text-center title_slider title_slider_active">
-                    Carousel 1
+                    {`${result1.title}`}
                   </div>
                   <div
                     className="my-2 dot_slider dot_slider_active"
@@ -418,7 +416,7 @@ function SliderProcess() {
                   <div className="py-4">
                     <Container>
                       <img
-                        src="https://medias.momentfactory.com/2015/12/about-team-all.png"
+                        src={`https://drive.google.com/uc?export=view&id=${result1.url_image}`}
                         alt="A random image from Flickr"
                         style={{
                           width: "100%",
@@ -439,7 +437,7 @@ function SliderProcess() {
                               color: "#000000",
                             }}
                           >
-                            CAROUSEL 2
+                            {`${result1.title}`}
                           </h2>
                         </div>
                         <div>
@@ -454,15 +452,7 @@ function SliderProcess() {
                               textAlign: "justify",
                             }}
                           >
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing
-                            elit. Aenean commodo ligula eget dolor. Aenean
-                            massa. Cum sociis natoque penatibus et magnis dis
-                            parturient montes, nascetur ridiculus mus. Donec
-                            quam felis, ultricies nec, pellentesque eu, pretium
-                            quis, sem. Nulla consequat massa quis enim. Donec
-                            pede justo, fringilla vel, aliquet nec, vulputate
-                            eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-                            venenatis vitae, justo.
+                            {`${result1.description}`}
                           </div>
                         </div>
                       </div>
@@ -472,7 +462,7 @@ function SliderProcess() {
 
                 <div>
                   <div className="text-center title_slider title_slider_active">
-                    Carousel 1
+                    {`${result2.title}`}
                   </div>
                   <div
                     className="my-2 dot_slider dot_slider_active"
@@ -487,7 +477,7 @@ function SliderProcess() {
                   <div className="py-4">
                     <Container>
                       <img
-                        src="https://medias.momentfactory.com/2015/12/about-team-all.png"
+                        src={`https://drive.google.com/uc?export=view&id=${result2.url_image}`}
                         alt="A random image from Flickr"
                         style={{
                           width: "100%",
@@ -508,7 +498,7 @@ function SliderProcess() {
                               color: "#000000",
                             }}
                           >
-                            CAROUSEL 2
+                            {`${result2.title}`}
                           </h2>
                         </div>
                         <div>
@@ -523,15 +513,7 @@ function SliderProcess() {
                               textAlign: "justify",
                             }}
                           >
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing
-                            elit. Aenean commodo ligula eget dolor. Aenean
-                            massa. Cum sociis natoque penatibus et magnis dis
-                            parturient montes, nascetur ridiculus mus. Donec
-                            quam felis, ultricies nec, pellentesque eu, pretium
-                            quis, sem. Nulla consequat massa quis enim. Donec
-                            pede justo, fringilla vel, aliquet nec, vulputate
-                            eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-                            venenatis vitae, justo.
+                            {`${result2.description}`}
                           </div>
                         </div>
                       </div>
@@ -541,7 +523,7 @@ function SliderProcess() {
 
                 <div>
                   <div className="text-center title_slider title_slider_active">
-                    Carousel 1
+                    {`${result3.title}`}
                   </div>
                   <div
                     className="my-2 dot_slider dot_slider_active"
@@ -556,7 +538,7 @@ function SliderProcess() {
                   <div className="py-4">
                     <Container>
                       <img
-                        src="https://medias.momentfactory.com/2015/12/about-team-all.png"
+                        src={`https://drive.google.com/uc?export=view&id=${result3.url_image}`}
                         alt="A random image from Flickr"
                         style={{
                           width: "100%",
@@ -577,7 +559,7 @@ function SliderProcess() {
                               color: "#000000",
                             }}
                           >
-                            CAROUSEL 2
+                            {`${result3.title}`}
                           </h2>
                         </div>
                         <div>
@@ -592,15 +574,7 @@ function SliderProcess() {
                               textAlign: "justify",
                             }}
                           >
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing
-                            elit. Aenean commodo ligula eget dolor. Aenean
-                            massa. Cum sociis natoque penatibus et magnis dis
-                            parturient montes, nascetur ridiculus mus. Donec
-                            quam felis, ultricies nec, pellentesque eu, pretium
-                            quis, sem. Nulla consequat massa quis enim. Donec
-                            pede justo, fringilla vel, aliquet nec, vulputate
-                            eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-                            venenatis vitae, justo.
+                            {`${result3.description}`}
                           </div>
                         </div>
                       </div>

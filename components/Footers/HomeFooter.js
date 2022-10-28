@@ -9,11 +9,108 @@ import "../../assets/css/main/main.module.css";
 import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
 function HomeFooter() {
-  const [twitter, setTwitter] = useState("");
+  const [linkedin, setLinkedin] = useState("");
   const [instagram, setInstagram] = useState("");
   const [tiktok, setTiktok] = useState("");
   const [number, setNumber] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [info, setInfo] = useState("");
+  const [marketing, setMarketing] = useState("");
+  const [partnership, setPartnership] = useState("");
+  const [career, setCareer] = useState("");
+
+  const getInstagram = async () => {
+    const data = await fetchWrapper.get(`../api/links/get-instagram`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setInstagram(link.url);
+    }
+  };
+
+  const getLinkedin = async () => {
+    const data = await fetchWrapper.get(`../api/links/get-linkedin`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setLinkedin(link.url);
+    }
+  };
+
+  const getTiktok = async () => {
+    const data = await fetchWrapper.get(`../api/links/get-tiktok`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setTiktok(link.url);
+    }
+  };
+
+  const getNumber = async () => {
+    const data = await fetchWrapper.get(`../api/links/get-number`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setNumber(link.url);
+    }
+  };
+
+  const getWhatsapp = async () => {
+    const data = await fetchWrapper.get(`../api/links/get-whatsapp`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setWhatsapp(link.url);
+    }
+  };
+
+  const getInfo = async () => {
+    const data = await fetchWrapper.get(`../api/links/get-info`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setInfo(link.url);
+    }
+  };
+
+  const getMarketing = async () => {
+    const data = await fetchWrapper.get(`../api/links/get-marketing`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setMarketing(link.url);
+    }
+  };
+
+  const getPartnership = async () => {
+    const data = await fetchWrapper.get(`../api/links/get-partnership`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setPartnership(link.url);
+    }
+  };
+
+  const getCareer = async () => {
+    const data = await fetchWrapper.get(`../api/links/get-career`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setCareer(link.url);
+    }
+  };
+
+  useEffect(() => {
+    getInstagram();
+    getTiktok();
+    getLinkedin();
+    getNumber();
+    getWhatsapp();
+    getInfo();
+    getMarketing();
+    getPartnership();
+    getCareer();
+  }, []);
 
   return (
     <>
@@ -47,7 +144,7 @@ function HomeFooter() {
                 </div>
               </a>
             </Link>
-            <Link href={`${twitter}`}>
+            <Link href={`${linkedin}`}>
               <a target="_blank">
                 <div className="mx-1">
                   <img
@@ -63,7 +160,7 @@ function HomeFooter() {
               <div className="border-footer">
                 <div className="mx-3 py-2">
                   <h5>INFO</h5>
-                  <div>halo@duniamencekam.com</div>
+                  <div>{`${info}`}</div>
                 </div>
               </div>
             </Col>
@@ -71,7 +168,7 @@ function HomeFooter() {
               <div className="border-footer">
                 <div className="mx-3 py-2">
                   <h5>MARKETING</h5>
-                  <div>halo@duniamencekam.com</div>
+                  <div>{`${marketing}`}</div>
                 </div>
               </div>
             </Col>
@@ -79,7 +176,7 @@ function HomeFooter() {
               <div className="border-footer">
                 <div className="mx-3 py-2">
                   <h5>PARTNERSHIP</h5>
-                  <div>halo@duniamencekam.com</div>
+                  <div>{`${partnership}`}</div>
                 </div>
               </div>
             </Col>
@@ -87,7 +184,7 @@ function HomeFooter() {
               <div className="border-footer">
                 <div className="mx-3 py-2">
                   <h5>CUSTOMER SERVICE</h5>
-                  <div>halo@duniamencekam.com</div>
+                  <div>{`${number}`}</div>
                 </div>
               </div>
             </Col>
@@ -95,7 +192,7 @@ function HomeFooter() {
               <div>
                 <div className="mx-3 py-2">
                   <h5>CAREERS</h5>
-                  <div>halo@duniamencekam.com</div>
+                  <div>{`${career}`}</div>
                 </div>
               </div>
             </Col>

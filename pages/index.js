@@ -75,6 +75,8 @@ function Home() {
   const [project, setProject] = useState([]);
   const [profile, setProfile] = useState([]);
   const [media, setMedia] = useState([]);
+  const [HWDI, setHWDI] = useState({});
+  const [ourTeam, setOurTeam] = useState({});
 
   const getDataOriginalIP = async () => {
     const data = await fetchWrapper.get(`api/project/originalIP`);
@@ -132,10 +134,28 @@ function Home() {
     }
   };
 
+  const getHowWeDoIt = async () => {
+    const data = await fetchWrapper.get(`api/content/get-how`);
+    if (data) {
+      let obj = data.data;
+      setHWDI(obj[0]);
+    }
+  };
+
+  const getOurTeam = async () => {
+    const data = await fetchWrapper.get(`api/content/get-our-team`);
+    if (data) {
+      let obj = data.data;
+      setOurTeam(obj[0]);
+    }
+  };
+
   useEffect(() => {
     getDataProfile();
     getDataOriginalIP();
     getDataMedia();
+    getHowWeDoIt();
+    getOurTeam();
   }, []);
 
   useEffect(() => {
@@ -251,7 +271,7 @@ function Home() {
               }}
               className="py-4"
             >
-              LOREM IPSUM DOLOR SIT AMET
+              {`${HWDI.title}`}
             </h2>
             <div
               style={{
@@ -262,13 +282,7 @@ function Home() {
                 fontSize: "16px",
               }}
             >
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-              commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-              penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-              Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-              sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
-              vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-              imperdiet a, venenatis vitae, justo.
+              {`${HWDI.description}`}
             </div>
           </div>
         </Container>
@@ -312,7 +326,7 @@ function Home() {
             ></div>
             <div className="media_coverage">
               <Container>
-                <Card>
+                <Card className="content">
                   <Container>
                     <Slider {...mediaCoverage}>
                       {media.map((val) => {
@@ -405,18 +419,12 @@ function Home() {
             textAlign: "justify",
           }}
         >
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-          commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus
-          et magnis dis parturient montes, nascetur ridiculus mus. Donec quam
-          felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
-          consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
-          nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-          venenatis vitae, justo.
+          {`${ourTeam.description}`}
         </div>
       </Container>
 
       <img
-        src="https://medias.momentfactory.com/2015/12/about-team-all.png"
+        src={`https://drive.google.com/uc?export=view&id=${ourTeam.url_image}`}
         alt="A random image from Flickr"
         style={{
           width: "100%",

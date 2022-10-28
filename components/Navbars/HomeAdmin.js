@@ -41,14 +41,18 @@ function HomeNavbarAdmin() {
                 <NavbarBrand href="/">
                   <img
                     alt="..."
-                    src={require("assets/img/brand/DIS_Logo_1 1.png")}
+                    src={require("assets/img/brand/Logo Katarsis png.png")}
+                    // height="10px !important"
+                    style={{
+                      height: "20px",
+                    }}
                   />
                 </NavbarBrand>
               </span>
             </Link>
 
             <span className="mx-4 nav-link-inner--text">
-              Admin Panel Drive-In Senja
+              Admin Panel Katarsis
             </span>
 
             <button

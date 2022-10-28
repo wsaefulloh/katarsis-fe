@@ -24,7 +24,7 @@ function CardsProject(props) {
   return (
     <>
       <Col>
-        <Card>
+        <Card className="content">
           <Link href={`/work/${id}`}>
             <div
               className="background_parent"

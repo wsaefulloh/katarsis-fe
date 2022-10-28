@@ -24,7 +24,7 @@ function CardsGallery(props) {
   return (
     <>
       <Col>
-        <Card>
+        <Card className="content">
           <div
             className="background_parent"
             style={{
