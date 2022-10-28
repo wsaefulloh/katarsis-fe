@@ -312,7 +312,7 @@ function WorkProjectPage() {
             })}
           </Container>
 
-          <Card>
+          <Card style={{ marginTop: "30px" }}>
             <Container>
               <div className="py-3">
                 <Row className="align-items-center">
@@ -362,7 +362,7 @@ function WorkProjectPage() {
             })}
           </Container>
 
-          <Card>
+          <Card style={{ marginTop: "30px" }}>
             <Container>
               <div className="py-3">
                 <Row className="align-items-center">
@@ -412,7 +412,7 @@ function WorkProjectPage() {
             })}
           </Container>
 
-          <Card>
+          <Card style={{ marginTop: "30px" }}>
             <Container>
               <div className="py-3">
                 <Row className="align-items-center">
