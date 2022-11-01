@@ -903,6 +903,7 @@ function WorkflowGraph() {
       <div className="py-4 mt-5 text-center justify-content-center">
         <Container>
           <div
+            className="desc_section"
             style={{
               maxWidth: "800px",
               marginLeft: "auto",

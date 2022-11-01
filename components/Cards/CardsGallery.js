@@ -54,10 +54,16 @@ function CardsGallery(props) {
                     padding: "30px",
                   }}
                 >
-                  <h1 style={{ color: "#ffffff", fontSize: "28px" }}>
+                  <h1
+                    className="child_title_project"
+                    style={{ color: "#ffffff" }}
+                  >
                     {`${childTitle}`}
                   </h1>
-                  <div style={{ color: "#ffffff" }}>{`${title}, ${place}`}</div>
+                  <div
+                    className="title_project"
+                    style={{ color: "#ffffff" }}
+                  >{`${title}, ${place}`}</div>
                 </div>
               </div>
             </div>

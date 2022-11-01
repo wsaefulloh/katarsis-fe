@@ -55,12 +55,8 @@ function CardsProject(props) {
                       padding: "30px",
                     }}
                   >
-                    <h1 style={{ color: "#ffffff", fontSize: "28px" }}>
-                      {`${childTitle}`}
-                    </h1>
-                    <div
-                      style={{ color: "#ffffff" }}
-                    >{`${title}, ${place}`}</div>
+                    <h1 className="child_title_project">{`${childTitle}`}</h1>
+                    <div className="title_project">{`${title}, ${place}`}</div>
                   </div>
                 </div>
               </div>

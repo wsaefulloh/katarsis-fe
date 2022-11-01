@@ -15,6 +15,8 @@ import Slider from "react-slick";
 import Link from "next/link";
 
 import "../../assets/css/main/main.module.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useRouter } from "next/router";
 
 function Work() {
@@ -44,6 +46,7 @@ function Work() {
   };
 
   useEffect(() => {
+    AOS.init({ duration: 2000 });
     getDetailProject();
     getFile();
   }, []);
@@ -76,7 +79,7 @@ function Work() {
           >
             <Link href={`${projects.url_video}`}>
               <a target="_blank">
-                <div className="button_header">
+                <div data-aos="fade-up" className="button_header">
                   <h5 className="m-0 p-0" style={{ color: "#ffffff" }}>
                     WATCH THE VIDEO
                   </h5>
@@ -127,6 +130,7 @@ function Work() {
                 >
                   <Link href={`/`}>
                     <div
+                      data-aos="fade-up"
                       className="py-1 arrow_hover "
                       style={{ width: "fit-content", cursor: "pointer" }}
                     >
@@ -137,6 +141,7 @@ function Work() {
               </Col>
               <Col className="m-0 p-0">
                 <div
+                  data-aos="fade-up"
                   className="d-flex align-items-center "
                   style={{ height: "100px" }}
                 >
@@ -148,11 +153,12 @@ function Work() {
         </div>
       </div>
 
-      <div className="display-small">
+      <div data-aos="fade-up" className="display-small">
         <div className="m-0 p-0" style={{ borderBottom: "1px solid #000000" }}>
           <Container>
             <div className="m-0 p-0">
               <div
+                data-aos="fade-up"
                 className="d-flex align-items-center justify-content-center"
                 style={{ height: "100px" }}
               >
@@ -169,7 +175,11 @@ function Work() {
                 className="d-flex align-items-center justify-content-center text-center"
                 style={{ height: "100px" }}
               >
-                <div className="m-0 p-0" style={{ fontSize: "16px" }}>
+                <div
+                  data-aos="fade-up"
+                  className="m-0 p-0"
+                  style={{ fontSize: "16px" }}
+                >
                   {`${projects.short_desc}`}
                 </div>
               </div>
@@ -189,6 +199,7 @@ function Work() {
                 >
                   <Link href={`/`}>
                     <div
+                      data-aos="fade-up"
                       className="py-1 arrow_hover "
                       style={{ width: "fit-content", cursor: "pointer" }}
                     >
@@ -202,7 +213,10 @@ function Work() {
                   className="d-flex align-items-center justify-content-center text-center"
                   style={{ height: "100px" }}
                 >
-                  <div className="mx-4 p-0">{`${projects.year_project}, ${projects.place_project}`}</div>
+                  <div
+                    data-aos="fade-up"
+                    className="mx-4 p-0"
+                  >{`${projects.year_project}, ${projects.place_project}`}</div>
                 </div>
               </Col>
             </Row>
@@ -210,7 +224,7 @@ function Work() {
         </div>
       </div>
 
-      <div className="py-4">
+      <div data-aos="fade-up" className="py-4">
         <Container>
           <h3>About</h3>
           <div>{`${projects.about}`}</div>
@@ -222,9 +236,9 @@ function Work() {
         style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
       ></div>
 
-      <div className="py-4">
+      <div data-aos="fade-up" className="py-4">
         <Container>
-          <h1>Result</h1>
+          <h1 className="pb-2">Result</h1>
           <div
             style={{
               backgroundColor: "#000000",
@@ -235,7 +249,7 @@ function Work() {
         </Container>
       </div>
 
-      <div className="display-large">
+      <div data-aos="fade-up" className="display-large">
         <div className="py-4">
           <Container>
             <Row className="m-0 p-0 align-items-center">
@@ -267,7 +281,7 @@ function Work() {
         </div>
       </div>
 
-      <div className="display-small">
+      <div data-aos="fade-up" className="display-small">
         <div className="py-4">
           <Container>
             <Row className="m-0 p-0 align-items-center">
@@ -306,19 +320,21 @@ function Work() {
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 box">
             {gallery.map((val) => {
               return (
-                <CardsGallery
-                  img={val.url}
-                  place={val.place}
-                  id={val.id}
-                  childTitle={val.title}
-                  title={val.name_project}
-                />
+                <div data-aos="fade-up">
+                  <CardsGallery
+                    img={val.url}
+                    place={val.place}
+                    id={val.id}
+                    childTitle={val.title}
+                    title={val.name_project}
+                  />
+                </div>
               );
             })}
           </div>
         </Container>
       </div>
-      <div>
+      <div data-aos="fade-up">
         <Container className="d-flex align-items-center justify-content-center">
           <Link href={`${projects.url_website}`}>
             <a target="_blank">
@@ -338,7 +354,10 @@ function Work() {
         </Container>
       </div>
 
-      <div className="pt-5 text-center justify-content-center">
+      <div
+        data-aos="fade-up"
+        className="pt-5 text-center justify-content-center"
+      >
         <Link href={`/work/${id}#top_work`}>
           <div
             style={{

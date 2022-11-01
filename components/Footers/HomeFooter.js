@@ -116,14 +116,14 @@ function HomeFooter() {
     <>
       <footer id="footer_id">
         <Container className="pt-5 ">
-          <div className="text-center py-3">
+          <div className="text-center pt-3 pb-4">
             <img
               alt="..."
               src={require("assets/img/brand/Logo Katarsis png.png")}
               height="40px"
             />
           </div>
-          <div className="py-3 d-flex align-items-center justify-content-center">
+          <div className="pt-4 pb-3 d-flex align-items-center justify-content-center">
             <Link href={`${instagram}`}>
               <a target="_blank">
                 <div className="mx-1">
@@ -155,10 +155,55 @@ function HomeFooter() {
               </a>
             </Link>
           </div>
-          <Row className="py-3">
+          <div className="display-large">
+            <Row className="pb-2 pt-5">
+              <Col className="padding_footer">
+                <div className="border-footer">
+                  <div className="mx-3 py-2">
+                    <h5>INFO</h5>
+                    <div>{`${info}`}</div>
+                  </div>
+                </div>
+              </Col>
+              <Col className="padding_footer">
+                <div className="border-footer">
+                  <div className="mx-3 py-2">
+                    <h5>MARKETING</h5>
+                    <div>{`${marketing}`}</div>
+                  </div>
+                </div>
+              </Col>
+              <Col className="padding_footer">
+                <div className="border-footer">
+                  <div className="mx-3 py-2">
+                    <h5>PARTNERSHIP</h5>
+                    <div>{`${partnership}`}</div>
+                  </div>
+                </div>
+              </Col>
+              <Col className="padding_footer">
+                <div className="border-footer">
+                  <div className="mx-3 py-2">
+                    <h5>CUSTOMER SERVICE</h5>
+                    <div>{`${number}`}</div>
+                  </div>
+                </div>
+              </Col>
+              <Col className="padding_footer">
+                <div>
+                  <div className="mx-3 py-2">
+                    <h5>CAREERS</h5>
+                    <div>{`${career}`}</div>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+
+          <div className="display-small">
             <Col className="padding_footer">
               <div className="border-footer">
-                <div className="mx-3 py-2">
+                <div className="mx-3 pt-2 pb-4">
                   <h5>INFO</h5>
                   <div>{`${info}`}</div>
                 </div>
@@ -166,7 +211,7 @@ function HomeFooter() {
             </Col>
             <Col className="padding_footer">
               <div className="border-footer">
-                <div className="mx-3 py-2">
+                <div className="mx-3 pb-4">
                   <h5>MARKETING</h5>
                   <div>{`${marketing}`}</div>
                 </div>
@@ -174,7 +219,7 @@ function HomeFooter() {
             </Col>
             <Col className="padding_footer">
               <div className="border-footer">
-                <div className="mx-3 py-2">
+                <div className="mx-3 pb-4">
                   <h5>PARTNERSHIP</h5>
                   <div>{`${partnership}`}</div>
                 </div>
@@ -182,7 +227,7 @@ function HomeFooter() {
             </Col>
             <Col className="padding_footer">
               <div className="border-footer">
-                <div className="mx-3 py-2">
+                <div className="mx-3 pb-4">
                   <h5>CUSTOMER SERVICE</h5>
                   <div>{`${number}`}</div>
                 </div>
@@ -190,28 +235,31 @@ function HomeFooter() {
             </Col>
             <Col className="padding_footer">
               <div>
-                <div className="mx-3 py-2">
+                <div className="mx-3 pb-2">
                   <h5>CAREERS</h5>
                   <div>{`${career}`}</div>
                 </div>
               </div>
             </Col>
-          </Row>
-          <div className="text-center py-3">
-            <h3>PT. ASTANA DIGITAL NUSANTARA</h3>
-            <div
-              style={{
-                maxWidth: "450px",
-                marginRight: "auto",
-                marginLeft: "auto",
-              }}
-              className="pb-3"
-            >
-              Crystal 8, Alam Sutera, Jalan Bhayangkara Pusdiklantas nomor
-              10-11, Kel. , Kec. , Kota Tangerang Selatan, Prop. Banten 15325
-            </div>
-            <div>© Katarsis 2022</div>
           </div>
+
+          <Container>
+            <div className="text-center pt-5 pb-3">
+              <h3>PT. ASTANA DIGITAL NUSANTARA</h3>
+              <div
+                style={{
+                  maxWidth: "450px",
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                }}
+                className="pb-5"
+              >
+                Crystal 8, Alam Sutera, Jalan Bhayangkara Pusdiklantas nomor
+                10-11, Kel. , Kec. , Kota Tangerang Selatan, Prop. Banten 15325
+              </div>
+              <div>© Katarsis 2022</div>
+            </div>
+          </Container>
         </Container>
       </footer>
       <Link href={`${whatsapp}`}>

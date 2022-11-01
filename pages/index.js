@@ -9,6 +9,9 @@ import SliderProcess from "../components/SliderProcess/SliderProcess";
 import WorkflowGraph from "../components/WorkflowGraph/WorkflowGraph";
 import CardsProject from "../components/Cards/CardsProjects";
 import CardsProfile from "../components/Cards/CardsProfile";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 // core components
 
 import { fetchWrapper } from "../helpers/fetch-wrapper";
@@ -20,6 +23,14 @@ import Link from "next/link";
 import "../assets/css/main/main.module.css";
 
 function Home() {
+  const slider = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   const visiMission = {
     dots: true,
     infinite: true,
@@ -151,6 +162,7 @@ function Home() {
   };
 
   useEffect(() => {
+    AOS.init({ duration: 2000 });
     getDataProfile();
     getDataOriginalIP();
     getDataMedia();
@@ -185,7 +197,7 @@ function Home() {
       >
         <Slider {...visiMission}>
           <div>
-            <div className="text-center header-cover">
+            <div data-aos="fade-up" className="text-center header-cover">
               <div className="pb-4 text_vision_mision">Our Vision</div>
               <h1 className="m-0 pb-4 text_title_vision_mision">
                 We believe in quality-experiential entertainment to empower
@@ -196,16 +208,8 @@ function Home() {
 
           <div>
             <div className="text-center header-cover">
-              <div
-                className="pb-4"
-                style={{ color: "#ffffff", fontSize: "18px" }}
-              >
-                Our Mission
-              </div>
-              <h1
-                className="m-0 pb-4"
-                style={{ color: "#ffffff", fontSize: "32px" }}
-              >
+              <div className="pb-4 text_vision_mision">Our Mission</div>
+              <h1 className="m-0 pb-4 text_title_vision_mision">
                 We aim to entertain and inspire through dramatic experiences,
                 transmedia storytelling and creative imagineering.
               </h1>
@@ -213,11 +217,12 @@ function Home() {
           </div>
         </Slider>
       </div>
-      <div>{renderFilter}</div>
+      <div data-aos="fade-up">{renderFilter}</div>
 
       <div id="work" className="py-5" style={{ backgroundColor: "#000000" }}>
         <Container className="pt-5 pb-5">
           <div
+            data-aos="fade-up"
             style={{ color: "#ffffff", paddingLeft: "15px", fontSize: "16px" }}
           >
             {`Work / ${menu}`}
@@ -228,13 +233,15 @@ function Home() {
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 box">
             {project.map((val) => {
               return (
-                <CardsProject
-                  img={val.url_image_cover}
-                  place={val.place_project}
-                  id={val.id}
-                  childTitle={val.child_title}
-                  title={val.title_project}
-                />
+                <div data-aos="fade-up">
+                  <CardsProject
+                    img={val.url_image_cover}
+                    place={val.place_project}
+                    id={val.id}
+                    childTitle={val.child_title}
+                    title={val.title_project}
+                  />
+                </div>
               );
             })}
           </div>
@@ -245,8 +252,9 @@ function Home() {
         <Container>
           <div className="text-center justify-content-center">
             <h1
+              data-aos="fade-up"
+              className="title_section"
               style={{
-                fontSize: "48px",
                 color: "#000000",
                 fontStyle: "bold",
               }}
@@ -254,8 +262,9 @@ function Home() {
               How We Do It
             </h1>
             <div
+              data-aos="fade-up"
               style={{
-                width: "300px",
+                width: "180px",
                 height: "5px",
                 backgroundColor: "#000000",
                 marginRight: "auto",
@@ -264,6 +273,7 @@ function Home() {
               className="my-4"
             ></div>
             <h2
+              data-aos="fade-up"
               style={{
                 color: "#000000",
                 marginRight: "auto",
@@ -274,12 +284,13 @@ function Home() {
               {`${HWDI.title}`}
             </h2>
             <div
+              data-aos="fade-up"
+              className="desc_section"
               style={{
                 maxWidth: "70%",
                 marginLeft: "auto",
                 marginRight: "auto",
                 color: "#000000",
-                fontSize: "16px",
               }}
             >
               {`${HWDI.description}`}
@@ -288,26 +299,30 @@ function Home() {
         </Container>
       </div>
 
-      <SliderProcess />
+      <div data-aos="fade-up">
+        <SliderProcess />
+      </div>
 
       <div
         className="my-5"
         style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
       ></div>
 
-      <WorkflowGraph />
+      <div data-aos="fade-up">
+        <WorkflowGraph />
+      </div>
 
       <div
         className="my-5"
         style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
       ></div>
 
-      <div className="pb-5 pt-3">
+      <div data-aos="fade-up" className="pb-5 pt-3">
         <Container>
           <div className="text-center justify-content-center">
             <h1
+              className="title_section"
               style={{
-                fontSize: "48px",
                 color: "#000000",
                 fontStyle: "bold",
               }}
@@ -316,7 +331,7 @@ function Home() {
             </h1>
             <div
               style={{
-                width: "300px",
+                width: "180px",
                 height: "5px",
                 backgroundColor: "#000000",
                 marginRight: "auto",
@@ -359,12 +374,12 @@ function Home() {
         style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
       ></div>
 
-      <div className="pt-3">
+      <div data-aos="fade-up" className="pt-3">
         <Container>
           <div className="text-center justify-content-center">
             <h1
+              className="title_section"
               style={{
-                fontSize: "48px",
                 color: "#000000",
                 fontStyle: "bold",
               }}
@@ -373,7 +388,7 @@ function Home() {
             </h1>
             <div
               style={{
-                width: "300px",
+                width: "180px",
                 height: "5px",
                 backgroundColor: "#000000",
                 marginRight: "auto",
@@ -386,21 +401,47 @@ function Home() {
       </div>
 
       <div className="py-3">
-        <Container>
+        <Container className="display-large">
           <div className="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 box">
             {profile.map((val) => {
               return (
-                <CardsProfile
-                  img={val.url_image}
-                  name={val.name}
-                  id={val.id}
-                  url={val.url_linkedin}
-                  position={val.position}
-                />
+                <div data-aos="fade-up">
+                  <CardsProfile
+                    img={val.url_image}
+                    name={val.name}
+                    id={val.id}
+                    url={val.url_linkedin}
+                    position={val.position}
+                  />
+                </div>
               );
             })}
           </div>
         </Container>
+
+        <div className="display-small media_coverage">
+          <Container>
+            <Card className="content">
+              <Container>
+                <Slider {...slider}>
+                  {profile.map((val) => {
+                    return (
+                      <div data-aos="fade-up">
+                        <CardsProfile
+                          img={val.url_image}
+                          name={val.name}
+                          id={val.id}
+                          url={val.url_linkedin}
+                          position={val.position}
+                        />
+                      </div>
+                    );
+                  })}
+                </Slider>
+              </Container>
+            </Card>
+          </Container>
+        </div>
       </div>
 
       <div
@@ -410,10 +451,10 @@ function Home() {
 
       <Container>
         <div
-          className="pb-5"
+          data-aos="fade-up"
+          className="pb-5 desc_section"
           style={{
             color: "#000000",
-            fontSize: "16px",
             paddingLeft: "50px",
             paddingRight: "50px",
             textAlign: "justify",
@@ -424,6 +465,7 @@ function Home() {
       </Container>
 
       <img
+        data-aos="fade-up"
         src={`https://drive.google.com/uc?export=view&id=${ourTeam.url_image}`}
         alt="A random image from Flickr"
         style={{
@@ -432,7 +474,10 @@ function Home() {
         }}
       />
 
-      <div className="pt-5 text-center justify-content-center">
+      <div
+        data-aos="fade-up"
+        className="pt-5 text-center justify-content-center"
+      >
         <Link href="/">
           <div
             style={{

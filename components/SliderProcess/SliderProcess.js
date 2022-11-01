@@ -286,9 +286,9 @@ function SliderProcess() {
                 </Col>
                 <Col>
                   <div
+                    className="desc_section"
                     style={{
                       color: "#000000",
-                      fontSize: "16px",
                       borderLeft: "1px solid #000000",
                       paddingLeft: "30px",
                       paddingRight: "30px",
@@ -331,9 +331,10 @@ function SliderProcess() {
                 </Col>
                 <Col>
                   <div
+                    className="desc_section"
                     style={{
                       color: "#000000",
-                      fontSize: "16px",
+
                       borderLeft: "1px solid #000000",
                       paddingLeft: "30px",
                       paddingRight: "30px",
@@ -376,9 +377,9 @@ function SliderProcess() {
                 </Col>
                 <Col>
                   <div
+                    className="desc_section"
                     style={{
                       color: "#000000",
-                      fontSize: "16px",
                       borderLeft: "1px solid #000000",
                       paddingLeft: "30px",
                       paddingRight: "30px",
@@ -442,10 +443,10 @@ function SliderProcess() {
                         </div>
                         <div>
                           <div
+                            className="desc_section"
                             style={{
                               paddingTop: "15px",
                               color: "#000000",
-                              fontSize: "16px",
                               borderTop: "1px solid #000000",
                               paddingLeft: "30px",
                               paddingRight: "30px",
@@ -503,10 +504,10 @@ function SliderProcess() {
                         </div>
                         <div>
                           <div
+                            className="desc_section"
                             style={{
                               paddingTop: "15px",
                               color: "#000000",
-                              fontSize: "16px",
                               borderTop: "1px solid #000000",
                               paddingLeft: "30px",
                               paddingRight: "30px",
@@ -564,10 +565,10 @@ function SliderProcess() {
                         </div>
                         <div>
                           <div
+                            className="desc_section"
                             style={{
                               paddingTop: "15px",
                               color: "#000000",
-                              fontSize: "16px",
                               borderTop: "1px solid #000000",
                               paddingLeft: "30px",
                               paddingRight: "30px",

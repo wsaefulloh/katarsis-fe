@@ -355,7 +355,25 @@ nav {
 
 .text_title_vision_mision {
   color: #ffffff;
+  font-size: 20px;
+}
+
+.child_title_project {
+  color: #ffffff;
+  font-size: 22px;
+}
+
+.title_project {
+  color: #ffffff;
+  font-size: 10px;
+}
+
+.title_section {
   font-size: 28px;
+}
+
+.desc_section {
+  font-size: 14px;
 }
 
 .border_filter {
@@ -389,6 +407,22 @@ nav {
 
   .text_title_vision_mision {
     font-size: 32px;
+  }
+
+  .child_title_project {
+    font-size: 28px;
+  }
+
+  .title_project {
+    font-size: 14px;
+  }
+
+  .title_section {
+    font-size: 48px;
+  }
+
+  .desc_section {
+    font-size: 16px;
   }
 }
 
