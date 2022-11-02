@@ -137,6 +137,27 @@ nav {
   right: 0;
   padding: 30px;
 }
+
+.nav-item:hover {
+  font-weight: bold;
+  color: #434343;
+}
+
+.nav-item {
+  font-size: 0.875rem;
+  position: relative;
+  transition: all 0.2s;
+  color: #666666;
+}
+
+.nav-item > .active {
+  font-size: 0.875rem;
+  position: relative;
+  transition: all 0.2s;
+  font-weight: bold;
+  color: #434343;
+}
+
 .nav__link {
   font-size: 0.875rem;
   position: relative;

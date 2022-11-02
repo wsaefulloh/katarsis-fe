@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link, animateScroll as scroll } from "react-scroll";
 import Image from "next/image";
 import React, { useState } from "react";
 import "../../assets/css/main/main.module.css";
@@ -6,28 +6,38 @@ import { Container, NavbarBrand } from "reactstrap";
 import { useRouter } from "next/router";
 
 const MENU_LIST = [
-  { text: "About", href: "/" },
-  { text: "Work", href: "/#work" },
-  { text: "Career", href: "/career" },
-  { text: "Contact", href: "/#footer_id" },
+  { text: "About", href: "/", link: "top" },
+  { text: "Work", href: "/#work", link: "work" },
+  { text: "Career", href: "/career", link: "career" },
+  { text: "Contact", href: "/#footer_id", link: "footer_id" },
 ];
 
-const NavItem = ({ text, href, active }) => {
+const NavItem = ({ text, href, active, link }) => {
   console.log(active);
-  if (active) {
+
+  if (link == "career" || link == "about") {
     return (
-      <Link href={href}>
-        <div style={{ cursor: "pointer" }} className="px-3 nav__link active">
-          <a>{text}</a>
-        </div>
-      </Link>
-    );
-  } else {
-    return (
-      <Link href={href}>
+      <a href={href}>
         <div style={{ cursor: "pointer" }} className="px-3 nav__link">
           <a>{text}</a>
         </div>
+      </a>
+    );
+  } else {
+    return (
+      <Link
+        activeClass="active"
+        to={link}
+        spy={true}
+        smooth={true}
+        offset={-70}
+        duration={500}
+      >
+        <a href={href}>
+          <div style={{ cursor: "pointer" }} className="px-3 nav__link">
+            <a>{text}</a>
+          </div>
+        </a>
       </Link>
     );
   }
@@ -35,16 +45,18 @@ const NavItem = ({ text, href, active }) => {
 
 const HomeNavbar = () => {
   const [navActive, setNavActive] = useState(null);
+
   const [activeIdx, setActiveIdx] = useState(-1);
   const router = useRouter();
   const url_page = router.asPath;
+  const [url, setUrl] = useState(`${url_page}`);
   console.log(url_page);
 
   return (
     <header>
       <nav className="shadow-sm">
         <Container className="d-flex align-items-center justify-content-between">
-          <Link href="/">
+          <a href="/">
             <span>
               <NavbarBrand href="/">
                 <img
@@ -54,7 +66,7 @@ const HomeNavbar = () => {
                 />
               </NavbarBrand>
             </span>
-          </Link>
+          </a>
           <div
             onClick={() => setNavActive(!navActive)}
             className={`nav__menu-bar`}
@@ -73,10 +85,11 @@ const HomeNavbar = () => {
                   onClick={() => {
                     setActiveIdx(idx);
                     setNavActive(false);
+                    setUrl(`${menu.href}`);
                   }}
                   key={menu.text}
                 >
-                  <NavItem active={url_page === `${menu.href}`} {...menu} />
+                  <NavItem active={url === `${menu.href}`} {...menu} />
                 </div>
               );
             })}

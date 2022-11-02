@@ -153,7 +153,7 @@ function CardsProject(props) {
   const addFile = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`../api/admin/file-film`, {
+      const response = await fetch(`../api/admin/gallery`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
