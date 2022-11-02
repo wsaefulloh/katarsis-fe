@@ -134,7 +134,7 @@ function HomeFooter() {
                 </div>
               </a>
             </Link>
-            <Link href={`${tiktok}`}>
+            {/* <Link href={`${tiktok}`}>
               <a target="_blank">
                 <div className="mx-1">
                   <img
@@ -143,7 +143,7 @@ function HomeFooter() {
                   />
                 </div>
               </a>
-            </Link>
+            </Link> */}
             <Link href={`${linkedin}`}>
               <a target="_blank">
                 <div className="mx-1">
@@ -161,7 +161,9 @@ function HomeFooter() {
                 <div className="border-footer">
                   <div className="mx-3 py-2">
                     <h5>INFO</h5>
-                    <div>{`${info}`}</div>
+                    <a style={{ cursor: "pointer" }} href={`mailto:${info}`}>
+                      <div>{`${info}`}</div>
+                    </a>
                   </div>
                 </div>
               </Col>
@@ -169,7 +171,12 @@ function HomeFooter() {
                 <div className="border-footer">
                   <div className="mx-3 py-2">
                     <h5>MARKETING</h5>
-                    <div>{`${marketing}`}</div>
+                    <a
+                      style={{ cursor: "pointer" }}
+                      href={`mailto:${marketing}`}
+                    >
+                      <div>{`${marketing}`}</div>
+                    </a>
                   </div>
                 </div>
               </Col>
@@ -177,7 +184,12 @@ function HomeFooter() {
                 <div className="border-footer">
                   <div className="mx-3 py-2">
                     <h5>PARTNERSHIP</h5>
-                    <div>{`${partnership}`}</div>
+                    <a
+                      style={{ cursor: "pointer" }}
+                      href={`mailto:${partnership}`}
+                    >
+                      <div>{`${partnership}`}</div>
+                    </a>
                   </div>
                 </div>
               </Col>
@@ -193,7 +205,9 @@ function HomeFooter() {
                 <div>
                   <div className="mx-3 py-2">
                     <h5>CAREERS</h5>
-                    <div>{`${career}`}</div>
+                    <a style={{ cursor: "pointer" }} href={`mailto:${career}`}>
+                      <div>{`${career}`}</div>
+                    </a>
                   </div>
                 </div>
               </Col>
@@ -205,7 +219,9 @@ function HomeFooter() {
               <div className="border-footer">
                 <div className="mx-3 pt-2 pb-4">
                   <h5>INFO</h5>
-                  <div>{`${info}`}</div>
+                  <a style={{ cursor: "pointer" }} href={`mailto:${info}`}>
+                    <div>{`${info}`}</div>
+                  </a>
                 </div>
               </div>
             </Col>
@@ -213,7 +229,9 @@ function HomeFooter() {
               <div className="border-footer">
                 <div className="mx-3 pb-4">
                   <h5>MARKETING</h5>
-                  <div>{`${marketing}`}</div>
+                  <a style={{ cursor: "pointer" }} href={`mailto:${marketing}`}>
+                    <div>{`${marketing}`}</div>
+                  </a>
                 </div>
               </div>
             </Col>
@@ -221,7 +239,12 @@ function HomeFooter() {
               <div className="border-footer">
                 <div className="mx-3 pb-4">
                   <h5>PARTNERSHIP</h5>
-                  <div>{`${partnership}`}</div>
+                  <a
+                    style={{ cursor: "pointer" }}
+                    href={`mailto:${partnership}`}
+                  >
+                    <div>{`${partnership}`}</div>
+                  </a>
                 </div>
               </div>
             </Col>
@@ -237,7 +260,9 @@ function HomeFooter() {
               <div>
                 <div className="mx-3 pb-2">
                   <h5>CAREERS</h5>
-                  <div>{`${career}`}</div>
+                  <a style={{ cursor: "pointer" }} href={`mailto:${career}`}>
+                    <div>{`${career}`}</div>
+                  </a>
                 </div>
               </div>
             </Col>

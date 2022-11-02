@@ -55,7 +55,7 @@ function CardsProject(props) {
                       padding: "30px",
                     }}
                   >
-                    <h1 className="child_title_project">{`${childTitle}`}</h1>
+                    <h3 className="child_title_project">{`${childTitle}`}</h3>
                     <div className="title_project">{`${title}, ${place}`}</div>
                   </div>
                 </div>

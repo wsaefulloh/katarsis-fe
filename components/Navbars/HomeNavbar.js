@@ -6,7 +6,7 @@ import { Container, NavbarBrand } from "reactstrap";
 import { useRouter } from "next/router";
 
 const MENU_LIST = [
-  { text: "About", href: "/", link: "top" },
+  { text: "About", href: "/", link: "about" },
   { text: "Work", href: "/#work", link: "work" },
   { text: "Career", href: "/career", link: "career" },
   { text: "Contact", href: "/#footer_id", link: "footer_id" },
