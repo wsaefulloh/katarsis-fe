@@ -160,7 +160,7 @@ function Work() {
                 className="d-flex align-items-center justify-content-center"
                 style={{ height: "100px" }}
               >
-                <h1 className="m-0 p-0">{`${projects.title_project}`}</h1>
+                <h2 className="m-0 p-0">{`${projects.title_project}`}</h2>
               </div>
             </div>
           </Container>
@@ -176,7 +176,7 @@ function Work() {
                 <div
                   data-aos="fade-up"
                   className="m-0 p-0"
-                  style={{ fontSize: "16px" }}
+                  style={{ fontSize: "10px" }}
                 >
                   {`${projects.short_desc}`}
                 </div>
