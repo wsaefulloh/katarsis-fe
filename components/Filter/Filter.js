@@ -204,8 +204,8 @@ function Filter() {
                 />
               </div>
               <div style={{ maxWidth: "800px" }}>
-                We provide multiple bespoke and custom services for branded,
-                corporate and marketing needs
+                We provide bespoke and custom experiential solutions for
+                branded, corporate and marketing needs
               </div>
             </Col>
           </Row>
