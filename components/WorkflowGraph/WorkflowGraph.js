@@ -301,7 +301,7 @@ function WorkflowGraph() {
                       className="py-1 arrow_hover "
                       style={{ width: "fit-content", cursor: "pointer" }}
                     >
-                      INTEGRATION
+                      PROMOTION
                     </div>
                   </div>
 
@@ -730,7 +730,7 @@ function WorkflowGraph() {
                       className="py-1 arrow_hover "
                       style={{ width: "fit-content", cursor: "pointer" }}
                     >
-                      INTEGRATION
+                      PROMOTION
                     </div>
                   </div>
 

@@ -39,7 +39,7 @@ function CardsProfile(props) {
           />
           <div className="mt-2">
             <div className="d-flex align-items-center">
-              <h1 className="m-0 py-2 pr-2">Lorem Ipsum</h1>
+              <h1 className="m-0 py-2 pr-2">{name}</h1>
               <Link href={`${url}`}>
                 <a target="_blank">
                   <svg
@@ -76,7 +76,7 @@ function CardsProfile(props) {
           />
           <div className="mt-2">
             <div className="d-flex align-items-center">
-              <h1 className="m-0 py-2 pr-2">Lorem Ipsum</h1>
+              <h1 className="m-0 py-2 pr-2">{name}</h1>
               <Link href={`${url}`}>
                 <a target="_blank">
                   <svg
