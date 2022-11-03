@@ -203,12 +203,7 @@ function Filter() {
                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACbklEQVRYhe3XSY8NURQH8N/rJkTaFOloJLQprGkrSRMRU/RG+AAiIj6BnWFtQ8TwJYgxvaJZGRJiiCFEzEOwY2PjWdxTqUeq6tV7zYp/cpPKPf/zP3c4de+5/OtodMhdiRGsxVzMCdt7fMAYLuI2mn9ykCO4F6J12mPs0NkEC7EQt1qE3+A4tmAZpqIvvjfjGF618G9isNvgq/ExhD5hHybV8OuRZv88fL9gXafB1+B7CIxiRqcC0uqcD43voVkLC/E5HE+ht4vgGXpwRL6KbbejId/z0XEGbx3E2dC8oU1i7gjiO90texmmSgncxPYyUkP6fZrY+weDZ9gV2o+UrMKqILzFxBKR+VJi9RfY+nEBi0p8e/EyYgwVEQ6F8WSJAHlWP/htEP3R18TlCv+jwTlQZLwWxpEKgdZA2SBa+x5LR3QZNgZvrMj4LIzLKwSKBpF9P8JAG99FwX1aZPwWxultRLJB3Pfr2T+n0iNhMn7ga9bR02LMbq86F0i3N10jWqF/3S2Yhbv+whZc1T4JZ+JO8B5idrSH6iXhBhVJeDCMJyoEzgXniV9nOxB9peKB7F7YX2Qckt/5ZQfRUlxRPMu5YVta4tuLFxFjZRGhIe1jE3tKRMaDnfKtK0307fLjuM7vWBd9eB3a26qIDamMakrFZU8VuSYaOB2a19X4zQel4qEp1XjjGUQDh+UFyYK6jsPykuwipnURvA9n5CXZcKcCw/KVeIPdmFDDr1dKuOzq/dRN8AyDUhmVnfmvpG3ZjCWYEm0xNkn/+YsW/nUdLHsV1vtLD5NOn2YrsFX+NJsXtnfS82wMl+TH9X+0xU/nf8f7CQu+owAAAABJRU5ErkJggg=="
                 />
               </div>
-              <div style={{ maxWidth: "800px" }}>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                penatibus et magnis dis parturient montes, nascetur ridiculus
-                mus.
-              </div>
+              <div style={{ maxWidth: "800px" }}></div>
             </Col>
           </Row>
         </Container>
