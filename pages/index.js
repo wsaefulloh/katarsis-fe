@@ -146,7 +146,7 @@ function Home() {
   };
 
   const getDataOriginalIPContent = async () => {
-    const data = await fetchWrapper.get(`api/project/b2b`);
+    const data = await fetchWrapper.get(`api/project/originalIP-content`);
     if (data) {
       setProject(data.data);
     }

@@ -178,10 +178,8 @@ function Filter() {
                 />
               </div>
               <div style={{ maxWidth: "800px" }}>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                penatibus et magnis dis parturient montes, nascetur ridiculus
-                mus.
+                Creating unique entertainment formats through dramatic
+                experiences, transmedia storytelling and immersive imagineering.
               </div>
             </Col>
           </Row>
