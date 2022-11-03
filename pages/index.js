@@ -242,8 +242,7 @@ function Home() {
             <div data-aos="fade-up" className="text-center header-cover">
               <div className="pb-4 text_vision_mision">Our Vision</div>
               <h1 className="m-0 pb-4 text_title_vision_mision">
-                We believe in quality-experiential entertainment to empower
-                Indonesia’s creative potential.
+                Merging online-offline worlds through entertainment.
               </h1>
             </div>
           </div>
@@ -252,8 +251,8 @@ function Home() {
             <div className="text-center header-cover">
               <div className="pb-4 text_vision_mision">Our Mission</div>
               <h1 className="m-0 pb-4 text_title_vision_mision">
-                We aim to entertain and inspire through dramatic experiences,
-                transmedia storytelling and creative imagineering.
+                Powering Indonesia’s entertainment industry through
+                extraordinary experiences and exceptional talent.
               </h1>
             </div>
           </div>

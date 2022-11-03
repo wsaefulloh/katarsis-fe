@@ -263,7 +263,6 @@ function SliderProcess() {
             <Container>
               <img
                 src={`https://drive.google.com/uc?export=view&id=${result1.url_image}`}
-                alt="A random image from Flickr"
                 style={{
                   width: "100%",
                   objectFit: "cover",
