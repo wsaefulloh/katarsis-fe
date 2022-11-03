@@ -80,6 +80,49 @@ function Home() {
     ],
   };
 
+  const profileSlide = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1150,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   const { menu, renderFilter } = Filter();
 
   const [project, setProject] = useState([]);
@@ -258,7 +301,7 @@ function Home() {
                 fontStyle: "bold",
               }}
             >
-              How We Do It
+              Why Katarsis
             </h1>
             <div
               data-aos="fade-up"
@@ -400,7 +443,7 @@ function Home() {
       </div>
 
       <div className="py-3">
-        <Container className="display-large">
+        {/* <Container className="display-large">
           <div className="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 box">
             {profile.map((val) => {
               return (
@@ -416,9 +459,33 @@ function Home() {
               );
             })}
           </div>
-        </Container>
+        </Container> */}
 
-        <div className="display-small media_coverage">
+        <div className="media_coverage">
+          <Container>
+            <Card className="content">
+              <Container className="profile_slider">
+                <Slider {...profileSlide}>
+                  {profile.map((val) => {
+                    return (
+                      <div data-aos="fade-up">
+                        <CardsProfile
+                          img={val.url_image}
+                          name={val.name}
+                          id={val.id}
+                          url={val.url_linkedin}
+                          position={val.position}
+                        />
+                      </div>
+                    );
+                  })}
+                </Slider>
+              </Container>
+            </Card>
+          </Container>
+        </div>
+
+        {/* <div className="display-small media_coverage">
           <Container>
             <Card className="content">
               <Container>
@@ -440,7 +507,7 @@ function Home() {
               </Container>
             </Card>
           </Container>
-        </div>
+        </div> */}
       </div>
 
       <div
@@ -475,7 +542,7 @@ function Home() {
 
       <div
         data-aos="fade-up"
-        className="pt-3 text-center justify-content-center"
+        className="pt-5 text-center justify-content-center"
       >
         <Link
           activeClass="active"

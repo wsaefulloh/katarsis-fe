@@ -115,8 +115,8 @@ function HomeFooter() {
   return (
     <>
       <footer id="footer_id">
-        <Container className="pt-5 ">
-          <div className="text-center pt-3 pb-4">
+        <Container className="pt-4 ">
+          <div className="text-center pb-4">
             <img
               alt="..."
               src={require("assets/img/brand/Logo Katarsis png.png")}

@@ -83,6 +83,18 @@ h2 {
   color: #444444;
 }
 
+.profile_slider .slider-playnow .slick-list {
+  padding-bottom: 20px !important;
+}
+
+.profile_slider .slick-slider .slick-next:before {
+  color: #ffffff;
+}
+
+.profile_slider .slick-slider .slick-prev:before {
+  color: #ffffff;
+}
+
 form input:focus {
   border: 1px solid #000000 !important;
 }

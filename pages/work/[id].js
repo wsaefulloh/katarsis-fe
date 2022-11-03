@@ -354,7 +354,7 @@ function Work() {
 
       <div
         data-aos="fade-up"
-        className="pt-3 text-center justify-content-center"
+        className="pt-5 text-center justify-content-center"
       >
         <Link
           activeClass="active"
