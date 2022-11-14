@@ -124,50 +124,34 @@ function Home() {
   };
 
   const { menu, renderFilter } = Filter();
+  const [newMenu, setNewMenu] = useState("");
 
   const [project, setProject] = useState([]);
   const [profile, setProfile] = useState([]);
   const [media, setMedia] = useState([]);
   const [HWDI, setHWDI] = useState({});
   const [ourTeam, setOurTeam] = useState({});
+  const [visi, setVisi] = useState({});
+  const [misi, setMisi] = useState({});
 
   const getDataOriginalIP = async () => {
-    const data = await fetchWrapper.get(`api/project/originalIP`);
-    if (data) {
-      setProject(data.data);
-    }
-  };
-
-  const getDataOriginalIPExperiences = async () => {
-    const data = await fetchWrapper.get(`api/project/originalIP-experiences`);
-    if (data) {
-      setProject(data.data);
-    }
-  };
-
-  const getDataOriginalIPContent = async () => {
-    const data = await fetchWrapper.get(`api/project/originalIP-content`);
+    const data = await fetchWrapper.get(`api/new-project/get-by-menu?id=1`);
     if (data) {
       setProject(data.data);
     }
   };
 
   const getDataB2B = async () => {
-    const data = await fetchWrapper.get(`api/project/b2b`);
+    const data = await fetchWrapper.get(`api/new-project/get-by-menu?id=2`);
     if (data) {
       setProject(data.data);
     }
   };
 
-  const getDataB2BMarketingSponsor = async () => {
-    const data = await fetchWrapper.get(`api/project/b2b-marketing-sponsor`);
-    if (data) {
-      setProject(data.data);
-    }
-  };
-
-  const getDataB2BCeremoniesEvent = async () => {
-    const data = await fetchWrapper.get(`api/project/b2b-ceremonies-event`);
+  const getDataSubMenu = async (id) => {
+    const data = await fetchWrapper.get(
+      `api/new-project/get-by-submenu?id=${id}`
+    );
     if (data) {
       setProject(data.data);
     }
@@ -203,6 +187,22 @@ function Home() {
     }
   };
 
+  const getMission = async () => {
+    const data = await fetchWrapper.get(`api/content/get-misi`);
+    if (data) {
+      let obj = data.data;
+      setMisi(obj[0]);
+    }
+  };
+
+  const getVision = async () => {
+    const data = await fetchWrapper.get(`api/content/get-visi`);
+    if (data) {
+      let obj = data.data;
+      setVisi(obj[0]);
+    }
+  };
+
   useEffect(() => {
     AOS.init({ duration: 2000 });
     getDataProfile();
@@ -210,23 +210,20 @@ function Home() {
     getDataMedia();
     getHowWeDoIt();
     getOurTeam();
+    getVision();
+    getMission();
   }, []);
 
   useEffect(() => {
-    if (menu == "Original IP") {
+    let menu_baru = menu.split("/");
+    setNewMenu(`${menu_baru[0]}`);
+    console.log(menu_baru[1]);
+    if (menu_baru[1] == "Original IP") {
       getDataOriginalIP();
-    } else if (menu == "Original IP -> Experiences") {
-      getDataOriginalIPExperiences();
-    } else if (menu == "Original IP -> Content") {
-      getDataOriginalIPContent();
-    } else if (menu == "Business to Business (B2B)") {
+    } else if (menu_baru[1] == "B2B") {
       getDataB2B();
-    } else if (
-      menu == "Business to Business (B2B) -> Marketing & Sponsorship"
-    ) {
-      getDataB2BMarketingSponsor();
-    } else if (menu == "Business to Business (B2B) -> Ceremonies & Events") {
-      getDataB2BCeremoniesEvent();
+    } else {
+      getDataSubMenu(`${menu_baru[1]}`);
     }
   }, [menu]);
 
@@ -242,7 +239,7 @@ function Home() {
             <div data-aos="fade-up" className="text-center header-cover">
               <div className="pb-4 text_vision_mision">Our Vision</div>
               <h1 className="m-0 pb-4 text_title_vision_mision">
-                Merging online-offline worlds through entertainment.
+                {visi.description}
               </h1>
             </div>
           </div>
@@ -251,8 +248,7 @@ function Home() {
             <div className="text-center header-cover">
               <div className="pb-4 text_vision_mision">Our Mission</div>
               <h1 className="m-0 pb-4 text_title_vision_mision">
-                Powering Indonesia’s entertainment industry through
-                extraordinary experiences and exceptional talent.
+                {misi.description}
               </h1>
             </div>
           </div>
@@ -266,7 +262,7 @@ function Home() {
             data-aos="fade-up"
             style={{ color: "#ffffff", paddingLeft: "15px", fontSize: "16px" }}
           >
-            {`Work / ${menu}`}
+            {`Work / ${newMenu}`}
           </div>
         </Container>
 

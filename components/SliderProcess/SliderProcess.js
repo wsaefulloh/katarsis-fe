@@ -259,12 +259,13 @@ function SliderProcess() {
 
       <div className="display-large">
         <div id="menu_carousel1" className="m-fadeIn">
-          <div className="py-4">
+          <div className="py-4 text-center">
             <Container>
               <img
                 src={`https://drive.google.com/uc?export=view&id=${result1.url_image}`}
+                alt={`${result1.title}`}
                 style={{
-                  width: "100%",
+                  height: "400px",
                   objectFit: "cover",
                 }}
               />
@@ -303,13 +304,13 @@ function SliderProcess() {
         </div>
 
         <div id="menu_carousel2" className="filter_display_none m-fadeOut">
-          <div className="py-4">
+          <div className="py-4 text-center">
             <Container>
               <img
                 src={`https://drive.google.com/uc?export=view&id=${result2.url_image}`}
-                alt="A random image from Flickr"
+                alt={`${result2.title}`}
                 style={{
-                  width: "100%",
+                  height: "400px",
                   objectFit: "cover",
                 }}
               />
@@ -349,13 +350,13 @@ function SliderProcess() {
         </div>
 
         <div id="menu_carousel3" className="filter_display_none m-fadeOut">
-          <div className="py-4">
+          <div className="py-4 text-center">
             <Container>
               <img
                 src={`https://drive.google.com/uc?export=view&id=${result3.url_image}`}
-                alt="A random image from Flickr"
+                alt={`${result3.title}`}
                 style={{
-                  width: "100%",
+                  height: "400px",
                   objectFit: "cover",
                 }}
               />

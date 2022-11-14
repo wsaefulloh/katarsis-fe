@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 // reactstrap components
@@ -15,12 +15,54 @@ import {
 } from "reactstrap";
 
 import "../../assets/css/main/main.module.css";
+import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
 function Filter() {
-  const [menu, setMenu] = useState("Original IP");
+  const [menu, setMenu] = useState("Original IP / Original IP");
+  const [originalIP, setOriginalIP] = useState({});
+  const [b2b, setB2B] = useState({});
+  const [menuOriginalIP, setMenuOriginalIP] = useState([]);
+  const [menuB2B, setMenuB2B] = useState([]);
+
+  const getOriginalIP = async () => {
+    const data = await fetchWrapper.get(`api/content/get-original`);
+    if (data) {
+      let obj = data.data;
+      setOriginalIP(obj[0]);
+    }
+  };
+
+  const getMenuOriginalIP = async () => {
+    const data = await fetchWrapper.get(`api/get-submenu?id=1`);
+    if (data) {
+      setMenuOriginalIP(data.data);
+    }
+  };
+
+  const getMenuB2B = async () => {
+    const data = await fetchWrapper.get(`api/get-submenu?id=2`);
+    if (data) {
+      setMenuB2B(data.data);
+    }
+  };
+
+  const getB2B = async () => {
+    const data = await fetchWrapper.get(`api/content/get-b2b`);
+    if (data) {
+      let obj = data.data;
+      setB2B(obj[0]);
+    }
+  };
+
+  useEffect(() => {
+    getB2B();
+    getOriginalIP();
+    getMenuB2B();
+    getMenuOriginalIP();
+  }, []);
 
   const onClickMenu1 = () => {
-    setMenu("Original IP");
+    setMenu("Original IP / Original IP");
     const filter = document.getElementById("filter");
     const menu = document.getElementById("menu1");
     const img = document.getElementById("close1");
@@ -35,7 +77,7 @@ function Filter() {
   };
 
   const onClickMenu2 = () => {
-    setMenu("Business to Business (B2B)");
+    setMenu("Business to Business (B2B) / B2B");
     const filter = document.getElementById("filter");
     const menu = document.getElementById("menu2");
     const img = document.getElementById("close2");
@@ -98,7 +140,22 @@ function Filter() {
                 </Col>
                 <Col style={{ minWidth: "262px" }}>
                   <div className="mx-4">
-                    <div
+                    {menuOriginalIP.map((val) => {
+                      return (
+                        <div
+                          className="py-1 arrow_hover "
+                          onClick={() =>
+                            setMenu(
+                              `Original IP -> ${val.name_submenu} / ${val.id}`
+                            )
+                          }
+                          style={{ width: "fit-content", cursor: "pointer" }}
+                        >
+                          {val.name_submenu}
+                        </div>
+                      );
+                    })}
+                    {/* <div
                       className="py-1 arrow_hover "
                       onClick={() => setMenu("Original IP -> Experiences")}
                       style={{ width: "fit-content", cursor: "pointer" }}
@@ -111,7 +168,7 @@ function Filter() {
                       style={{ width: "fit-content", cursor: "pointer" }}
                     >
                       Content
-                    </div>
+                    </div> */}
                   </div>
                 </Col>
               </Row>
@@ -131,7 +188,22 @@ function Filter() {
                 </Col>
                 <Col style={{ minWidth: "262px" }}>
                   <div className="mx-4">
-                    <div
+                    {menuB2B.map((val) => {
+                      return (
+                        <div
+                          className="py-1 arrow_hover "
+                          onClick={() =>
+                            setMenu(
+                              `Business to Business (B2B) -> ${val.name_submenu} / ${val.id}`
+                            )
+                          }
+                          style={{ width: "fit-content", cursor: "pointer" }}
+                        >
+                          {val.name_submenu}
+                        </div>
+                      );
+                    })}
+                    {/* <div
                       onClick={() =>
                         setMenu(
                           "Business to Business (B2B) -> Marketing & Sponsorship"
@@ -152,7 +224,7 @@ function Filter() {
                       style={{ width: "fit-content", cursor: "pointer" }}
                     >
                       Ceremonies & Events
-                    </div>
+                    </div> */}
                   </div>
                 </Col>
               </Row>
@@ -177,10 +249,7 @@ function Filter() {
                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACbklEQVRYhe3XSY8NURQH8N/rJkTaFOloJLQprGkrSRMRU/RG+AAiIj6BnWFtQ8TwJYgxvaJZGRJiiCFEzEOwY2PjWdxTqUeq6tV7zYp/cpPKPf/zP3c4de+5/OtodMhdiRGsxVzMCdt7fMAYLuI2mn9ykCO4F6J12mPs0NkEC7EQt1qE3+A4tmAZpqIvvjfjGF618G9isNvgq/ExhD5hHybV8OuRZv88fL9gXafB1+B7CIxiRqcC0uqcD43voVkLC/E5HE+ht4vgGXpwRL6KbbejId/z0XEGbx3E2dC8oU1i7gjiO90texmmSgncxPYyUkP6fZrY+weDZ9gV2o+UrMKqILzFxBKR+VJi9RfY+nEBi0p8e/EyYgwVEQ6F8WSJAHlWP/htEP3R18TlCv+jwTlQZLwWxpEKgdZA2SBa+x5LR3QZNgZvrMj4LIzLKwSKBpF9P8JAG99FwX1aZPwWxultRLJB3Pfr2T+n0iNhMn7ga9bR02LMbq86F0i3N10jWqF/3S2Yhbv+whZc1T4JZ+JO8B5idrSH6iXhBhVJeDCMJyoEzgXniV9nOxB9peKB7F7YX2Qckt/5ZQfRUlxRPMu5YVta4tuLFxFjZRGhIe1jE3tKRMaDnfKtK0307fLjuM7vWBd9eB3a26qIDamMakrFZU8VuSYaOB2a19X4zQel4qEp1XjjGUQDh+UFyYK6jsPykuwipnURvA9n5CXZcKcCw/KVeIPdmFDDr1dKuOzq/dRN8AyDUhmVnfmvpG3ZjCWYEm0xNkn/+YsW/nUdLHsV1vtLD5NOn2YrsFX+NJsXtnfS82wMl+TH9X+0xU/nf8f7CQu+owAAAABJRU5ErkJggg=="
                 />
               </div>
-              <div style={{ maxWidth: "800px" }}>
-                Creating unique entertainment formats through dramatic
-                experiences, transmedia storytelling and immersive imagineering.
-              </div>
+              <div style={{ maxWidth: "800px" }}>{originalIP.description}</div>
             </Col>
           </Row>
 
@@ -203,10 +272,7 @@ function Filter() {
                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACbklEQVRYhe3XSY8NURQH8N/rJkTaFOloJLQprGkrSRMRU/RG+AAiIj6BnWFtQ8TwJYgxvaJZGRJiiCFEzEOwY2PjWdxTqUeq6tV7zYp/cpPKPf/zP3c4de+5/OtodMhdiRGsxVzMCdt7fMAYLuI2mn9ykCO4F6J12mPs0NkEC7EQt1qE3+A4tmAZpqIvvjfjGF618G9isNvgq/ExhD5hHybV8OuRZv88fL9gXafB1+B7CIxiRqcC0uqcD43voVkLC/E5HE+ht4vgGXpwRL6KbbejId/z0XEGbx3E2dC8oU1i7gjiO90texmmSgncxPYyUkP6fZrY+weDZ9gV2o+UrMKqILzFxBKR+VJi9RfY+nEBi0p8e/EyYgwVEQ6F8WSJAHlWP/htEP3R18TlCv+jwTlQZLwWxpEKgdZA2SBa+x5LR3QZNgZvrMj4LIzLKwSKBpF9P8JAG99FwX1aZPwWxultRLJB3Pfr2T+n0iNhMn7ga9bR02LMbq86F0i3N10jWqF/3S2Yhbv+whZc1T4JZ+JO8B5idrSH6iXhBhVJeDCMJyoEzgXniV9nOxB9peKB7F7YX2Qckt/5ZQfRUlxRPMu5YVta4tuLFxFjZRGhIe1jE3tKRMaDnfKtK0307fLjuM7vWBd9eB3a26qIDamMakrFZU8VuSYaOB2a19X4zQel4qEp1XjjGUQDh+UFyYK6jsPykuwipnURvA9n5CXZcKcCw/KVeIPdmFDDr1dKuOzq/dRN8AyDUhmVnfmvpG3ZjCWYEm0xNkn/+YsW/nUdLHsV1vtLD5NOn2YrsFX+NJsXtnfS82wMl+TH9X+0xU/nf8f7CQu+owAAAABJRU5ErkJggg=="
                 />
               </div>
-              <div style={{ maxWidth: "800px" }}>
-                We provide bespoke and custom experiential solutions for
-                branded, corporate and marketing needs
-              </div>
+              <div style={{ maxWidth: "800px" }}>{b2b.description}</div>
             </Col>
           </Row>
         </Container>
