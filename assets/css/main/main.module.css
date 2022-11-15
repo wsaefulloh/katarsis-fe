@@ -421,6 +421,11 @@ nav {
   display: none;
 }
 
+.img-nav {
+  height: 20px;
+  width: 20px;
+}
+
 @media screen and (min-width: 789px) {
   .border_filter {
     border-right: 2px solid #000000;
@@ -466,6 +471,13 @@ nav {
 
   .display-large {
     display: block;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .img-nav {
+    width: 50px;
+    height: 50px;
   }
 }
 

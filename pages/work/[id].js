@@ -84,12 +84,14 @@ function Work() {
           style={{
             height: "500px",
             width: "100%",
+            paddingLeft: "30px",
+            paddingRight: "30px",
           }}
         >
           {previous == null ? (
             <a href={`#`} style={{ cursor: "unset" }}>
-              <div className="col d-flex align-items-center px-5">
-                <div style={{ width: "50px", height: "50px" }}></div>
+              <div className="col d-flex align-items-center">
+                <div className="img-nav"></div>
                 <div className="text-right ml-3">
                   <div style={{ color: "transparent" }}>PREVIOUS</div>
                   <div style={{ color: "transparent" }}>PROJECT</div>
@@ -98,10 +100,10 @@ function Work() {
             </a>
           ) : (
             <a href={`/work/${previous}`}>
-              <div className="col d-flex align-items-center px-5">
+              <div className="col d-flex align-items-center">
                 <img
+                  className="img-nav"
                   src={require("assets/img/icons/common/Group 24 (1).png")}
-                  style={{ width: "50px", height: "50px" }}
                 />
                 <div className="text-right ml-3">
                   <div style={{ color: "#ffffff" }}>PREVIOUS</div>
@@ -135,24 +137,24 @@ function Work() {
 
           {next == null ? (
             <a href={`#`} style={{ cursor: "unset" }}>
-              <div className="col d-flex align-items-center justify-content-end px-5">
+              <div className="col d-flex align-items-center justify-content-end">
                 <div className="text-left mr-3">
                   <div style={{ color: "transparent" }}>NEXT</div>
                   <div style={{ color: "transparent" }}>PROJECT</div>
                 </div>
-                <div style={{ width: "50px", height: "50px" }}></div>
+                <div className="img-nav"></div>
               </div>
             </a>
           ) : (
             <a href={`/work/${next}`}>
-              <div className="col d-flex align-items-center justify-content-end px-5">
+              <div className="col d-flex align-items-center justify-content-end">
                 <div className="text-left mr-3">
                   <div style={{ color: "#ffffff" }}>NEXT</div>
                   <div style={{ color: "#ffffff" }}>PROJECT</div>
                 </div>
                 <img
                   src={require("assets/img/icons/common/Group 24.png")}
-                  style={{ width: "50px", height: "50px" }}
+                  className="img-nav"
                 />
               </div>
             </a>
@@ -273,7 +275,7 @@ function Work() {
                       className="py-1 arrow_hover "
                       style={{ width: "fit-content", cursor: "pointer" }}
                     >
-                      {`${projects.type_project}`}
+                      {`${projects.name_menu}`}
                     </div>
                   </a>
                 </div>
@@ -356,23 +358,23 @@ function Work() {
           <Container>
             <Row className="m-0 p-0 align-items-center">
               <Col className="m-0 p-0">
-                <h1>{`${projects.impression_result}`}</h1>
+                <h3>{`${projects.metrics_one_desc}`}</h3>
                 <div
                   style={{
                     color: "#FF0000",
                   }}
                 >
-                  Accounts Reached
+                  {`${projects.metrics_one_title}`}
                 </div>
               </Col>
               <Col className="m-0 p-0">
-                <h1>{`${projects.media_result}`}</h1>
+                <h3>{`${projects.metrics_two_desc}`}</h3>
                 <div
                   style={{
                     color: "#FF0000",
                   }}
                 >
-                  Social Media Impressions
+                  {`${projects.metrics_two_title}`}
                 </div>
               </Col>
             </Row>
@@ -427,11 +429,15 @@ function Work() {
       <div
         data-aos="fade-up"
         className="pt-5 d-flex align-items-center text-center justify-content-center"
+        style={{
+          paddingLeft: "30px",
+          paddingRight: "30px",
+        }}
       >
         {previous == null ? (
-          <a href={`#`} style={{ cursor: "unset" }}>
-            <div className="col d-flex align-items-center px-5">
-              <div style={{ width: "50px", height: "50px" }}></div>
+          <a href={`#`} style={{ cursor: "unset", width: "250px" }}>
+            <div className="col d-flex align-items-center">
+              <div className="img-nav"></div>
               <div className="text-right ml-3">
                 <div style={{ color: "transparent" }}>PREVIOUS</div>
                 <div style={{ color: "transparent" }}>PROJECT</div>
@@ -439,11 +445,11 @@ function Work() {
             </div>
           </a>
         ) : (
-          <a href={`/work/${previous}`}>
-            <div className="col d-flex align-items-center px-5">
+          <a href={`/work/${previous}`} style={{ width: "250px" }}>
+            <div className="col d-flex align-items-center">
               <img
                 src={require("assets/img/icons/common/Group 24 (3).png")}
-                style={{ width: "50px", height: "50px" }}
+                className="img-nav"
               />
               <div className="text-right ml-3">
                 <div>PREVIOUS</div>
@@ -471,7 +477,7 @@ function Work() {
             >
               <img
                 src={require("assets/img/icons/common/up.svg")}
-                style={{ width: "50px", height: "50px" }}
+                className="img-nav"
               />
               <div className="pt-2">TOP</div>
             </div>
@@ -479,25 +485,25 @@ function Work() {
         </div>
 
         {next == null ? (
-          <a href={`#`} style={{ cursor: "unset" }}>
-            <div className="col d-flex align-items-center justify-content-end px-5">
+          <a href={`#`} style={{ cursor: "unset", width: "250px" }}>
+            <div className="col d-flex align-items-center justify-content-end">
               <div className="text-right mr-3">
                 <div style={{ color: "transparent" }}>NEXT</div>
                 <div style={{ color: "transparent" }}>PROJECT</div>
               </div>
-              <div style={{ width: "50px", height: "50px" }}></div>
+              <div className="img-nav"></div>
             </div>
           </a>
         ) : (
-          <a href={`/work/${next}`}>
-            <div className="col d-flex align-items-center justify-content-end px-5">
+          <a href={`/work/${next}`} style={{ width: "250px" }}>
+            <div className="col d-flex align-items-center justify-content-end">
               <div className="text-left mr-3">
                 <div>NEXT</div>
                 <div>PROJECT</div>
               </div>
               <img
                 src={require("assets/img/icons/common/Group 24 (2).png")}
-                style={{ width: "50px", height: "50px" }}
+                className="img-nav"
               />
             </div>
           </a>
