@@ -92,7 +92,7 @@ function Work() {
             <a href={`#`} style={{ cursor: "unset" }}>
               <div className="col d-flex align-items-center">
                 <div className="img-nav"></div>
-                <div className="text-right ml-3">
+                <div className="text-right ml-3 text-prevnext">
                   <div style={{ color: "transparent" }}>PREVIOUS</div>
                   <div style={{ color: "transparent" }}>PROJECT</div>
                 </div>
@@ -105,7 +105,7 @@ function Work() {
                   className="img-nav"
                   src={require("assets/img/icons/common/Group 24 (1).png")}
                 />
-                <div className="text-right ml-3">
+                <div className="text-right ml-3 text-prevnext">
                   <div style={{ color: "#ffffff" }}>PREVIOUS</div>
                   <div style={{ color: "#ffffff" }}>PROJECT</div>
                 </div>
@@ -115,7 +115,7 @@ function Work() {
 
           <div
             style={{
-              padding: "15px",
+              padding: "0px",
             }}
             className="col justify-content-center mx-auto"
           >
@@ -138,7 +138,7 @@ function Work() {
           {next == null ? (
             <a href={`#`} style={{ cursor: "unset" }}>
               <div className="col d-flex align-items-center justify-content-end">
-                <div className="text-left mr-3">
+                <div className="text-left mr-3 text-prevnext">
                   <div style={{ color: "transparent" }}>NEXT</div>
                   <div style={{ color: "transparent" }}>PROJECT</div>
                 </div>
@@ -148,7 +148,7 @@ function Work() {
           ) : (
             <a href={`/work/${next}`}>
               <div className="col d-flex align-items-center justify-content-end">
-                <div className="text-left mr-3">
+                <div className="text-left mr-3 text-prevnext">
                   <div style={{ color: "#ffffff" }}>NEXT</div>
                   <div style={{ color: "#ffffff" }}>PROJECT</div>
                 </div>
@@ -438,7 +438,7 @@ function Work() {
           <a href={`#`} style={{ cursor: "unset", width: "250px" }}>
             <div className="col d-flex align-items-center">
               <div className="img-nav"></div>
-              <div className="text-right ml-3">
+              <div className="text-right ml-3 text-prevnext">
                 <div style={{ color: "transparent" }}>PREVIOUS</div>
                 <div style={{ color: "transparent" }}>PROJECT</div>
               </div>
@@ -451,7 +451,7 @@ function Work() {
                 src={require("assets/img/icons/common/Group 24 (3).png")}
                 className="img-nav"
               />
-              <div className="text-right ml-3">
+              <div className="text-right ml-3 text-prevnext">
                 <div>PREVIOUS</div>
                 <div>PROJECT</div>
               </div>
@@ -487,7 +487,7 @@ function Work() {
         {next == null ? (
           <a href={`#`} style={{ cursor: "unset", width: "250px" }}>
             <div className="col d-flex align-items-center justify-content-end">
-              <div className="text-right mr-3">
+              <div className="text-right mr-3 text-prevnext">
                 <div style={{ color: "transparent" }}>NEXT</div>
                 <div style={{ color: "transparent" }}>PROJECT</div>
               </div>
@@ -497,7 +497,7 @@ function Work() {
         ) : (
           <a href={`/work/${next}`} style={{ width: "250px" }}>
             <div className="col d-flex align-items-center justify-content-end">
-              <div className="text-left mr-3">
+              <div className="text-left mr-3 text-prevnext">
                 <div>NEXT</div>
                 <div>PROJECT</div>
               </div>

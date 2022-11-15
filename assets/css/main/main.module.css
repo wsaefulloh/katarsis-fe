@@ -75,6 +75,10 @@ h2 {
   padding-bottom: 20px !important;
 }
 
+.text-prevnext {
+  display: none;
+}
+
 .visi_misi .slider-playnow .slick-next:before {
   color: #444444;
 }
@@ -478,6 +482,10 @@ nav {
   .img-nav {
     width: 50px;
     height: 50px;
+  }
+
+  .text-prevnext {
+    display: block;
   }
 }
 
