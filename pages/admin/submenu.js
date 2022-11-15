@@ -15,37 +15,44 @@ import {
 // layout for this page
 import HomeLayoutAdmin from "layouts/Admin.js";
 // core components
-import CardProfile from "../../components/Admin/CardsProfile";
+import CardSubmenu from "components/Admin/CardsSubmenu.js";
 import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
 import "../../assets/css/main/main.module.css";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 
-function Profile() {
-  const [modalOpen, setModalOpen] = useState(false);
+function Submenu() {
+  const [modalOpen1, setModalOpen1] = useState(false);
+  const [modalOpen2, setModalOpen2] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dataValue, setDataValue] = useState({
-    name: "",
-    url_image: "",
-    url_linkedin: "",
-    position: "",
+    name_submenu: "",
+    name_menu: "",
   });
-  const [result, setResult] = useState([]);
+  const [resultOriginalIP, setResultOriginalIP] = useState([]);
+  const [resultB2B, setResultB2B] = useState([]);
 
   const router = useRouter();
 
-  const getAll = async () => {
-    const data = await fetchWrapper.get(`../api/admin/profile`);
+  const getAllOriginalIP = async () => {
+    const data = await fetchWrapper.get(`../api/admin/submenu?id=1`);
     if (data) {
-      setResult(data.data);
+      setResultOriginalIP(data.data);
+    }
+  };
+
+  const getAllB2B = async () => {
+    const data = await fetchWrapper.get(`../api/admin/submenu?id=2`);
+    if (data) {
+      setResultB2B(data.data);
     }
   };
 
   const addData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`../api/admin/profile`, {
+      const response = await fetch(`../api/admin/submenu`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +77,8 @@ function Profile() {
   };
 
   useEffect(() => {
-    getAll();
+    getAllOriginalIP();
+    getAllB2B();
   }, []);
 
   return (
@@ -82,7 +90,7 @@ function Profile() {
               <div className="py-3">
                 <Row className="align-items-center">
                   <Col>
-                    <h3 className="mb-0">List Profile</h3>
+                    <h3 className="mb-0">Menu Original IP</h3>
                   </Col>
                   <Button
                     className="m-1 border-0 py-1 px-3"
@@ -93,7 +101,52 @@ function Profile() {
                     }}
                     type="button"
                     onClick={() => {
-                      setModalOpen(!modalOpen);
+                      setModalOpen1(!modalOpen1);
+                      setDataValue({
+                        ...dataValue,
+                        name_menu: `Original IP`,
+                      });
+                    }}
+                  >
+                    <span>Tambah</span>
+                  </Button>
+                </Row>
+              </div>
+            </Container>
+          </Card>
+          <Container>
+            {resultOriginalIP.map((val) => {
+              return (
+                <CardSubmenu
+                  id={val.id}
+                  name_menu={val.name_menu}
+                  name_submenu={val.name_submenu}
+                />
+              );
+            })}
+          </Container>
+
+          <Card style={{ marginTop: "30px" }}>
+            <Container>
+              <div className="py-3">
+                <Row className="align-items-center">
+                  <Col>
+                    <h3 className="mb-0">Menu Business to Business (B2B)</h3>
+                  </Col>
+                  <Button
+                    className="m-1 border-0 py-1 px-3"
+                    style={{
+                      color: "#ffffff",
+                      backgroundColor: "#000000",
+                      borderRadius: "5px",
+                    }}
+                    type="button"
+                    onClick={() => {
+                      setModalOpen2(!modalOpen2);
+                      setDataValue({
+                        ...dataValue,
+                        name_menu: `Business to Business (B2B)`,
+                      });
                     }}
                   >
                     <span>Tambah</span>
@@ -104,14 +157,12 @@ function Profile() {
           </Card>
 
           <Container>
-            {result.map((val) => {
+            {resultB2B.map((val) => {
               return (
-                <CardProfile
+                <CardSubmenu
                   id={val.id}
-                  name={val.name}
-                  url_image={val.url_image_original}
-                  url_linkedin={val.url_linkedin}
-                  position={val.position}
+                  name_menu={val.name_menu}
+                  name_submenu={val.name_submenu}
                 />
               );
             })}
@@ -120,8 +171,8 @@ function Profile() {
       </Col>
 
       <Modal
-        toggle={() => setModalOpen(!modalOpen)}
-        isOpen={modalOpen}
+        toggle={() => setModalOpen1(!modalOpen1)}
+        isOpen={modalOpen1}
         centered
         fade={true}
         size="md"
@@ -129,7 +180,7 @@ function Profile() {
         <div className="justify-content-center text-center p-4">
           <img
             onClick={() => {
-              setModalOpen(false);
+              setModalOpen1(false);
             }}
             style={{
               position: "absolute",
@@ -140,18 +191,19 @@ function Profile() {
             }}
             src="data:image/png;base64,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"
           ></img>
-          <h3 className="m-0 mb-3 p-0">Tambah Profile</h3>
+          <h3 className="m-0 mb-3 p-0">Tambah Submenu</h3>
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Nama</h5>
+                <h5 className="pl-1 mb-1">Menu</h5>
                 <Input
+                  disabled="true"
                   type="text"
-                  defaultValue={`${dataValue.name}`}
+                  defaultValue={`Original IP`}
                   onChange={(e) => {
                     setDataValue({
                       ...dataValue,
-                      name: `${e.target.value}`,
+                      name_menu: `Original IP`,
                     });
                   }}
                 />
@@ -161,14 +213,87 @@ function Profile() {
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">URL Google Drive Image Profile</h5>
+                <h5 className="pl-1 mb-1">Nama Submenu</h5>
                 <Input
                   type="text"
-                  defaultValue={`${dataValue.url_image}`}
+                  defaultValue={`${dataValue.name_submenu}`}
                   onChange={(e) => {
                     setDataValue({
                       ...dataValue,
-                      url_image: `${e.target.value}`,
+                      name_submenu: `${e.target.value}`,
+                    });
+                  }}
+                />
+              </Col>
+            </div>
+          </Form>
+
+          <Button
+            color="secondary"
+            style={{
+              color: "#ffffff",
+              backgroundColor: "#000000",
+              maxWidth: "150px",
+            }}
+            className="border-0"
+            type="button"
+            onClick={() => {
+              addData();
+            }}
+          >
+            {loading == true ? (
+              <>
+                <div className="py-1 text-center align-content-center align-items-center">
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                </div>
+              </>
+            ) : (
+              <>Tambah</>
+            )}
+          </Button>
+        </div>
+      </Modal>
+
+      <Modal
+        toggle={() => setModalOpen2(!modalOpen2)}
+        isOpen={modalOpen2}
+        centered
+        fade={true}
+        size="md"
+      >
+        <div className="justify-content-center text-center p-4">
+          <img
+            onClick={() => {
+              setModalOpen2(false);
+            }}
+            style={{
+              position: "absolute",
+              top: "8px",
+              right: "8px",
+              width: "35px",
+              cursor: "pointer",
+            }}
+            src="data:image/png;base64,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"
+          ></img>
+          <h3 className="m-0 mb-3 p-0">Tambah Submenu</h3>
+          <Form>
+            <div className="form-row">
+              <Col className="mb-3 p-0 text-left ">
+                <h5 className="pl-1 mb-1">Menu</h5>
+                <Input
+                  disabled="true"
+                  type="text"
+                  defaultValue={`Business to Business (B2B)`}
+                  onChange={(e) => {
+                    setDataValue({
+                      ...dataValue,
+                      name_menu: `Business to Business (B2B)`,
                     });
                   }}
                 />
@@ -178,31 +303,14 @@ function Profile() {
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Jabatan</h5>
+                <h5 className="pl-1 mb-1">Nama Submenu</h5>
                 <Input
                   type="text"
-                  defaultValue={`${dataValue.position}`}
+                  defaultValue={`${dataValue.name_submenu}`}
                   onChange={(e) => {
                     setDataValue({
                       ...dataValue,
-                      position: `${e.target.value}`,
-                    });
-                  }}
-                />
-              </Col>
-            </div>
-          </Form>
-          <Form>
-            <div className="form-row">
-              <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">URL Linkedin</h5>
-                <Input
-                  type="text"
-                  defaultValue={`${dataValue.url_linkedin}`}
-                  onChange={(e) => {
-                    setDataValue({
-                      ...dataValue,
-                      url_linkedin: `${e.target.value}`,
+                      name_submenu: `${e.target.value}`,
                     });
                   }}
                 />
@@ -245,6 +353,6 @@ function Profile() {
   );
 }
 
-Profile.layout = HomeLayoutAdmin;
+Submenu.layout = HomeLayoutAdmin;
 
-export default Profile;
+export default Submenu;

@@ -133,11 +133,39 @@ function Home() {
   const [ourTeam, setOurTeam] = useState({});
   const [visi, setVisi] = useState({});
   const [misi, setMisi] = useState({});
+  const [fixProject, setFixProject] = useState([]);
+  const [count, setCount] = useState(0);
+  const [showMoreActive, setShowMoreActive] = useState(true);
+
+  const showMore = async () => {
+    let array_project = project;
+    let array_fix = fixProject;
+    let pangkat = count + 1;
+    let start = pangkat * 4;
+    let new_array = array_project.slice(start, start + 4);
+    setCount(pangkat);
+    let newArray = array_fix.concat(new_array);
+    setFixProject(newArray);
+    if (newArray.length >= project.length) {
+      setShowMoreActive(false);
+    } else {
+      setShowMoreActive(true);
+    }
+  };
 
   const getDataOriginalIP = async () => {
     const data = await fetchWrapper.get(`api/new-project/get-by-menu?id=1`);
     if (data) {
       setProject(data.data);
+      let array = data.data;
+      setCount(0);
+      if (array.length <= 4) {
+        setShowMoreActive(false);
+        setFixProject(data.data);
+      } else {
+        let fixArray = array.slice(0, 4);
+        setFixProject(fixArray);
+      }
     }
   };
 
@@ -145,6 +173,15 @@ function Home() {
     const data = await fetchWrapper.get(`api/new-project/get-by-menu?id=2`);
     if (data) {
       setProject(data.data);
+      let array = data.data;
+      setCount(0);
+      if (array.length <= 4) {
+        setShowMoreActive(false);
+        setFixProject(data.data);
+      } else {
+        let fixArray = array.slice(0, 3);
+        setFixProject(fixArray);
+      }
     }
   };
 
@@ -154,6 +191,15 @@ function Home() {
     );
     if (data) {
       setProject(data.data);
+      let array = data.data;
+      setCount(0);
+      if (array.length <= 4) {
+        setShowMoreActive(false);
+        setFixProject(data.data);
+      } else {
+        let fixArray = array.slice(0, 3);
+        setFixProject(fixArray);
+      }
     }
   };
 
@@ -204,7 +250,7 @@ function Home() {
   };
 
   useEffect(() => {
-    AOS.init({ duration: 2000 });
+    AOS.init({ duration: 2000, once: true });
     getDataProfile();
     getDataOriginalIP();
     getDataMedia();
@@ -268,7 +314,7 @@ function Home() {
 
         <Container>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 box">
-            {project.map((val) => {
+            {fixProject.map((val) => {
               return (
                 <div data-aos="fade-up">
                   <CardsProject
@@ -283,6 +329,33 @@ function Home() {
             })}
           </div>
         </Container>
+
+        {showMoreActive == true ? (
+          <Container className="pt-5 pb-2">
+            <div style={{ justifyContent: "center" }}>
+              <div
+                style={{
+                  backgroundColor: "#000000",
+                  color: "#ffffff",
+                  paddingLeft: "15px",
+                  width: "200px",
+                  textAlign: "center",
+                  padding: "10px",
+                  border: "3px solid #ffffff",
+                  borderRadius: "25px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  cursor: "pointer",
+                }}
+                onClick={() => showMore()}
+              >
+                {`SHOW MORE`}
+              </div>
+            </div>
+          </Container>
+        ) : (
+          <></>
+        )}
       </div>
 
       <div className="pt-5 pb-4">

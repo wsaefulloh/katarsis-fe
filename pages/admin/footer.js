@@ -162,7 +162,7 @@ function SocialLinks() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
@@ -206,7 +206,7 @@ function SocialLinks() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
@@ -250,7 +250,7 @@ function SocialLinks() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
@@ -295,7 +295,7 @@ function SocialLinks() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
@@ -340,7 +340,7 @@ function SocialLinks() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
@@ -401,7 +401,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -479,7 +479,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -560,7 +560,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -641,7 +641,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -722,7 +722,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"

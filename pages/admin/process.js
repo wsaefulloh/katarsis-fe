@@ -133,7 +133,7 @@ function SocialLinks() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
@@ -177,7 +177,7 @@ function SocialLinks() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
@@ -222,7 +222,7 @@ function SocialLinks() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
@@ -297,7 +297,7 @@ function SocialLinks() {
                 <h5>URL Image Slider 1</h5>
                 <Input
                   type="text"
-                  defaultValue={`${result1.url_images}`}
+                  defaultValue={`${result1.url}`}
                   onChange={(e) => {
                     setData1({
                       ...data1,
@@ -313,7 +313,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -328,9 +328,7 @@ function SocialLinks() {
                     ? result1.description
                     : data1.description,
                 url_images:
-                  data1.url_images.length == 0
-                    ? result1.url_images
-                    : data1.url_images,
+                  data1.url_images.length == 0 ? result1.url : data1.url_images,
               };
               updateSocialLink(data);
             }}
@@ -412,7 +410,7 @@ function SocialLinks() {
                 <h5>URL Image Slider 2</h5>
                 <Input
                   type="text"
-                  defaultValue={`${result2.url_images}`}
+                  defaultValue={`${result2.url}`}
                   onChange={(e) => {
                     setData2({
                       ...data2,
@@ -428,7 +426,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -443,9 +441,7 @@ function SocialLinks() {
                     ? result2.description
                     : data2.description,
                 url_images:
-                  data2.url_images.length == 0
-                    ? result2.url_images
-                    : data2.url_images,
+                  data2.url_images.length == 0 ? result2.url : data2.url_images,
               };
               updateSocialLink(data);
             }}
@@ -527,7 +523,7 @@ function SocialLinks() {
                 <h5>URL Image Slider 3</h5>
                 <Input
                   type="text"
-                  defaultValue={`${result3.url_images}`}
+                  defaultValue={`${result3.url}`}
                   onChange={(e) => {
                     setData3({
                       ...data3,
@@ -543,7 +539,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -558,9 +554,7 @@ function SocialLinks() {
                     ? result3.description
                     : data3.description,
                 url_images:
-                  data3.url_images.length == 0
-                    ? result3.url_images
-                    : data3.url_images,
+                  data3.url_images.length == 0 ? result3.url : data3.url_images,
               };
               updateSocialLink(data);
             }}

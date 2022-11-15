@@ -57,7 +57,7 @@ export default function Auth() {
         maxAge: 3600,
       });
       await Swal.fire("OK", "Login Berhasil", "success");
-      router.push("/admin/work-project");
+      router.push("/admin/submenu");
     } else {
       Swal.fire("FAILED", "Username dan Password Tidak Cocok", "error");
     }

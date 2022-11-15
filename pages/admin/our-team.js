@@ -105,11 +105,29 @@ function SocialLinks() {
                     </Form>
                   </Col>
                 </Row>
+                <Row className="align-items-center mt-2">
+                  <Col>
+                    <Form>
+                      <div className="form-row">
+                        <Col className="mb-3 p-0 text-left ">
+                          <div className="mb-1">URL Image Google Drive</div>
+
+                          <Input
+                            disabled
+                            type="text"
+                            defaultValue={`${result1.url}`}
+                          />
+                        </Col>
+                      </div>
+                    </Form>
+                  </Col>
+                </Row>
+
                 <Button
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
@@ -162,7 +180,6 @@ function SocialLinks() {
                     });
                   }}
                 />
-                description
               </Col>
             </div>
             <div className="form-row">
@@ -170,7 +187,7 @@ function SocialLinks() {
                 <h5>URL Image Team</h5>
                 <Input
                   type="text"
-                  defaultValue={`${result1.url_images}`}
+                  defaultValue={`${result1.url}`}
                   onChange={(e) => {
                     setData1({
                       ...data1,
@@ -186,7 +203,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"

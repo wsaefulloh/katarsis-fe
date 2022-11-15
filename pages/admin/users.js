@@ -148,7 +148,7 @@ function Users() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}

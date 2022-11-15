@@ -1,8 +1,24 @@
 export default {
   routesSidemenu: [
     {
-      path: "/admin/work-project",
-      name: "Work Project",
+      path: "/admin/submenu",
+      name: "Submenu",
+    },
+    {
+      path: "/admin/visi-misi",
+      name: "Vision & Mission",
+    },
+    {
+      path: "/admin/desc-original-b2b",
+      name: "Description Menu",
+    },
+    {
+      path: "/admin/work-project-original",
+      name: "Work Project Original IP",
+    },
+    {
+      path: "/admin/work-project-b2b",
+      name: "Work Project Business to Business",
     },
     {
       path: "/admin/liputan",

@@ -19,6 +19,9 @@ import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
 function WorkflowGraph() {
   const [result, setResult] = useState({});
+  const [process1, setProcess1] = useState({});
+  const [process2, setProcess2] = useState({});
+  const [process3, setProcess3] = useState({});
 
   const getWorkflow = async () => {
     const data = await fetchWrapper.get(`api/content/get-workflow`);
@@ -28,8 +31,19 @@ function WorkflowGraph() {
     }
   };
 
+  const getWorkflowProcess = async () => {
+    const data = await fetchWrapper.get(`api/content/get-process-workflow`);
+    if (data) {
+      let obj = data.data;
+      setProcess1(obj[0]);
+      setProcess2(obj[1]);
+      setProcess3(obj[2]);
+    }
+  };
+
   useEffect(() => {
     getWorkflow();
+    getWorkflowProcess();
   }, []);
 
   return (
@@ -49,6 +63,44 @@ function WorkflowGraph() {
           </h1>
         </div>
       </Container>
+
+      <Container>
+        <div className="pb-4 d-flex align-items-center justify-content-center">
+          <div
+            style={{
+              backgroundColor: "#E1E1E1",
+              height: "10px",
+              width: "10px",
+              borderRadius: "5px",
+              marginRight: "5px",
+            }}
+          ></div>
+          <div>{process1.description}</div>
+          <div
+            style={{
+              backgroundColor: "#BABABA",
+              height: "10px",
+              width: "10px",
+              borderRadius: "5px",
+              marginLeft: "18px",
+              marginRight: "5px",
+            }}
+          ></div>
+          <div>{process2.description}</div>
+          <div
+            style={{
+              backgroundColor: "#818181",
+              height: "10px",
+              width: "10px",
+              borderRadius: "5px",
+              marginLeft: "18px",
+              marginRight: "5px",
+            }}
+          ></div>
+          <div>{process3.description}</div>
+        </div>
+      </Container>
+
       <div className="py-4">
         <div className="display-large">
           <Container>
@@ -77,14 +129,30 @@ function WorkflowGraph() {
                   <div
                     style={{
                       position: "relative",
-                      top: "62.5px",
+                      top: "54.5px",
                     }}
                   >
                     <div
                       style={{
                         height: "5px",
+                        marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#000000",
+                        backgroundColor: "#E1E1E1",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        height: "5px",
+                        marginBottom: "3px",
+                        width: "120%",
+                        backgroundColor: "#BABABA",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        height: "5px",
+                        width: "120%",
+                        backgroundColor: "#818181",
                       }}
                     ></div>
                   </div>
@@ -92,8 +160,8 @@ function WorkflowGraph() {
                   <div
                     style={{
                       position: "absolute",
-                      top: "55px",
-                      left: "-30px",
+                      top: "50%",
+                      transform: "translate(-50%, -50%)",
                     }}
                   >
                     <div
@@ -105,9 +173,9 @@ function WorkflowGraph() {
                       <div
                         style={{
                           backgroundColor: "#000000",
-                          height: "20px",
-                          width: "20px",
-                          border: "5px solid #ffff00",
+                          height: "40px",
+                          width: "40px",
+                          border: "10px solid #ffffff",
                           borderRadius: "20px",
                           marginLeft: "auto",
                           marginRight: "auto",
@@ -154,14 +222,30 @@ function WorkflowGraph() {
                   <div
                     style={{
                       position: "relative",
-                      top: "62.5px",
+                      top: "54.5px",
                     }}
                   >
                     <div
                       style={{
                         height: "5px",
+                        marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#000000",
+                        backgroundColor: "#E1E1E1",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        height: "5px",
+                        marginBottom: "3px",
+                        width: "120%",
+                        backgroundColor: "#BABABA",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        height: "5px",
+                        width: "120%",
+                        backgroundColor: "#818181",
                       }}
                     ></div>
                   </div>
@@ -169,8 +253,8 @@ function WorkflowGraph() {
                   <div
                     style={{
                       position: "absolute",
-                      top: "55px",
-                      left: "-30px",
+                      top: "50%",
+                      transform: "translate(-50%, -50%)",
                     }}
                   >
                     <div
@@ -182,9 +266,9 @@ function WorkflowGraph() {
                       <div
                         style={{
                           backgroundColor: "#000000",
-                          height: "20px",
-                          width: "20px",
-                          border: "5px solid #ffff00",
+                          height: "40px",
+                          width: "40px",
+                          border: "10px solid #ffffff",
                           borderRadius: "20px",
                           marginLeft: "auto",
                           marginRight: "auto",
@@ -231,14 +315,30 @@ function WorkflowGraph() {
                   <div
                     style={{
                       position: "relative",
-                      top: "62.5px",
+                      top: "54.5px",
                     }}
                   >
                     <div
                       style={{
                         height: "5px",
+                        marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#000000",
+                        backgroundColor: "#E1E1E1",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        height: "5px",
+                        marginBottom: "3px",
+                        width: "120%",
+                        backgroundColor: "#BABABA",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        height: "5px",
+                        width: "120%",
+                        backgroundColor: "#818181",
                       }}
                     ></div>
                   </div>
@@ -246,8 +346,8 @@ function WorkflowGraph() {
                   <div
                     style={{
                       position: "absolute",
-                      top: "55px",
-                      left: "-30px",
+                      top: "50%",
+                      transform: "translate(-50%, -50%)",
                     }}
                   >
                     <div
@@ -259,9 +359,9 @@ function WorkflowGraph() {
                       <div
                         style={{
                           backgroundColor: "#000000",
-                          height: "20px",
-                          width: "20px",
-                          border: "5px solid #ffff00",
+                          height: "40px",
+                          width: "40px",
+                          border: "10px solid #ffffff",
                           borderRadius: "20px",
                           marginLeft: "auto",
                           marginRight: "auto",
@@ -308,14 +408,30 @@ function WorkflowGraph() {
                   <div
                     style={{
                       position: "relative",
-                      top: "62.5px",
+                      top: "54.5px",
                     }}
                   >
                     <div
                       style={{
                         height: "5px",
+                        marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#000000",
+                        backgroundColor: "#E1E1E1",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        height: "5px",
+                        marginBottom: "3px",
+                        width: "120%",
+                        backgroundColor: "#BABABA",
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        height: "5px",
+                        width: "120%",
+                        backgroundColor: "#818181",
                       }}
                     ></div>
                   </div>
@@ -323,8 +439,8 @@ function WorkflowGraph() {
                   <div
                     style={{
                       position: "absolute",
-                      top: "55px",
-                      left: "-30px",
+                      top: "50%",
+                      transform: "translate(-50%, -50%)",
                     }}
                   >
                     <div
@@ -336,9 +452,9 @@ function WorkflowGraph() {
                       <div
                         style={{
                           backgroundColor: "#000000",
-                          height: "20px",
-                          width: "20px",
-                          border: "5px solid #ffff00",
+                          height: "40px",
+                          width: "40px",
+                          border: "10px solid #ffffff",
                           borderRadius: "20px",
                           marginLeft: "auto",
                           marginRight: "auto",
@@ -386,32 +502,53 @@ function WorkflowGraph() {
                   <div
                     style={{
                       position: "relative",
-                      top: "62.5px",
-                      display: "flex",
+                      top: "54.5px",
                     }}
                   >
                     <div
                       style={{
                         height: "5px",
+                        marginBottom: "3px",
                         width: "90%",
-                        backgroundColor: "#000000",
+                        backgroundColor: "#ffffff",
                       }}
                     ></div>
                     <div
                       style={{
-                        marginLeft: "10px",
                         height: "5px",
-                        width: "20%",
-                        backgroundColor: "#000000",
+                        marginBottom: "3px",
+                        width: "90%",
+                        backgroundColor: "#ffffff",
                       }}
                     ></div>
+                    <div
+                      style={{
+                        display: "flex",
+                      }}
+                    >
+                      <div
+                        style={{
+                          height: "5px",
+                          width: "90%",
+                          backgroundColor: "#818181",
+                        }}
+                      ></div>
+                      <div
+                        style={{
+                          marginLeft: "10px",
+                          height: "5px",
+                          width: "20%",
+                          backgroundColor: "#818181",
+                        }}
+                      ></div>
+                    </div>
                   </div>
 
                   <div
                     style={{
                       position: "absolute",
-                      top: "55px",
-                      left: "-30px",
+                      top: "50%",
+                      transform: "translate(-50%, -50%)",
                     }}
                   >
                     <div
@@ -423,9 +560,9 @@ function WorkflowGraph() {
                       <div
                         style={{
                           backgroundColor: "#000000",
-                          height: "20px",
-                          width: "20px",
-                          border: "5px solid #ffff00",
+                          height: "40px",
+                          width: "40px",
+                          border: "10px solid #ffffff",
                           borderRadius: "20px",
                           marginLeft: "auto",
                           marginRight: "auto",
@@ -487,13 +624,30 @@ function WorkflowGraph() {
                       transform: "translate(-50%)",
                     }}
                   >
-                    <div
-                      style={{
-                        width: "5px",
-                        height: "130px",
-                        backgroundColor: "#000000",
-                      }}
-                    ></div>
+                    <div className="d-flex">
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#818181",
+                        }}
+                      ></div>
+                      <div
+                        className="mx-1"
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#BABABA",
+                        }}
+                      ></div>
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#E1E1E1",
+                        }}
+                      ></div>
+                    </div>
                   </div>
 
                   <div
@@ -513,9 +667,9 @@ function WorkflowGraph() {
                       <div
                         style={{
                           backgroundColor: "#000000",
-                          height: "20px",
-                          width: "20px",
-                          border: "5px solid #ffff00",
+                          height: "40px",
+                          width: "40px",
+                          border: "10px solid #ffffff",
                           borderRadius: "20px",
                           marginLeft: "auto",
                           marginRight: "auto",
@@ -572,13 +726,30 @@ function WorkflowGraph() {
                       transform: "translate(-50%)",
                     }}
                   >
-                    <div
-                      style={{
-                        width: "5px",
-                        height: "130px",
-                        backgroundColor: "#000000",
-                      }}
-                    ></div>
+                    <div className="d-flex">
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#818181",
+                        }}
+                      ></div>
+                      <div
+                        className="mx-1"
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#BABABA",
+                        }}
+                      ></div>
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#E1E1E1",
+                        }}
+                      ></div>
+                    </div>
                   </div>
 
                   <div
@@ -598,9 +769,9 @@ function WorkflowGraph() {
                       <div
                         style={{
                           backgroundColor: "#000000",
-                          height: "20px",
-                          width: "20px",
-                          border: "5px solid #ffff00",
+                          height: "40px",
+                          width: "40px",
+                          border: "10px solid #ffffff",
                           borderRadius: "20px",
                           marginLeft: "auto",
                           marginRight: "auto",
@@ -657,13 +828,30 @@ function WorkflowGraph() {
                       transform: "translate(-50%)",
                     }}
                   >
-                    <div
-                      style={{
-                        width: "5px",
-                        height: "130px",
-                        backgroundColor: "#000000",
-                      }}
-                    ></div>
+                    <div className="d-flex">
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#818181",
+                        }}
+                      ></div>
+                      <div
+                        className="mx-1"
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#BABABA",
+                        }}
+                      ></div>
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#E1E1E1",
+                        }}
+                      ></div>
+                    </div>
                   </div>
 
                   <div
@@ -683,9 +871,9 @@ function WorkflowGraph() {
                       <div
                         style={{
                           backgroundColor: "#000000",
-                          height: "20px",
-                          width: "20px",
-                          border: "5px solid #ffff00",
+                          height: "40px",
+                          width: "40px",
+                          border: "10px solid #ffffff",
                           borderRadius: "20px",
                           marginLeft: "auto",
                           marginRight: "auto",
@@ -742,13 +930,30 @@ function WorkflowGraph() {
                       transform: "translate(-50%)",
                     }}
                   >
-                    <div
-                      style={{
-                        width: "5px",
-                        height: "130px",
-                        backgroundColor: "#000000",
-                      }}
-                    ></div>
+                    <div className="d-flex">
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#818181",
+                        }}
+                      ></div>
+                      <div
+                        className="mx-1"
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#BABABA",
+                        }}
+                      ></div>
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "130px",
+                          backgroundColor: "#E1E1E1",
+                        }}
+                      ></div>
+                    </div>
                   </div>
 
                   <div
@@ -768,9 +973,9 @@ function WorkflowGraph() {
                       <div
                         style={{
                           backgroundColor: "#000000",
-                          height: "20px",
-                          width: "20px",
-                          border: "5px solid #ffff00",
+                          height: "40px",
+                          width: "40px",
+                          border: "10px solid #ffffff",
                           borderRadius: "20px",
                           marginLeft: "auto",
                           marginRight: "auto",
@@ -828,30 +1033,64 @@ function WorkflowGraph() {
                       transform: "translate(-50%)",
                     }}
                   >
-                    <div
-                      style={{
-                        width: "5px",
-                        height: "100px",
-                        backgroundColor: "#000000",
-                      }}
-                    ></div>
+                    <div className="d-flex">
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "100px",
+                          backgroundColor: "#818181",
+                        }}
+                      ></div>
+                      <div
+                        className="mx-1"
+                        style={{
+                          width: "5px",
+                          height: "100px",
+                          backgroundColor: "#ffffff",
+                        }}
+                      ></div>
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "100px",
+                          backgroundColor: "#ffffff",
+                        }}
+                      ></div>
+                    </div>
                   </div>
 
                   <div
                     style={{
                       position: "absolute",
-                      bottom: "0",
+                      bottom: "5px",
                       left: "50%",
                       transform: "translate(-50%)",
                     }}
                   >
-                    <div
-                      style={{
-                        width: "5px",
-                        height: "20px",
-                        backgroundColor: "#000000",
-                      }}
-                    ></div>
+                    <div className="d-flex">
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "20px",
+                          backgroundColor: "#818181",
+                        }}
+                      ></div>
+                      <div
+                        className="mx-1"
+                        style={{
+                          width: "5px",
+                          height: "20px",
+                          backgroundColor: "#ffffff",
+                        }}
+                      ></div>
+                      <div
+                        style={{
+                          width: "5px",
+                          height: "20px",
+                          backgroundColor: "#ffffff",
+                        }}
+                      ></div>
+                    </div>
                   </div>
 
                   <div
@@ -871,9 +1110,9 @@ function WorkflowGraph() {
                       <div
                         style={{
                           backgroundColor: "#000000",
-                          height: "20px",
-                          width: "20px",
-                          border: "5px solid #ffff00",
+                          height: "40px",
+                          width: "40px",
+                          border: "10px solid #ffffff",
                           borderRadius: "20px",
                           marginLeft: "auto",
                           marginRight: "auto",

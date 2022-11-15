@@ -149,7 +149,7 @@ function SocialLinks() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
@@ -193,57 +193,13 @@ function SocialLinks() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
                   type="button"
                   onClick={() => {
                     setModalOpenInstagram(!modalOpenInstagram);
-                  }}
-                >
-                  <span>Update</span>
-                </Button>
-              </div>
-            </Container>
-          </Card>
-
-          <Card>
-            <Container>
-              <div className="py-3">
-                <Row className="align-items-center">
-                  <Col>
-                    <h3 className="mb-0">Tiktok</h3>
-                  </Col>
-                </Row>
-                <Row className="align-items-center mt-2">
-                  <Col>
-                    <Form>
-                      <div className="form-row">
-                        <Col className="mb-3 p-0 text-left ">
-                          <div className="mb-1">URL Tiktok</div>
-
-                          <Input
-                            disabled
-                            type="text"
-                            defaultValue={`${resultTiktok.url}`}
-                          />
-                        </Col>
-                      </div>
-                    </Form>
-                  </Col>
-                </Row>
-                <Button
-                  className="m-1 border-0 py-1 px-3"
-                  style={{
-                    color: "#ffffff",
-                    backgroundColor: "#697aa3",
-                    borderRadius: "5px",
-                    fontSize: "10px",
-                  }}
-                  type="button"
-                  onClick={() => {
-                    setModalOpenTiktok(!modalOpenTiktok);
                   }}
                 >
                   <span>Update</span>
@@ -282,7 +238,7 @@ function SocialLinks() {
                   className="m-1 border-0 py-1 px-3"
                   style={{
                     color: "#ffffff",
-                    backgroundColor: "#697aa3",
+                    backgroundColor: "#13678a",
                     borderRadius: "5px",
                     fontSize: "10px",
                   }}
@@ -343,7 +299,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -424,7 +380,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -505,7 +461,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -586,7 +542,7 @@ function SocialLinks() {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"

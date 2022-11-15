@@ -29,20 +29,23 @@ import CardsFileProject from "../Admin/CardsFileProject";
 function CardsProject(props) {
   let {
     id,
-    type_project,
-    genre_project,
+    id_submenu,
+    name_menu,
+    name_submenu,
     title_project,
     child_title,
     year_project,
     place_project,
     short_desc,
     about,
-    impression_result,
-    media_result,
+    metrics_one_title,
+    metrics_one_desc,
+    metrics_two_title,
+    metrics_two_desc,
     desc_result,
+    url_image_cover,
     url_website,
     url_video,
-    url_image_original,
   } = props;
 
   const [loading, setLoading] = useState(false);
@@ -54,21 +57,26 @@ function CardsProject(props) {
   const [themeArray, setThemeArray] = useState([]);
   const [newData, setNewData] = useState({
     id: `${id}`,
-    type_project: `${type_project}`,
-    genre_project: `${genre_project}`,
+    id_submenu: `${id_submenu}`,
+    name_menu: `${name_menu}`,
     title_project: `${title_project}`,
     child_title: `${child_title}`,
     year_project: `${year_project}`,
     place_project: `${place_project}`,
     short_desc: `${short_desc}`,
     about: `${about}`,
-    impression_result: `${impression_result}`,
-    media_result: `${media_result}`,
+    metrics_one_title: `${metrics_one_title}`,
+    metrics_one_desc: `${metrics_one_desc}`,
+    metrics_two_title: `${metrics_two_title}`,
+    metrics_two_desc: `${metrics_two_desc}`,
     desc_result: `${desc_result}`,
+    url_image_cover: `${url_image_cover}`,
     url_website: `${url_website}`,
     url_video: `${url_video}`,
-    url_image_cover: `${url_image_original}`,
   });
+
+  const [submenu, setSubmenu] = useState([]);
+  const [submenuName, setSubmenuName] = useState(`${name_submenu}`);
 
   const [modalOpenFile, setModalOpenFile] = useState(false);
 
@@ -86,6 +94,15 @@ function CardsProject(props) {
     const data = await fetchWrapper.get(`../api/admin/gallery?id=${id}`);
     if (data) {
       setFileArray(data.data);
+    }
+  };
+
+  const getAllSubmenu = async () => {
+    const data = await fetchWrapper.get(
+      `../api/admin/new-work/get-all-submenu-original`
+    );
+    if (data) {
+      setSubmenu(data.data);
     }
   };
 
@@ -126,7 +143,7 @@ function CardsProject(props) {
   const updateData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`../api/admin/work`, {
+      const response = await fetch(`../api/admin/new-work`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -179,6 +196,7 @@ function CardsProject(props) {
 
   useEffect(() => {
     getAllFile();
+    getAllSubmenu();
   }, []);
 
   return (
@@ -193,7 +211,7 @@ function CardsProject(props) {
               className="m-1 border-0 py-1 px-3"
               style={{
                 color: "#ffffff",
-                backgroundColor: "#697aa3",
+                backgroundColor: "#13678a",
                 borderRadius: "5px",
                 fontSize: "10px",
               }}
@@ -217,7 +235,7 @@ function CardsProject(props) {
                 deleteData(id);
               }}
             >
-              <span>Delete</span>
+              <span>Hapus</span>
             </Button>
           </Row>
 
@@ -229,7 +247,7 @@ function CardsProject(props) {
               className="m-1 border-0 py-1 px-3"
               style={{
                 color: "#ffffff",
-                backgroundColor: "#FE7900",
+                backgroundColor: "#000000",
                 borderRadius: "5px",
                 fontSize: "10px",
               }}
@@ -238,7 +256,7 @@ function CardsProject(props) {
                 setModalOpenFile(!modalOpenFile);
               }}
             >
-              <span>Add</span>
+              <span>Tambah</span>
             </Button>
           </Row>
 
@@ -278,10 +296,50 @@ function CardsProject(props) {
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAGHUlEQVRoge3ZW2wU1x3H8e8560txHIJtEOzapKr6EKRI5MFJScEYYloppCRpkKxEcVv1AVmlgJS+hHIxWaiBtlLVVOXSvPSJSIlSVYmoK9EIB0po2sCqrdpKBamJWl+AxEYIr9fd3Znz68OuHdu73pnFxjzU58Xe0Xj8+c058z9zzsJCW2j/383MxUXU3h4ZGav4EtITBjVLWgWKImqRACUlBo3jikMJI3oXt6z+0MTjbrb/e1YBUs++sNI5dgi+gdSIQDkwCPL4/I/8MZQ7R/QjnfJd5HjDuV/3z2uAkfb2ZaQj3ch8G1Q1jisDnz9PSGSM+KVFXYvPnR666wGSz3a8iHM/F9SPI2aBnzgXMSynnfUXet64KwHU2VmZvJE8YaRtmoSYI/xn13C8Vjd2Y5dJJLJzFkBPd9aMmuSvQJvvKj5/XNJv0/+tbI8lTqeCbDYQ39lZOc94kJ6qrsq8o4fbq2YdIHkjeWKe8eOfvzJ8/62fBflKDqHkMy92gE7dA/zEZyO90HDp7JtlB7j93LcarJ/9p8TSe4VHQuhm1rmHYolzRUvsjEPI+JkjYfBZJ0a8LGnfhcan5ZP0PDzngvAg6iswB2dyFg2Q2trRlJ+kSuLTzpFcvpQHuveT/XIzo142ED/mPLx1j1P340OMRJeTdn4pfH4YuW03m1seDB3AZf2dBMywWSdSy5cR++lRah9/jGh8D2pdS8rPzohPuSza0EJj935q163hwZM/YSwandYTU/H5a1V5nt0eKoDicStDR9CYH/M96r+7jYqGegBMJEK062XUupZR3yuKZ8N6Ygf3YCIRACqWNrDspe2M+X4JfD4YfFPt7ZHAACOXr6zBqSnoga3CcrvnDPL9ib81kQjRA7uhdW0OXAIPIN/n1js9VBpK43O/N16/er05MADSE2GqTbU1mIt/4lr8hwUhYvE90LaBpJfN4VtbCvHOMfDKUTh/kWpMAD53POLUFhjA4B4NWyprbAXm/T9yLX50SgisJdr1MvarG3P4Q3sL8QeOoDO91BgbCo+EnCvogYJ54PbX2v+OeLicOp/yfdy6NQVQXG5YGPvZfbpTfH6I/W3FPz5YXbIHENFyJ6lFxmLf/4DBA0em9YSZO7wETtHp3GIBasvBj5+7yEQwv/8DgwcOgytcKUqaHT5Xie4PEaB8/JSHHpM7bVozyo1XuaBqMyMeqfDGFJnIlLwT/JjzUOu63HNgi1zWGmKH9mI3tzHq+XeAF4iRwAAS12aFn1xtpCnDyVhL46F9RJ5sY9TzysQLpGshAujqnOCdY6DrMH2741PnCWtp7N6P3byJVH4GDokH6UpgAMTlsPiUy86Mzz+wvHeBvu8Xhmg63IXdvInkpOEUgMdJlwMDGNEb9pVYLWsL8b7PwN4fTFSbRdZC7wX69xwsHqJtPRnnAvESWGd7AwMsbln9IaIvqNpkfceSLU8W4vd1o7Pnp5TKGmPRu+cLeyISoW7rFjK+H4hH+s+Kjy4lgnsgHndIr5cslYLPGcsnr57EGxouiR9HLDIG/e4cfbtfmQiR/XSIT370KtXGBOFB7nUDBXW06JJyeOPWJmu8fyFVFcOPd3fGOVLRFSz73nZuvd0D5y8GTlIp52BjC3Vbt+Tw/x5gfOthZrzSfsb/4sr+vw6ECgBwa+MzJ4X7zkz48VLrOceY71NpCP1WmXGOjO9TbQwVwXgkHWv8+M+7ijlnXhNXp/chhoIW4BGg1trQeCSqgPusDYsfNpW2vDUxwANnztyU065S+NLLwOKgMNVm8nlC22NXEzNu+pbc2Kq/0PMGjtfuFR50vOnjv7xVyhi4M1cXvW8Hzr0933iDemKfX/JSkC/U5u5g89M11ZXpt4Cn5uXOO/3GZCPPxwYTs9/cBYglTqfqs8NfF/rFfAyb2BeWPBcGD3fwBcfwY5ued+gYYukc4z8V2hE05qe3UD0wuTVcOvtmtTGrJJ1ASs8BPi3pmMtmVpWLh1l+yTf0SFujw9sJ6pBYWSa+D7lTfsYdLzbDzkuA8Saw1x9Z/2jEqU3ONQs9hFMjUJvHJ5HrR1x10mXrbO+Kjy4lir3bLLSFttDKa/8Dw9wiF+K87vgAAAAASUVORK5CYII="
           ></img>
           <h3 className="m-0 mb-3 p-0">Update Project</h3>
+          <div className="m-0 mb-3 mr-3">
+            {/* <Card className="m-0 d-flex flex-row align-items-center"> */}
+            <UncontrolledDropdown nav>
+              <DropdownToggle
+                className="nav-link pl-0 d-flex flex-row align-items-center"
+                style={{ cursor: "pointer" }}
+                color=""
+                tag="a"
+              >
+                <Container className="d-flex py-2 flex-row">
+                  <h5 className="m-0">Submenu :</h5>
+                  <h5 className="m-0 ml-1" style={{ color: "#000000" }}>
+                    {submenuName}
+                  </h5>
+                </Container>
+                <img
+                  alt="..."
+                  src={require("assets/img/icons/common/Vector.svg")}
+                />
+              </DropdownToggle>
+              <DropdownMenu center>
+                {submenu.map((val) => {
+                  return (
+                    <DropdownItem
+                      onClick={() => {
+                        setNewData({
+                          ...newData,
+                          id_submenu: val.id,
+                        });
+                        setSubmenuName(`${val.name_submenu}`);
+                      }}
+                    >
+                      <span>{val.name_submenu}</span>
+                    </DropdownItem>
+                  );
+                })}
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            {/* </Card> */}
+          </div>
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Title</h5>
+                <h5 className="pl-1 mb-1">Title Project</h5>
                 <Input
                   type="text"
                   defaultValue={`${newData.title_project}`}
@@ -299,7 +357,7 @@ function CardsProject(props) {
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Child Title</h5>
+                <h5 className="pl-1 mb-1">Child Title Project</h5>
                 <Input
                   type="text"
                   defaultValue={`${newData.child_title}`}
@@ -317,7 +375,7 @@ function CardsProject(props) {
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Tahun</h5>
+                <h5 className="pl-1 mb-1">Tahun Project</h5>
                 <Input
                   type="text"
                   defaultValue={`${newData.year_project}`}
@@ -335,7 +393,7 @@ function CardsProject(props) {
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Lokasi</h5>
+                <h5 className="pl-1 mb-1">Lokasi Project</h5>
                 <Input
                   type="text"
                   defaultValue={`${newData.place_project}`}
@@ -389,14 +447,14 @@ function CardsProject(props) {
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Result Impression</h5>
+                <h5 className="pl-1 mb-1">First Metrics Title</h5>
                 <Input
                   type="text"
-                  defaultValue={`${newData.impression_result}`}
+                  defaultValue={`${newData.metrics_one_title}`}
                   onChange={(e) => {
                     setNewData({
                       ...newData,
-                      impression_result: `${e.target.value}`,
+                      metrics_one_title: `${e.target.value}`,
                     });
                   }}
                 />
@@ -407,14 +465,14 @@ function CardsProject(props) {
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Result Media Impression</h5>
+                <h5 className="pl-1 mb-1">First Metrics Description</h5>
                 <Input
                   type="text"
-                  defaultValue={`${newData.media_result}`}
+                  defaultValue={`${newData.metrics_one_desc}`}
                   onChange={(e) => {
                     setNewData({
                       ...newData,
-                      media_result: `${e.target.value}`,
+                      metrics_one_desc: `${e.target.value}`,
                     });
                   }}
                 />
@@ -425,7 +483,43 @@ function CardsProject(props) {
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Result Desc</h5>
+                <h5 className="pl-1 mb-1">Second Metrics Title</h5>
+                <Input
+                  type="text"
+                  defaultValue={`${newData.metrics_two_title}`}
+                  onChange={(e) => {
+                    setNewData({
+                      ...newData,
+                      metrics_two_title: `${e.target.value}`,
+                    });
+                  }}
+                />
+              </Col>
+            </div>
+          </Form>
+
+          <Form>
+            <div className="form-row">
+              <Col className="mb-3 p-0 text-left ">
+                <h5 className="pl-1 mb-1">Second Metrics Description</h5>
+                <Input
+                  type="text"
+                  defaultValue={`${newData.metrics_two_desc}`}
+                  onChange={(e) => {
+                    setNewData({
+                      ...newData,
+                      metrics_two_desc: `${e.target.value}`,
+                    });
+                  }}
+                />
+              </Col>
+            </div>
+          </Form>
+
+          <Form>
+            <div className="form-row">
+              <Col className="mb-3 p-0 text-left ">
+                <h5 className="pl-1 mb-1">Description Result</h5>
                 <Input
                   type="text"
                   defaultValue={`${newData.desc_result}`}
@@ -433,6 +527,24 @@ function CardsProject(props) {
                     setNewData({
                       ...newData,
                       desc_result: `${e.target.value}`,
+                    });
+                  }}
+                />
+              </Col>
+            </div>
+          </Form>
+
+          <Form>
+            <div className="form-row">
+              <Col className="mb-3 p-0 text-left ">
+                <h5 className="pl-1 mb-1">URL Image Cover</h5>
+                <Input
+                  type="text"
+                  defaultValue={`${newData.url_image_cover}`}
+                  onChange={(e) => {
+                    setNewData({
+                      ...newData,
+                      url_image_cover: `${e.target.value}`,
                     });
                   }}
                 />
@@ -476,67 +588,11 @@ function CardsProject(props) {
             </div>
           </Form>
 
-          <Form>
-            <div className="form-row">
-              <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Sub-Type Project</h5>
-                <Input
-                  type="text"
-                  defaultValue={`${newData.url_image_cover}`}
-                  onChange={(e) => {
-                    setNewData({
-                      ...newData,
-                      url_image_cover: `${e.target.value}`,
-                    });
-                  }}
-                />
-              </Col>
-            </div>
-          </Form>
-
-          <Form>
-            <div className="form-row">
-              <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Type Project</h5>
-                <Input
-                  disabled="true"
-                  type="text"
-                  defaultValue={`${newData.type_project}`}
-                  onChange={(e) => {
-                    setNewData({
-                      ...newData,
-                      type_project: `${e.target.value}`,
-                    });
-                  }}
-                />
-              </Col>
-            </div>
-          </Form>
-
-          <Form>
-            <div className="form-row">
-              <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">Sub-Type Project</h5>
-                <Input
-                  disabled="true"
-                  type="text"
-                  defaultValue={`${newData.genre_project}`}
-                  onChange={(e) => {
-                    setNewData({
-                      ...newData,
-                      genre_project: `${e.target.value}`,
-                    });
-                  }}
-                />
-              </Col>
-            </div>
-          </Form>
-
           <Button
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#13678a",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -667,7 +723,7 @@ function CardsProject(props) {
             color="secondary"
             style={{
               color: "#ffffff",
-              backgroundColor: "#FE7900",
+              backgroundColor: "#000000",
               maxWidth: "150px",
             }}
             className="border-0"
@@ -689,7 +745,7 @@ function CardsProject(props) {
                 </div>
               </>
             ) : (
-              <>Add</>
+              <>Tambah</>
             )}
           </Button>
         </div>
@@ -700,20 +756,23 @@ function CardsProject(props) {
 
 CardsProject.propTypes = {
   id: PropTypes.any,
-  type_project: PropTypes.any,
-  genre_project: PropTypes.any,
+  id_submenu: PropTypes.any,
+  name_menu: PropTypes.any,
+  name_submenu: PropTypes.any,
   title_project: PropTypes.any,
   child_title: PropTypes.any,
   year_project: PropTypes.any,
   place_project: PropTypes.any,
   short_desc: PropTypes.any,
   about: PropTypes.any,
-  impression_result: PropTypes.any,
-  media_result: PropTypes.any,
+  metrics_one_title: PropTypes.any,
+  metrics_one_desc: PropTypes.any,
+  metrics_two_title: PropTypes.any,
+  metrics_two_desc: PropTypes.any,
   desc_result: PropTypes.any,
+  url_image_cover: PropTypes.any,
   url_website: PropTypes.any,
   url_video: PropTypes.any,
-  url_image_original: PropTypes.any,
 };
 
 export default CardsProject;
