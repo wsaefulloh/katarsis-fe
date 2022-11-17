@@ -221,7 +221,10 @@ function SocialLinks() {
                     <Form>
                       <div className="form-row">
                         <Col className="mb-3 p-0 text-left ">
-                          <div className="mb-1">URL Whatsapp</div>
+                          <div className="mb-1">
+                            Whatsapp Number (Tidak perlu menggunakan + ,
+                            langsung saja 628XXXXXX)
+                          </div>
 
                           <Input
                             disabled

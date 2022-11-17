@@ -287,7 +287,7 @@ function HomeFooter() {
           </Container>
         </Container>
       </footer>
-      <Link href={`${whatsapp}`}>
+      <Link href={`https://wa.me/${whatsapp}`}>
         <a target="_blank">
           <div
             className="chatbox__button"

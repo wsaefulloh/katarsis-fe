@@ -57,7 +57,7 @@ export default function Auth() {
         maxAge: 3600,
       });
       await Swal.fire("OK", "Login Berhasil", "success");
-      router.push("/admin/submenu");
+      router.push("/admin/visi-misi");
     } else {
       Swal.fire("FAILED", "Username dan Password Tidak Cocok", "error");
     }

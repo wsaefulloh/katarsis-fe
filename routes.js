@@ -1,10 +1,6 @@
 export default {
   routesSidemenu: [
     {
-      path: "/admin/submenu",
-      name: "Submenu",
-    },
-    {
       path: "/admin/visi-misi",
       name: "Vision & Mission",
     },
@@ -12,6 +8,11 @@ export default {
       path: "/admin/desc-original-b2b",
       name: "Description Menu",
     },
+    {
+      path: "/admin/submenu",
+      name: "Submenu",
+    },
+
     {
       path: "/admin/work-project-original",
       name: "Work Project Original IP",
@@ -21,12 +22,28 @@ export default {
       name: "Work Project Business to Business",
     },
     {
+      path: "/admin/how",
+      name: "How We Do It",
+    },
+    {
+      path: "/admin/process",
+      name: "Process Slider",
+    },
+    {
+      path: "/admin/workflow",
+      name: "Workflow",
+    },
+    {
       path: "/admin/liputan",
       name: "Media Coverage",
     },
     {
       path: "/admin/profile",
-      name: "Profile",
+      name: "Team Profile",
+    },
+    {
+      path: "/admin/our-team",
+      name: "Our Team Desc",
     },
     {
       path: "/admin/social-link",
@@ -35,22 +52,6 @@ export default {
     {
       path: "/admin/footer",
       name: "Footer Link",
-    },
-    {
-      path: "/admin/process",
-      name: "Process Slider",
-    },
-    {
-      path: "/admin/how",
-      name: "How We Do It",
-    },
-    {
-      path: "/admin/workflow",
-      name: "Workflow",
-    },
-    {
-      path: "/admin/our-team",
-      name: "Our Team",
     },
     {
       path: "/admin/users",

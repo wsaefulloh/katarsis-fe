@@ -13,7 +13,10 @@ const MENU_LIST = [
 ];
 
 const NavItem = ({ text, href, active, link }) => {
-  console.log(active);
+  // console.log(active);
+  const router = useRouter();
+  const url_page = router.asPath;
+  console.log(url_page);
 
   if (link == "career" || link == "about") {
     return (
@@ -24,22 +27,32 @@ const NavItem = ({ text, href, active, link }) => {
       </a>
     );
   } else {
-    return (
-      <Link
-        activeClass="active"
-        to={link}
-        spy={true}
-        smooth={true}
-        offset={-70}
-        duration={500}
-      >
-        <a href={href}>
+    if (url_page == "/") {
+      return (
+        <Link
+          activeClass="active"
+          to={link}
+          spy={true}
+          smooth={true}
+          offset={-70}
+          duration={500}
+        >
+          <a href={href}>
+            <div style={{ cursor: "pointer" }} className="px-3 nav__link">
+              <a>{text}</a>
+            </div>
+          </a>
+        </Link>
+      );
+    } else {
+      return (
+        <a href={"/"}>
           <div style={{ cursor: "pointer" }} className="px-3 nav__link">
             <a>{text}</a>
           </div>
         </a>
-      </Link>
-    );
+      );
+    }
   }
 };
 
@@ -50,7 +63,7 @@ const HomeNavbar = () => {
   const router = useRouter();
   const url_page = router.asPath;
   const [url, setUrl] = useState(`${url_page}`);
-  console.log(url_page);
+  // console.log(url_page);
 
   return (
     <header>
@@ -77,9 +90,9 @@ const HomeNavbar = () => {
           </div>
           <div className={`${navActive ? "active" : ""} nav__menu-list`}>
             {MENU_LIST.map((menu, idx) => {
-              console.log(`${menu.href}`);
-              console.log(url_page === `${menu.href}`);
-              console.log(idx);
+              // console.log(`${menu.href}`);
+              // console.log(url_page === `${menu.href}`);
+              // console.log(idx);
               return (
                 <div
                   onClick={() => {
