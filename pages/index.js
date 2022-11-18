@@ -521,7 +521,7 @@ function Home() {
                 fontStyle: "bold",
               }}
             >
-              Previous Partner
+              Trusted By
             </h1>
             <div
               style={{

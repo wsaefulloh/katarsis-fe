@@ -27,7 +27,7 @@ function CardsProfile(props) {
       <Col>
         <div
           className="mx-auto display-large"
-          style={{ width: "340px", marginBottom: "30px" }}
+          style={{ width: "240px", marginBottom: "30px" }}
         >
           <img
             src={`https://drive.google.com/uc?export=view&id=${img}`}
@@ -39,7 +39,7 @@ function CardsProfile(props) {
           />
           <div className="mt-2">
             <div className="d-flex align-items-center">
-              <h1 className="m-0 py-2 pr-2">{name}</h1>
+              <h3 className="m-0 py-2 pr-2">{name}</h3>
               <Link href={`${url}`}>
                 <a target="_blank">
                   <svg
@@ -56,7 +56,7 @@ function CardsProfile(props) {
               </Link>
             </div>
 
-            <div>CO-FOUNDER KATARSIS</div>
+            <div>{position}</div>
           </div>
         </div>
       </Col>
@@ -64,7 +64,7 @@ function CardsProfile(props) {
       <Col>
         <div
           className="mx-auto display-small"
-          style={{ width: "100%", marginBottom: "30px" }}
+          style={{ maxWidth: "240px", marginBottom: "30px" }}
         >
           <img
             src={`https://drive.google.com/uc?export=view&id=${img}`}
@@ -76,7 +76,7 @@ function CardsProfile(props) {
           />
           <div className="mt-2">
             <div className="d-flex align-items-center">
-              <h1 className="m-0 py-2 pr-2">{name}</h1>
+              <h3 className="m-0 py-2 pr-2">{name}</h3>
               <Link href={`${url}`}>
                 <a target="_blank">
                   <svg
@@ -93,7 +93,7 @@ function CardsProfile(props) {
               </Link>
             </div>
 
-            <div>CO-FOUNDER KATARSIS</div>
+            <div>{position}</div>
           </div>
         </div>
       </Col>

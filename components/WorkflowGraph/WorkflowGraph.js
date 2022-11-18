@@ -74,7 +74,7 @@ function WorkflowGraph() {
         </div>
       </Container>
 
-      <Container>
+      {/* <Container>
         <div className="pb-4 d-flex align-items-center justify-content-center">
           <div
             style={{
@@ -109,7 +109,7 @@ function WorkflowGraph() {
           ></div>
           <div>{process3.description}</div>
         </div>
-      </Container>
+      </Container> */}
 
       <div className="py-4">
         <div className="display-large">
@@ -147,7 +147,7 @@ function WorkflowGraph() {
                         height: "5px",
                         marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#E1E1E1",
+                        backgroundColor: "#ffffff",
                       }}
                     ></div>
                     <div
@@ -155,14 +155,14 @@ function WorkflowGraph() {
                         height: "5px",
                         marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#BABABA",
+                        backgroundColor: "#000000",
                       }}
                     ></div>
                     <div
                       style={{
                         height: "5px",
                         width: "120%",
-                        backgroundColor: "#818181",
+                        backgroundColor: "#ffffff",
                       }}
                     ></div>
                   </div>
@@ -240,7 +240,7 @@ function WorkflowGraph() {
                         height: "5px",
                         marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#E1E1E1",
+                        backgroundColor: "#ffffff",
                       }}
                     ></div>
                     <div
@@ -248,14 +248,14 @@ function WorkflowGraph() {
                         height: "5px",
                         marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#BABABA",
+                        backgroundColor: "#000000",
                       }}
                     ></div>
                     <div
                       style={{
                         height: "5px",
                         width: "120%",
-                        backgroundColor: "#818181",
+                        backgroundColor: "#ffffff",
                       }}
                     ></div>
                   </div>
@@ -333,7 +333,7 @@ function WorkflowGraph() {
                         height: "5px",
                         marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#E1E1E1",
+                        backgroundColor: "#ffffff",
                       }}
                     ></div>
                     <div
@@ -341,14 +341,14 @@ function WorkflowGraph() {
                         height: "5px",
                         marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#BABABA",
+                        backgroundColor: "#000000",
                       }}
                     ></div>
                     <div
                       style={{
                         height: "5px",
                         width: "120%",
-                        backgroundColor: "#818181",
+                        backgroundColor: "#ffffff",
                       }}
                     ></div>
                   </div>
@@ -426,7 +426,7 @@ function WorkflowGraph() {
                         height: "5px",
                         marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#E1E1E1",
+                        backgroundColor: "#ffffff",
                       }}
                     ></div>
                     <div
@@ -434,14 +434,14 @@ function WorkflowGraph() {
                         height: "5px",
                         marginBottom: "3px",
                         width: "120%",
-                        backgroundColor: "#BABABA",
+                        backgroundColor: "#000000",
                       }}
                     ></div>
                     <div
                       style={{
                         height: "5px",
                         width: "120%",
-                        backgroundColor: "#818181",
+                        backgroundColor: "#ffffff",
                       }}
                     ></div>
                   </div>
@@ -523,14 +523,14 @@ function WorkflowGraph() {
                         backgroundColor: "#ffffff",
                       }}
                     ></div>
-                    <div
+                    {/* <div
                       style={{
                         height: "5px",
                         marginBottom: "3px",
                         width: "90%",
                         backgroundColor: "#ffffff",
                       }}
-                    ></div>
+                    ></div> */}
                     <div
                       style={{
                         display: "flex",
@@ -540,7 +540,7 @@ function WorkflowGraph() {
                         style={{
                           height: "5px",
                           width: "90%",
-                          backgroundColor: "#818181",
+                          backgroundColor: "#000000",
                         }}
                       ></div>
                       <div
@@ -548,7 +548,28 @@ function WorkflowGraph() {
                           marginLeft: "10px",
                           height: "5px",
                           width: "20%",
-                          backgroundColor: "#818181",
+                          backgroundColor: "#000000",
+                        }}
+                      ></div>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                      }}
+                    >
+                      <div
+                        style={{
+                          height: "5px",
+                          width: "90%",
+                          backgroundColor: "#ffffff",
+                        }}
+                      ></div>
+                      <div
+                        style={{
+                          marginLeft: "10px",
+                          height: "5px",
+                          width: "20%",
+                          backgroundColor: "#ffffff",
                         }}
                       ></div>
                     </div>
@@ -639,7 +660,7 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#818181",
+                          backgroundColor: "#ffffff",
                         }}
                       ></div>
                       <div
@@ -647,14 +668,14 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#BABABA",
+                          backgroundColor: "#000000",
                         }}
                       ></div>
                       <div
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#E1E1E1",
+                          backgroundColor: "#ffffff",
                         }}
                       ></div>
                     </div>
@@ -741,7 +762,7 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#818181",
+                          backgroundColor: "#ffffff",
                         }}
                       ></div>
                       <div
@@ -749,14 +770,14 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#BABABA",
+                          backgroundColor: "#000000",
                         }}
                       ></div>
                       <div
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#E1E1E1",
+                          backgroundColor: "#ffffff",
                         }}
                       ></div>
                     </div>
@@ -843,7 +864,7 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#818181",
+                          backgroundColor: "#ffffff",
                         }}
                       ></div>
                       <div
@@ -851,14 +872,14 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#BABABA",
+                          backgroundColor: "#000000",
                         }}
                       ></div>
                       <div
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#E1E1E1",
+                          backgroundColor: "#ffffff",
                         }}
                       ></div>
                     </div>
@@ -945,7 +966,7 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#818181",
+                          backgroundColor: "#ffffff",
                         }}
                       ></div>
                       <div
@@ -953,14 +974,14 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#BABABA",
+                          backgroundColor: "#000000",
                         }}
                       ></div>
                       <div
                         style={{
                           width: "5px",
                           height: "130px",
-                          backgroundColor: "#E1E1E1",
+                          backgroundColor: "#ffffff",
                         }}
                       ></div>
                     </div>
@@ -1048,7 +1069,7 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "100px",
-                          backgroundColor: "#818181",
+                          backgroundColor: "#ffffff",
                         }}
                       ></div>
                       <div
@@ -1056,7 +1077,7 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "100px",
-                          backgroundColor: "#ffffff",
+                          backgroundColor: "#000000",
                         }}
                       ></div>
                       <div
@@ -1082,7 +1103,7 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "20px",
-                          backgroundColor: "#818181",
+                          backgroundColor: "#ffffff",
                         }}
                       ></div>
                       <div
@@ -1090,7 +1111,7 @@ function WorkflowGraph() {
                         style={{
                           width: "5px",
                           height: "20px",
-                          backgroundColor: "#ffffff",
+                          backgroundColor: "#000000",
                         }}
                       ></div>
                       <div
