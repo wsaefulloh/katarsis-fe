@@ -25,7 +25,7 @@ function HomeFooter() {
   function handleContactRef() {
     let hash = Cookies.get("hash");
     if (hash == "footer_id") {
-      workRef.current.scrollIntoView({ behaviour: "smooth" });
+      contactRef.current.scrollIntoView({ behaviour: "smooth" });
       Cookies.remove("hash");
     } else {
     }
