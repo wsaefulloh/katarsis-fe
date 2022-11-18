@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 
 // reactstrap components
@@ -7,6 +7,7 @@ import { Container, Row, Col } from "reactstrap";
 import "../../assets/css/main/main.module.css";
 
 import { fetchWrapper } from "../../helpers/fetch-wrapper";
+import Cookies from "js-cookie";
 
 function HomeFooter() {
   const [linkedin, setLinkedin] = useState("");
@@ -18,6 +19,17 @@ function HomeFooter() {
   const [marketing, setMarketing] = useState("");
   const [partnership, setPartnership] = useState("");
   const [career, setCareer] = useState("");
+
+  const contactRef = useRef();
+
+  function handleContactRef() {
+    let hash = Cookies.get("hash");
+    if (hash == "footer_id") {
+      workRef.current.scrollIntoView({ behaviour: "smooth" });
+      Cookies.remove("hash");
+    } else {
+    }
+  }
 
   const getInstagram = async () => {
     const data = await fetchWrapper.get(`../api/links/get-instagram`);
@@ -110,11 +122,12 @@ function HomeFooter() {
     getMarketing();
     getPartnership();
     getCareer();
+    handleContactRef();
   }, []);
 
   return (
     <>
-      <footer id="footer_id">
+      <footer id="footer_id" ref={contactRef}>
         <Container className="pt-4 ">
           <div className="text-center pb-4">
             <img

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
 
 // reactstrap components
@@ -18,10 +18,22 @@ import "aos/dist/aos.css";
 import { fetchWrapper } from "../helpers/fetch-wrapper";
 
 import Slider from "react-slick";
+import Cookies from "js-cookie";
 
 import "../assets/css/main/main.module.css";
 
 function Home() {
+  const workRef = useRef();
+
+  function handleWorkRef() {
+    let hash = Cookies.get("hash");
+    if (hash == "work") {
+      workRef.current.scrollIntoView({ behaviour: "smooth" });
+      Cookies.remove("hash");
+    } else {
+    }
+  }
+
   const slider = {
     dots: true,
     infinite: true,
@@ -129,6 +141,7 @@ function Home() {
   const [project, setProject] = useState([]);
   const [profile, setProfile] = useState([]);
   const [media, setMedia] = useState([]);
+  const [brands, setBrands] = useState([]);
   const [HWDI, setHWDI] = useState({});
   const [ourTeam, setOurTeam] = useState({});
   const [visi, setVisi] = useState({});
@@ -217,6 +230,13 @@ function Home() {
     }
   };
 
+  const getDataBrands = async () => {
+    const data = await fetchWrapper.get(`api/brands`);
+    if (data) {
+      setBrands(data.data);
+    }
+  };
+
   const getHowWeDoIt = async () => {
     const data = await fetchWrapper.get(`api/content/get-how`);
     if (data) {
@@ -258,6 +278,8 @@ function Home() {
     getOurTeam();
     getVision();
     getMission();
+    handleWorkRef();
+    getDataBrands();
   }, []);
 
   useEffect(() => {
@@ -302,7 +324,12 @@ function Home() {
       </div>
       <div data-aos="fade-up">{renderFilter}</div>
 
-      <div id="work" className="py-5" style={{ backgroundColor: "#000000" }}>
+      <div
+        ref={workRef}
+        id="work"
+        className="py-5"
+        style={{ backgroundColor: "#000000" }}
+      >
         <Container className="pb-5">
           <div
             data-aos="fade-up"
@@ -455,6 +482,63 @@ function Home() {
                   <Container>
                     <Slider {...mediaCoverage}>
                       {media.map((val) => {
+                        return (
+                          <Col>
+                            <Row
+                              className="justify-content-center mb-4 align-items-center"
+                              style={{ height: "100px", width: "100%" }}
+                            >
+                              <img
+                                alt="..."
+                                src={`https://drive.google.com/uc?export=view&id=${val.url}`}
+                                width="100%"
+                              />
+                            </Row>
+                          </Col>
+                        );
+                      })}
+                    </Slider>
+                  </Container>
+                </Card>
+              </Container>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      <div
+        className="my-5"
+        style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
+      ></div>
+
+      <div data-aos="fade-up" className="pb-5 pt-3">
+        <Container>
+          <div className="text-center justify-content-center">
+            <h1
+              className="title_section"
+              style={{
+                color: "#000000",
+                fontStyle: "bold",
+              }}
+            >
+              Previous Partner
+            </h1>
+            <div
+              style={{
+                width: "180px",
+                height: "5px",
+                backgroundColor: "#000000",
+                marginRight: "auto",
+                marginLeft: "auto",
+              }}
+              className="my-4"
+            ></div>
+            <div className="media_coverage">
+              <Container>
+                <Card className="content">
+                  <Container>
+                    <Slider {...mediaCoverage}>
+                      {brands.map((val) => {
                         return (
                           <Col>
                             <Row

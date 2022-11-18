@@ -22,6 +22,7 @@ function WorkflowGraph() {
   const [process1, setProcess1] = useState({});
   const [process2, setProcess2] = useState({});
   const [process3, setProcess3] = useState({});
+  const [cta, setCta] = useState({});
 
   const getWorkflow = async () => {
     const data = await fetchWrapper.get(`api/content/get-workflow`);
@@ -41,9 +42,18 @@ function WorkflowGraph() {
     }
   };
 
+  const getCTA = async () => {
+    const data = await fetchWrapper.get(`api/links/get-cta-partnership`);
+    if (data) {
+      let obj = data.data;
+      setCta(obj[0]);
+    }
+  };
+
   useEffect(() => {
     getWorkflow();
     getWorkflowProcess();
+    getCTA();
   }, []);
 
   return (
@@ -1142,7 +1152,7 @@ function WorkflowGraph() {
       <div className="py-4 mt-5 text-center justify-content-center">
         <Container>
           <div
-            className="desc_section"
+            className="desc_section mb-4"
             style={{
               maxWidth: "800px",
               marginLeft: "auto",
@@ -1151,6 +1161,25 @@ function WorkflowGraph() {
           >
             {`${result.description}`}
           </div>
+
+          <a href={`${cta.url}`} style={{ justifyContent: "center" }}>
+            <div
+              style={{
+                backgroundColor: "#000000",
+                color: "#ffffff",
+                width: "200px",
+                textAlign: "center",
+                padding: "10px",
+                // border: "3px solid #000000",
+                borderRadius: "25px",
+                marginLeft: "auto",
+                marginRight: "auto",
+                cursor: "pointer",
+              }}
+            >
+              {`${cta.title}`}
+            </div>
+          </a>
         </Container>
       </div>
     </>

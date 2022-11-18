@@ -34,8 +34,16 @@ export default {
       name: "Workflow",
     },
     {
+      path: "/admin/cta-workflow",
+      name: "CTA Workflow",
+    },
+    {
       path: "/admin/liputan",
       name: "Media Coverage",
+    },
+    {
+      path: "/admin/brands",
+      name: "Previous Partner",
     },
     {
       path: "/admin/profile",

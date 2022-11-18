@@ -1,9 +1,10 @@
 import { Link, animateScroll as scroll } from "react-scroll";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../../assets/css/main/main.module.css";
 import { Container, NavbarBrand } from "reactstrap";
 import { useRouter } from "next/router";
+import { useCookies } from "react-cookie";
 
 const MENU_LIST = [
   { text: "About", href: "/", link: "about" },
@@ -14,6 +15,7 @@ const MENU_LIST = [
 
 const NavItem = ({ text, href, active, link }) => {
   // console.log(active);
+  const [cookies, setCookie] = useCookies(["hash"]);
   const router = useRouter();
   const url_page = router.asPath;
   console.log(url_page);
@@ -45,8 +47,19 @@ const NavItem = ({ text, href, active, link }) => {
         </Link>
       );
     } else {
+      // let toScroll = (hash) => {
+      //   setCookie("hash", `${hash}`, { path: "/" });
+      //   router.push("/");
+      // };
+
       return (
-        <a href={"/"}>
+        <a
+          href={"/"}
+          onClick={() => {
+            setCookie("hash", `${link}`, { path: "/" });
+          }}
+        >
+          {/* <a href={"/"}> */}
           <div style={{ cursor: "pointer" }} className="px-3 nav__link">
             <a>{text}</a>
           </div>

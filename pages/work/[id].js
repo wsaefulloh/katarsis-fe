@@ -79,6 +79,21 @@ function Work() {
         }}
         className="background_image"
       >
+        <h2
+          onClick={() => {
+            router.push("/");
+          }}
+          style={{
+            position: "absolute",
+            top: "30px",
+            left: "30px",
+            width: "35px",
+            cursor: "pointer",
+            color: "#ffffff",
+          }}
+        >
+          BACK
+        </h2>
         <div
           className="background_work"
           style={{
