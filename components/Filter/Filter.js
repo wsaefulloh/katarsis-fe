@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link, animateScroll as scroll } from "react-scroll";
 import { useRouter } from "next/router";
 // reactstrap components
 import {
@@ -142,17 +142,26 @@ function Filter() {
                   <div className="mx-4">
                     {menuOriginalIP.map((val) => {
                       return (
-                        <div
-                          className="py-1 arrow_hover "
-                          onClick={() =>
-                            setMenu(
-                              `Original IP -> ${val.name_submenu} / ${val.id}`
-                            )
-                          }
-                          style={{ width: "fit-content", cursor: "pointer" }}
+                        <Link
+                          activeClass="active"
+                          to={"work"}
+                          spy={true}
+                          smooth={true}
+                          offset={-70}
+                          duration={500}
                         >
-                          {val.name_submenu}
-                        </div>
+                          <div
+                            className="py-1 arrow_hover "
+                            onClick={() =>
+                              setMenu(
+                                `Original IP -> ${val.name_submenu} / ${val.id}`
+                              )
+                            }
+                            style={{ width: "fit-content", cursor: "pointer" }}
+                          >
+                            {val.name_submenu}
+                          </div>
+                        </Link>
                       );
                     })}
                     {/* <div
@@ -190,17 +199,26 @@ function Filter() {
                   <div className="mx-4">
                     {menuB2B.map((val) => {
                       return (
-                        <div
-                          className="py-1 arrow_hover "
-                          onClick={() =>
-                            setMenu(
-                              `Business to Business (B2B) -> ${val.name_submenu} / ${val.id}`
-                            )
-                          }
-                          style={{ width: "fit-content", cursor: "pointer" }}
+                        <Link
+                          activeClass="active"
+                          to={"work"}
+                          spy={true}
+                          smooth={true}
+                          offset={-70}
+                          duration={500}
                         >
-                          {val.name_submenu}
-                        </div>
+                          <div
+                            className="py-1 arrow_hover "
+                            onClick={() =>
+                              setMenu(
+                                `Business to Business (B2B) -> ${val.name_submenu} / ${val.id}`
+                              )
+                            }
+                            style={{ width: "fit-content", cursor: "pointer" }}
+                          >
+                            {val.name_submenu}
+                          </div>
+                        </Link>
                       );
                     })}
                     {/* <div

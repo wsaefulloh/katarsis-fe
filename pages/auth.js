@@ -6,6 +6,7 @@ import {
   Col,
   Form,
   Input,
+  Modal,
   NavbarBrand,
   Spinner,
 } from "reactstrap";
@@ -17,6 +18,8 @@ import Link from "next/link";
 import { fetchWrapper } from "../helpers/fetch-wrapper";
 
 export default function Auth() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen1, setModalOpen1] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dataUser, setDataUser] = useState({
     username: "",
@@ -44,6 +47,27 @@ export default function Auth() {
   const router = useRouter();
   const [cookies, setCookie] = useCookies(["token"]);
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      setLoading(true);
+
+      if (
+        dataUser.username == dataUserServer.username &&
+        dataUser.password == dataUserServer.password
+      ) {
+        setCookie("token", "tokenuserlogin", { path: "/", maxAge: 3600 });
+        setCookie("pass", `${dataUserServer.password}`, {
+          path: "/",
+          maxAge: 3600,
+        });
+        setModalOpen1(!modalOpen1);
+      } else {
+        setModalOpen(!modalOpen);
+      }
+      setLoading(false);
+    }
+  };
+
   const login = async () => {
     setLoading(true);
 
@@ -56,10 +80,9 @@ export default function Auth() {
         path: "/",
         maxAge: 3600,
       });
-      await Swal.fire("OK", "Login Berhasil", "success");
-      router.push("/admin/visi-misi");
+      setModalOpen1(!modalOpen1);
     } else {
-      Swal.fire("FAILED", "Username dan Password Tidak Cocok", "error");
+      setModalOpen(!modalOpen);
     }
     setLoading(false);
   };
@@ -90,6 +113,7 @@ export default function Auth() {
             <div className="form-row">
               <Col className="my-3 p-0">
                 <Input
+                  onKeyDown={handleKeyDown}
                   type="text"
                   placeholder="Username"
                   onChange={(e) => {
@@ -107,6 +131,7 @@ export default function Auth() {
             <div className="form-row">
               <Col className="mb-3 p-0">
                 <Input
+                  onKeyDown={handleKeyDown}
                   type="password"
                   placeholder="Password"
                   onChange={(e) => {
@@ -152,6 +177,92 @@ export default function Auth() {
           </Button>
         </div>
       </Card>
+
+      <Modal
+        toggle={() => setModalOpen(!modalOpen)}
+        isOpen={modalOpen}
+        centered
+        fade={true}
+        size="sm"
+      >
+        <div className="justify-content-center text-center p-4">
+          <h3 className="m-0 mb-3 p-0">Username dan Password tidak sesuai</h3>
+
+          <Button
+            color="secondary"
+            style={{
+              color: "#ffffff",
+              backgroundColor: "#990c22",
+              maxWidth: "150px",
+            }}
+            className="border-0"
+            type="button"
+            onClick={() => {
+              setModalOpen(false);
+            }}
+          >
+            {loading == true ? (
+              <>
+                <div className="py-1 text-center align-content-center align-items-center">
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                </div>
+              </>
+            ) : (
+              <>Close</>
+            )}
+          </Button>
+        </div>
+      </Modal>
+
+      <Modal
+        toggle={() => setModalOpen1(!modalOpen1)}
+        isOpen={modalOpen1}
+        centered
+        fade={true}
+        size="sm"
+      >
+        <div className="justify-content-center text-center p-4">
+          <h3 className="m-0 mb-3 p-0">OK, Username dan Password sesuai</h3>
+
+          <a href="/"></a>
+
+          <Button
+            color="secondary"
+            style={{
+              color: "#ffffff",
+              backgroundColor: "#22990c",
+              maxWidth: "150px",
+            }}
+            className="border-0"
+            type="button"
+            onClick={() => {
+              router.push("/admin/visi-misi");
+            }}
+          >
+            {loading == true ? (
+              <>
+                <div className="py-1 text-center align-content-center align-items-center">
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                </div>
+              </>
+            ) : (
+              <>OK</>
+            )}
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 }
