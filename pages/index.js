@@ -178,6 +178,7 @@ function Home() {
       } else {
         let fixArray = array.slice(0, 4);
         setFixProject(fixArray);
+        setShowMoreActive(true);
       }
     }
   };
@@ -192,8 +193,9 @@ function Home() {
         setShowMoreActive(false);
         setFixProject(data.data);
       } else {
-        let fixArray = array.slice(0, 3);
+        let fixArray = array.slice(0, 4);
         setFixProject(fixArray);
+        setShowMoreActive(true);
       }
     }
   };
@@ -210,8 +212,9 @@ function Home() {
         setShowMoreActive(false);
         setFixProject(data.data);
       } else {
-        let fixArray = array.slice(0, 3);
+        let fixArray = array.slice(0, 4);
         setFixProject(fixArray);
+        setShowMoreActive(true);
       }
     }
   };
@@ -286,12 +289,15 @@ function Home() {
     let menu_baru = menu.split("/");
     setNewMenu(`${menu_baru[0]}`);
     console.log(menu_baru[1]);
-    if (menu_baru[1] == "Original IP") {
+    if (menu_baru[1] == " Original IP") {
       getDataOriginalIP();
-    } else if (menu_baru[1] == "B2B") {
+      setFixProject([]);
+    } else if (menu_baru[1] == " B2B") {
       getDataB2B();
+      setFixProject([]);
     } else {
       getDataSubMenu(`${menu_baru[1]}`);
+      setFixProject([]);
     }
   }, [menu]);
 
