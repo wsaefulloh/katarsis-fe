@@ -58,6 +58,10 @@ export default {
       name: "Social Link",
     },
     {
+      path: "/admin/career",
+      name: "Page Career",
+    },
+    {
       path: "/admin/footer",
       name: "Footer Link",
     },
