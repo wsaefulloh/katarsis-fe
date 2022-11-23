@@ -60,14 +60,16 @@ function Career() {
 
       {departement.map((val, index) => {
         if (index == departement.length - 1) {
-          <div data-aos="fade-up">
-            <CardsCareer
-              description_departement={val.description_departement}
-              title_departement={val.title_departement}
-              id={val.id}
-              last={true}
-            />
-          </div>;
+          return (
+            <div data-aos="fade-up">
+              <CardsCareer
+                description_departement={val.description_departement}
+                title_departement={val.title_departement}
+                id={val.id}
+                last={true}
+              />
+            </div>
+          );
         } else {
           return (
             <div data-aos="fade-up">
