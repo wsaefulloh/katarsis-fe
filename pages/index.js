@@ -497,7 +497,7 @@ function Home() {
                               <img
                                 alt="..."
                                 src={`https://drive.google.com/uc?export=view&id=${val.url}`}
-                                style={{ maxWidth: "100%" }}
+                                style={{ maxWidth: "100%", maxHeight: "100px" }}
                               />
                             </Row>
                           </Col>
@@ -554,7 +554,7 @@ function Home() {
                               <img
                                 alt="..."
                                 src={`https://drive.google.com/uc?export=view&id=${val.url}`}
-                                style={{ maxWidth: "100%" }}
+                                style={{ maxWidth: "100%", maxHeight: "100px" }}
                               />
                             </Row>
                           </Col>
