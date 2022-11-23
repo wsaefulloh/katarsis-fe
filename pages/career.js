@@ -70,7 +70,10 @@ function Career() {
         );
       })}
 
-      <div style={{ backgroundColor: "#000000", height: "1px" }}></div>
+      <div
+        data-aos="fade-up"
+        style={{ backgroundColor: "#000000", height: "1px" }}
+      ></div>
 
       <div
         data-aos="fade-up"
