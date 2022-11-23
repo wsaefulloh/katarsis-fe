@@ -40,6 +40,19 @@ export default async (req, res) => {
       data: result,
       statusCode: status,
     });
+  } else if (req.method === "PUT") {
+    const response = await fetch(`${API_APPS_HOST}/brands/update`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(req.body),
+    });
+    const { status, result } = await response.json();
+    res.status(status).json({
+      data: result,
+      statusCode: status,
+    });
   } else {
     res.setHeader("Allow", ["GET"]);
     res.status(405).json({

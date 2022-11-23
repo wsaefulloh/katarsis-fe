@@ -103,7 +103,6 @@ function CardsJob(props) {
 CardsJob.propTypes = {
   id: PropTypes.any,
   title: PropTypes.any,
-
   urlOrigin: PropTypes.any,
 };
 
