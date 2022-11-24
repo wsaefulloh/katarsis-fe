@@ -41,6 +41,35 @@ function Career() {
 
   return (
     <>
+      <div>
+        {/* <iframe
+          src="https://drive.google.com/file/d/1A13ARf1AdzIubv7aGc4ZgmN5eXz8IaU_/preview"
+          width="100%"
+          height="300px"
+          allow="autoplay"
+        ></iframe> */}
+        <iframe
+          style={{ border: "unset" }}
+          src="https://drive.google.com/file/d/1A13ARf1AdzIubv7aGc4ZgmN5eXz8IaU_/preview"
+          width="100%"
+          height="480"
+          allow="autoplay"
+        ></iframe>
+        {/* <video
+          style={{
+            width: "250px",
+          }}
+          autoplay="autoplay"
+          muted
+        >
+          <source
+            src={
+              "https://drive.google.com/file/d/1A13ARf1AdzIubv7aGc4ZgmN5eXz8IaU_/preview"
+            }
+            type="video/mp4"
+          />
+        </video> */}
+      </div>
       <div id="top" data-aos="fade-up" className="my-5 py-3">
         <Container>
           <div className="text-center justify-content-center">
