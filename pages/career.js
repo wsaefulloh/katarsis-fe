@@ -48,27 +48,26 @@ function Career() {
           height="300px"
           allow="autoplay"
         ></iframe> */}
-        <iframe
+        {/* <iframe
           style={{ border: "unset" }}
-          src="https://drive.google.com/file/d/1A13ARf1AdzIubv7aGc4ZgmN5eXz8IaU_/preview"
+          src="http://drive.google.com/file/d/1A13ARf1AdzIubv7aGc4ZgmN5eXz8IaU_/preview"
           width="100%"
           height="480"
           allow="autoplay"
-        ></iframe>
-        {/* <video
+        ></iframe> */}
+        <video
           style={{
-            width: "250px",
+            width: "100%",
+            maxHeight: "400px",
+            objectFit: "contain",
+            backgroundColor: "#000000",
           }}
-          autoplay="autoplay"
-          muted
+          // autoplay="autoplay"
+          // loop="true"
+          controls
         >
-          <source
-            src={
-              "https://drive.google.com/file/d/1A13ARf1AdzIubv7aGc4ZgmN5eXz8IaU_/preview"
-            }
-            type="video/mp4"
-          />
-        </video> */}
+          <source src={require("assets/Katarsis HD.mp4")} type="video/mp4" />
+        </video>
       </div>
       <div id="top" data-aos="fade-up" className="my-5 py-3">
         <Container>

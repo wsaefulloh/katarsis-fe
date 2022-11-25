@@ -39,6 +39,7 @@ function CardsProject(props) {
                 style={{
                   backgroundImage:
                     "url(" +
+                    // `https://drive.google.com/thumbnail?id=${img}&sz=w1000` +
                     `https://drive.google.com/uc?export=view&id=${img}` +
                     ")",
                 }}
