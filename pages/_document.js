@@ -9,11 +9,11 @@ class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <meta name="theme-color" content="#000000" />
-          {/* <link
+          <link
             rel="shortcut icon"
             sizes="76"
-            href={require("assets/img/brand/Logo.png")}
-          /> */}
+            href={require("assets/img/brand/Logo Katarsis.png")}
+          />
           <link
             rel="apple-touch-icon"
             sizes="76x76"
