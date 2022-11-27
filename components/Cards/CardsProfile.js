@@ -31,7 +31,7 @@ function CardsProfile(props) {
         >
           <img
             src={`https://drive.google.com/uc?export=view&id=${img}`}
-            alt="A random image from Flickr"
+            alt={`Image ${name}`}
             style={{
               width: "100%",
               objectFit: "cover",
@@ -68,7 +68,7 @@ function CardsProfile(props) {
         >
           <img
             src={`https://drive.google.com/uc?export=view&id=${img}`}
-            alt="A random image from Flickr"
+            alt={`Image ${name}`}
             style={{
               width: "100%",
               objectFit: "cover",

@@ -495,7 +495,6 @@ function Home() {
                               style={{ height: "100px", width: "100%" }}
                             >
                               <img
-                                alt="..."
                                 src={`https://drive.google.com/uc?export=view&id=${val.url}`}
                                 style={{ maxWidth: "100%", maxHeight: "100px" }}
                               />
@@ -552,7 +551,6 @@ function Home() {
                               style={{ height: "100px", width: "100%" }}
                             >
                               <img
-                                alt="..."
                                 src={`https://drive.google.com/uc?export=view&id=${val.url}`}
                                 style={{ maxWidth: "100%", maxHeight: "100px" }}
                               />
@@ -691,7 +689,7 @@ function Home() {
       <img
         data-aos="fade-up"
         src={`https://drive.google.com/uc?export=view&id=${ourTeam.url_image}`}
-        alt="A random image from Flickr"
+        alt="Image Out Team"
         style={{
           width: "100%",
           objectFit: "cover",

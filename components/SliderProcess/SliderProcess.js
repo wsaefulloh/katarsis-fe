@@ -418,7 +418,7 @@ function SliderProcess() {
                     <Container>
                       <img
                         src={`https://drive.google.com/uc?export=view&id=${result1.url_image}`}
-                        alt="A random image from Flickr"
+                        alt={`${result1.title}`}
                         style={{
                           width: "100%",
                           objectFit: "cover",
@@ -479,7 +479,7 @@ function SliderProcess() {
                     <Container>
                       <img
                         src={`https://drive.google.com/uc?export=view&id=${result2.url_image}`}
-                        alt="A random image from Flickr"
+                        alt={`${result2.title}`}
                         style={{
                           width: "100%",
                           objectFit: "cover",
@@ -540,7 +540,7 @@ function SliderProcess() {
                     <Container>
                       <img
                         src={`https://drive.google.com/uc?export=view&id=${result3.url_image}`}
-                        alt="A random image from Flickr"
+                        alt={`${result3.title}`}
                         style={{
                           width: "100%",
                           objectFit: "cover",

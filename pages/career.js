@@ -51,7 +51,7 @@ function Career() {
 
   return (
     <>
-      <div>
+      <div id="top">
         {/* <iframe
           src="https://drive.google.com/file/d/1A13ARf1AdzIubv7aGc4ZgmN5eXz8IaU_/preview"
           width="100%"
@@ -82,7 +82,7 @@ function Career() {
       </div>
       {status.description == "true" || status.description == "True" ? (
         <>
-          <div id="top" data-aos="fade-up" className="my-5 py-3">
+          <div data-aos="fade-up" className="my-5 py-3">
             <Container>
               <div className="text-center justify-content-center">
                 <h1
@@ -127,7 +127,7 @@ function Career() {
         </>
       ) : (
         <>
-          <div id="top" data-aos="fade-up" className="mt-5 py-3">
+          <div data-aos="fade-up" className="mt-5 py-3">
             <Container>
               <div className="text-center justify-content-center">
                 <h1
