@@ -4,10 +4,11 @@ import axios from "axios";
 export default async (req, res) => {
   if (req.method === "POST") {
     const response = await axios.post(
-      `${API_APPS_HOST}/content/add-file`,
+      `http://156.67.208.118:9001/content/add-file`,
       req.body,
       { "Content-type": "multipart/form-data" }
     );
+
     const { status, result } = await response.json();
     res.status(status).json({
       data: result,
