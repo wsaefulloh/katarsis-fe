@@ -1,14 +1,13 @@
 import { API_APPS_HOST } from "../../../config";
+import axios from "axios";
 
 export default async (req, res) => {
   if (req.method === "POST") {
-    const response = await fetch(`${API_APPS_HOST}/content/add-file`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      body: req.body,
-    });
+    const response = await axios.post(
+      `${API_APPS_HOST}/content/add-file`,
+      req.body,
+      { "Content-type": "multipart/form-data" }
+    );
     const { status, result } = await response.json();
     res.status(status).json({
       data: result,
