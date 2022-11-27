@@ -82,9 +82,11 @@ function SocialLinks() {
     try {
       const body = new FormData();
       body.append("video", dataUpdate);
-      const response = await axios.post(`../api/admin/video`, body, {
-        "Content-type": "multipart/form-data",
-      });
+      const response = await axios.post(
+        `https://api.katarsis.co.id/content/add-file`,
+        body,
+        { "Content-type": "multipart/form-data" }
+      );
       //   const response = await fetch(`../api/admin/video`, {
       //     method: "POST",
       //     headers: {
