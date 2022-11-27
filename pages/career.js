@@ -26,6 +26,7 @@ import "../assets/css/main/main.module.css";
 
 function Career() {
   const [departement, setDepartement] = useState([]);
+  const [status, setStatus] = useState({});
 
   const getAllDepartement = async () => {
     const data = await fetchWrapper.get(`api/get-departement`);
@@ -34,9 +35,18 @@ function Career() {
     }
   };
 
+  const getStatus = async () => {
+    const data = await fetchWrapper.get(`api/content/get-status-career`);
+    if (data) {
+      let obj = data.data;
+      setStatus(obj[0]);
+    }
+  };
+
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
     getAllDepartement();
+    getStatus();
   }, []);
 
   return (
@@ -66,51 +76,74 @@ function Career() {
           // loop="true"
           controls
         >
-          <source src={require("assets/Katarsis HD.mp4")} type="video/mp4" />
+          {/* <source src={require("assets/Katarsis HD.mp4")} type="video/mp4" /> */}
+          <source src="http://156.67.208.118:9001/video" type="video/mp4" />
         </video>
       </div>
-      <div id="top" data-aos="fade-up" className="my-5 py-3">
-        <Container>
-          <div className="text-center justify-content-center">
-            <h1
-              className="title_section"
-              style={{
-                color: "#000000",
-                fontStyle: "bold",
-              }}
-            >
-              We're Hiring
-            </h1>
-            <div>what role would you like to be cast for?</div>
+      {status.description == "true" || status.description == "True" ? (
+        <>
+          <div id="top" data-aos="fade-up" className="my-5 py-3">
+            <Container>
+              <div className="text-center justify-content-center">
+                <h1
+                  className="title_section"
+                  style={{
+                    color: "#000000",
+                    fontStyle: "bold",
+                  }}
+                >
+                  We're Hiring
+                </h1>
+                <div>what role would you like to be cast for?</div>
+              </div>
+            </Container>
           </div>
-        </Container>
-      </div>
 
-      {departement.map((val, index) => {
-        if (index == departement.length - 1) {
-          return (
-            <div data-aos="fade-up">
-              <CardsCareer
-                description_departement={val.description_departement}
-                title_departement={val.title_departement}
-                id={val.id}
-                last={true}
-              />
-            </div>
-          );
-        } else {
-          return (
-            <div data-aos="fade-up">
-              <CardsCareer
-                description_departement={val.description_departement}
-                title_departement={val.title_departement}
-                id={val.id}
-                last={false}
-              />
-            </div>
-          );
-        }
-      })}
+          {departement.map((val, index) => {
+            if (index == departement.length - 1) {
+              return (
+                <div data-aos="fade-up">
+                  <CardsCareer
+                    description_departement={val.description_departement}
+                    title_departement={val.title_departement}
+                    id={val.id}
+                    last={true}
+                  />
+                </div>
+              );
+            } else {
+              return (
+                <div data-aos="fade-up">
+                  <CardsCareer
+                    description_departement={val.description_departement}
+                    title_departement={val.title_departement}
+                    id={val.id}
+                    last={false}
+                  />
+                </div>
+              );
+            }
+          })}
+        </>
+      ) : (
+        <>
+          <div id="top" data-aos="fade-up" className="mt-5 py-3">
+            <Container>
+              <div className="text-center justify-content-center">
+                <h1
+                  className="title_section"
+                  style={{
+                    color: "#000000",
+                    fontStyle: "bold",
+                  }}
+                >
+                  Coming Soon
+                </h1>
+              </div>
+            </Container>
+          </div>
+        </>
+      )}
 
       <div
         data-aos="fade-up"
