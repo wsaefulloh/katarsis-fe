@@ -82,15 +82,17 @@ function SocialLinks() {
     try {
       const body = new FormData();
       body.append("video", dataUpdate);
-
-      const response = await fetch(`../api/admin/video`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        body: body,
+      const response = await axios.post(`../api/admin/video`, body, {
+        "Content-type": "multipart/form-data",
       });
-      const data = await response.json();
+      //   const response = await fetch(`../api/admin/video`, {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "multipart/form-data",
+      //     },
+      //     body: body,
+      //   });
+      const data = response;
       if (data) {
         if (data.status != 200) {
           Swal.fire("FAILED", `Data gagal diupdate`, "error");
