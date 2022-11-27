@@ -77,7 +77,7 @@ function Career() {
           controls
         >
           {/* <source src={require("assets/Katarsis HD.mp4")} type="video/mp4" /> */}
-          <source src="http://156.67.208.118:9001/video" type="video/mp4" />
+          <source src="https://api.katarsis.co.id/video" type="video/mp4" />
         </video>
       </div>
       {status.description == "true" || status.description == "True" ? (
