@@ -119,7 +119,7 @@ function CardsProject(props) {
       if (result.isConfirmed) {
         const deleteThis = async (id) => {
           try {
-            const response = await fetch(`../api/admin/work?id=${id}`, {
+            const response = await fetch(`../api/admin/new-work?id=${id}`, {
               method: "DELETE",
             });
             const data = await response.json();
