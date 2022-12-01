@@ -98,11 +98,20 @@ function CardsProject(props) {
   };
 
   const getAllSubmenu = async () => {
-    const data = await fetchWrapper.get(
-      `../api/admin/new-work/get-all-submenu-original`
-    );
-    if (data) {
-      setSubmenu(data.data);
+    if (name_menu == "Original IP") {
+      const data = await fetchWrapper.get(
+        `../api/admin/new-work/get-all-submenu-original`
+      );
+      if (data) {
+        setSubmenu(data.data);
+      }
+    } else {
+      const data = await fetchWrapper.get(
+        `../api/admin/new-work/get-all-submenu-b2b`
+      );
+      if (data) {
+        setSubmenu(data.data);
+      }
     }
   };
 
