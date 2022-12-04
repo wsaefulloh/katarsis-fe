@@ -75,6 +75,10 @@ h2 {
   padding-bottom: 20px !important;
 }
 
+.banner_ongoing .slider-playnow .slick-list {
+  padding-bottom: 20px !important;
+}
+
 .text-prevnext {
   display: none;
 }
@@ -85,6 +89,16 @@ h2 {
 
 .visi_misi .slider-playnow .slick-prev:before {
   color: #444444;
+}
+
+.banner_ongoing .slider-playnow .slick-next:before {
+  /* color: #444444; */
+  display: none !important;
+}
+
+.banner_ongoing .slider-playnow .slick-prev:before {
+  /* color: #444444; */
+  display: none !important;
 }
 
 .profile_slider .slider-playnow .slick-list {
@@ -224,6 +238,26 @@ nav {
 }
 
 .visi_misi button.slick-next {
+  display: none !important;
+}
+
+.banner_ongoing .slick-dots {
+  bottom: 50px;
+}
+
+.banner_ongoing .slick-dots li button:before {
+  color: rgba(217, 217, 217, 0.534) !important;
+}
+
+.banner_ongoing .slick-dots li.slick-active button:before {
+  color: #ffffff !important;
+}
+
+.banner_ongoing button.slick-prev {
+  display: none !important;
+}
+
+.banner_ongoing button.slick-next {
   display: none !important;
 }
 

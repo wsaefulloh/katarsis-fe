@@ -1182,25 +1182,26 @@ function WorkflowGraph() {
           >
             {`${result.description}`}
           </div>
-
-          <a href={`${cta.url}`} style={{ justifyContent: "center" }}>
-            <div
-              style={{
-                backgroundColor: "#000000",
-                color: "#ffffff",
-                width: "200px",
-                textAlign: "center",
-                padding: "10px",
-                // border: "3px solid #000000",
-                borderRadius: "25px",
-                marginLeft: "auto",
-                marginRight: "auto",
-                cursor: "pointer",
-              }}
-            >
-              {`${cta.title}`}
-            </div>
-          </a>
+          <div style={{width: "200px"}} className="mx-auto">
+            <a href={`${cta.url}`} style={{ justifyContent: "center" }}>
+              <div
+                style={{
+                  backgroundColor: "#000000",
+                  color: "#ffffff",
+                  width: "200px",
+                  textAlign: "center",
+                  padding: "10px",
+                  // border: "3px solid #000000",
+                  borderRadius: "25px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  cursor: "pointer",
+                }}
+              >
+                {`${cta.title}`}
+              </div>
+            </a>
+          </div>
         </Container>
       </div>
     </>

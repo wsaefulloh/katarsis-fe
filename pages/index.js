@@ -52,6 +52,16 @@ function Home() {
     pauseOnHover: true,
   };
 
+  const visiMission1 = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+  };
+
   const mediaCoverage = {
     dots: true,
     infinite: true,
@@ -147,6 +157,7 @@ function Home() {
   const [visi, setVisi] = useState({});
   const [misi, setMisi] = useState({});
   const [fixProject, setFixProject] = useState([]);
+  const [banner, setBanner] = useState([]);
   const [count, setCount] = useState(0);
   const [showMoreActive, setShowMoreActive] = useState(true);
 
@@ -272,6 +283,13 @@ function Home() {
     }
   };
 
+  const getBanner = async () => {
+    const data = await fetchWrapper.get(`api/banner`);
+    if (data) {
+      setBanner(data.data);
+    }
+  };
+
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
     getDataProfile();
@@ -283,6 +301,7 @@ function Home() {
     getMission();
     handleWorkRef();
     getDataBrands();
+    getBanner();
   }, []);
 
   useEffect(() => {
@@ -305,9 +324,65 @@ function Home() {
     <>
       <div
         id="top"
-        className="py-6 visi_misi"
-        style={{ backgroundColor: "#000000" }}
+        className="banner_ongoing"
+        // style={{ backgroundColor: "#000000" }}
       >
+        <Slider {...visiMission1}>
+          {banner.map((val) => {
+            return (
+              <div>
+                <div
+                  className="text-center"
+                  style={{
+                    backgroundColor: "#000000",
+                    backgroundSiza: "cover",
+                    height: "450px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundImage:
+                      "url(" +
+                      // `https://drive.google.com/thumbnail?id=${img}&sz=w1000` +
+                      `https://drive.google.com/uc?export=view&id=${val.url_image}` +
+                      ")",
+                  }}
+                >
+                  <div className="header-cover">
+                    <h1 className="m-0 pb-4 text_title_vision_mision">
+                      {val.title_banner}
+                    </h1>
+                    <div className="pb-4 text_vision_mision">{`${val.date_banner}`}</div>
+                    <div style={{ width: "200px" }} className="mx-auto">
+                      <a
+                        href={`${val.url}`}
+                        style={{ justifyContent: "center" }}
+                      >
+                        <div
+                          style={{
+                            backgroundColor: "#ffffff",
+                            color: "#000000",
+                            width: "200px",
+                            textAlign: "center",
+                            padding: "10px",
+                            // border: "3px solid #000000",
+                            borderRadius: "25px",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            cursor: "pointer",
+                          }}
+                        >
+                          MORE
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
+      <div className="py-6 visi_misi" style={{ backgroundColor: "#000000" }}>
         <Slider {...visiMission}>
           <div>
             <div data-aos="fade-up" className="text-center header-cover">

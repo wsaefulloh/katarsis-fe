@@ -242,7 +242,7 @@ export default function Auth() {
             className="border-0"
             type="button"
             onClick={() => {
-              router.push("/admin/visi-misi");
+              router.push("/admin/banner");
             }}
           >
             {loading == true ? (

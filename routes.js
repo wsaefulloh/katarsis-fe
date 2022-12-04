@@ -1,6 +1,10 @@
 export default {
   routesSidemenu: [
     {
+      path: "/admin/banner",
+      name: "Banner On Going",
+    },
+    {
       path: "/admin/visi-misi",
       name: "Vision & Mission",
     },

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 // reactstrap components
 import {
@@ -18,48 +18,21 @@ import "../../assets/css/main/main.module.css";
 
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
-import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
-function CardsFileProject(props) {
-  let { id, title, place, name_project, urlOrigin } = props;
-  const router = useRouter();
+function CardBanner(props) {
+  let { id, title_banner, date_banner, url_image, url } = props;
 
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [newData, setNewData] = useState({
     id: `${id}`,
-    title: `${title}`,
-    place: `${place}`,
-    name_project: `${name_project}`,
-    url: `${urlOrigin}`,
+    title_banner: `${title_banner}`,
+    date_banner: `${date_banner}`,
+    url_image: `${url_image}`,
+    url: `${url}`,
   });
 
-  const updateData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(`../api/admin/gallery`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newData),
-      });
-      const data = await response.json();
-      if (data) {
-        if (data.statusCode != 201) {
-          Swal.fire("FAILED", `Data gagal diupdate`, "error");
-          setLoading(false);
-        } else {
-          await Swal.fire("OK", `Data berhasil diupdate`, "success");
-          router.reload(window.location.pathname);
-        }
-      }
-      setLoading(false);
-    } catch (error) {
-      Swal.fire("FAILED", "Data gagal di proses", "error");
-      setLoading(false);
-    }
-  };
+  const router = useRouter();
 
   const deleteData = async (id) => {
     Swal.fire({
@@ -74,7 +47,7 @@ function CardsFileProject(props) {
       if (result.isConfirmed) {
         const deleteThis = async (id) => {
           try {
-            const response = await fetch(`../api/admin/gallery?id=${id}`, {
+            const response = await fetch(`../api/admin/banner?id=${id}`, {
               method: "DELETE",
             });
             const data = await response.json();
@@ -95,59 +68,80 @@ function CardsFileProject(props) {
     });
   };
 
-  return (
-    <div className="mb-3">
-      <Row className="align-items-center mt-2">
-        <Col>
-          <h4 className="mb-0">{title}</h4>
-        </Col>
-      </Row>
+  const updateData = async () => {
+    let string = newData.title_banner;
 
-      <Row className="align-items-center mt-2">
-        <Col>
-          <Form>
-            <div className="form-row">
-              <Col className="p-0 text-left ">
-                <Input
-                  disabled="true"
-                  type="text"
-                  defaultValue={`${urlOrigin}`}
-                />
-              </Col>
-            </div>
-          </Form>
-        </Col>
-        <Button
-          className="m-1 border-0 py-1 px-3"
-          style={{
-            color: "#ffffff",
-            backgroundColor: "#13678a",
-            borderRadius: "5px",
-            fontSize: "10px",
-          }}
-          type="button"
-          onClick={() => {
-            setModalOpen(!modalOpen);
-          }}
-        >
-          <span>Update</span>
-        </Button>
-        <Button
-          className="m-1 border-0 py-1 px-3"
-          style={{
-            color: "#ffffff",
-            backgroundColor: "#cc0000",
-            borderRadius: "5px",
-            fontSize: "10px",
-          }}
-          type="button"
-          onClick={() => {
-            deleteData(id);
-          }}
-        >
-          <span>Delete</span>
-        </Button>
-      </Row>
+    if (string.length <= 180) {
+      setLoading(true);
+      try {
+        const response = await fetch(`../api/admin/banner`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newData),
+        });
+        const data = await response.json();
+        if (data) {
+          if (data.statusCode != 201) {
+            Swal.fire("FAILED", `Data gagal diupdate`, "error");
+            setLoading(false);
+          } else {
+            await Swal.fire("OK", `Data berhasil diupdate`, "success");
+            router.reload(window.location.pathname);
+          }
+        }
+        setLoading(false);
+      } catch (error) {
+        Swal.fire("FAILED", "Data gagal di proses", "error");
+        setLoading(false);
+      }
+    } else {
+      Swal.fire("FAILED", "Maksimal karakter title adalah 180", "error");
+    }
+  };
+
+  return (
+    <>
+      <Card className="mb-2">
+        <div className="py-3 px-2">
+          <Row className="align-items-center">
+            <Col>
+              <span className="mb-0">{title_banner}</span>
+            </Col>
+            <Button
+              className="m-1 border-0 py-1 px-3"
+              style={{
+                color: "#ffffff",
+                backgroundColor: "#13678a",
+                borderRadius: "5px",
+                fontSize: "10px",
+              }}
+              type="button"
+              onClick={() => {
+                setModalOpen(!modalOpen);
+              }}
+            >
+              <span>Update</span>
+            </Button>
+            <Button
+              className="m-1 border-0 py-1 px-3"
+              style={{
+                color: "#ffffff",
+                backgroundColor: "#cc0000",
+                borderRadius: "5px",
+                fontSize: "10px",
+              }}
+              type="button"
+              onClick={() => {
+                deleteData(id);
+              }}
+            >
+              <span>Delete</span>
+            </Button>
+          </Row>
+        </div>
+      </Card>
 
       <Modal
         toggle={() => setModalOpen(!modalOpen)}
@@ -177,11 +171,11 @@ function CardsFileProject(props) {
                 <h5 className="pl-1 mb-1">Title</h5>
                 <Input
                   type="text"
-                  defaultValue={`${newData.title}`}
+                  defaultValue={`${newData.title_banner}`}
                   onChange={(e) => {
                     setNewData({
                       ...newData,
-                      title: `${e.target.value}`,
+                      title_banner: `${e.target.value}`,
                     });
                   }}
                 />
@@ -192,6 +186,41 @@ function CardsFileProject(props) {
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
                 <h5 className="pl-1 mb-1">URL Google Drive Image</h5>
+                <Input
+                  type="text"
+                  defaultValue={`${newData.url_image}`}
+                  onChange={(e) => {
+                    setNewData({
+                      ...newData,
+                      url_image: `${e.target.value}`,
+                    });
+                  }}
+                />
+              </Col>
+            </div>
+          </Form>
+          <Form>
+            <div className="form-row">
+              <Col className="mb-3 p-0 text-left ">
+                <h5 className="pl-1 mb-1">Date Banner</h5>
+                <Input
+                  type="text"
+                  defaultValue={`${newData.date_banner}`}
+                  onChange={(e) => {
+                    setNewData({
+                      ...newData,
+                      date_banner: `${e.target.value}`,
+                    });
+                  }}
+                />
+              </Col>
+            </div>
+          </Form>
+
+          <Form>
+            <div className="form-row">
+              <Col className="mb-3 p-0 text-left ">
+                <h5 className="pl-1 mb-1">URL</h5>
                 <Input
                   type="text"
                   defaultValue={`${newData.url}`}
@@ -237,16 +266,16 @@ function CardsFileProject(props) {
           </Button>
         </div>
       </Modal>
-    </div>
+    </>
   );
 }
 
-CardsFileProject.propTypes = {
+CardBanner.propTypes = {
   id: PropTypes.any,
-  title: PropTypes.any,
-  place: PropTypes.any,
-  name_project: PropTypes.any,
-  urlOrigin: PropTypes.any,
+  title_banner: PropTypes.any,
+  date_banner: PropTypes.any,
+  url_image: PropTypes.any,
+  url: PropTypes.any,
 };
 
-export default CardsFileProject;
+export default CardBanner;
