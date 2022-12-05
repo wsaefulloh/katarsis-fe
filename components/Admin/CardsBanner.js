@@ -185,7 +185,9 @@ function CardBanner(props) {
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
-                <h5 className="pl-1 mb-1">URL Google Drive Image</h5>
+                <h5 className="pl-1 mb-1">
+                  URL Google Drive Image (1440px x 450px)
+                </h5>
                 <Input
                   type="text"
                   defaultValue={`${newData.url_image}`}

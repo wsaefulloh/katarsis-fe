@@ -297,7 +297,7 @@ function Home() {
     getDataMedia();
     getHowWeDoIt();
     getOurTeam();
-    getVision();
+    // getVision();
     getMission();
     handleWorkRef();
     getDataBrands();
@@ -335,7 +335,8 @@ function Home() {
                   className="text-center"
                   style={{
                     backgroundColor: "#000000",
-                    backgroundSiza: "cover",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                     height: "450px",
                     display: "flex",
                     alignItems: "center",
@@ -382,7 +383,7 @@ function Home() {
           })}
         </Slider>
       </div>
-      <div className="py-6 visi_misi" style={{ backgroundColor: "#000000" }}>
+      {/* <div className="py-6 visi_misi" style={{ backgroundColor: "#000000" }}>
         <Slider {...visiMission}>
           <div>
             <div data-aos="fade-up" className="text-center header-cover">
@@ -402,7 +403,7 @@ function Home() {
             </div>
           </div>
         </Slider>
-      </div>
+      </div> */}
       <div data-aos="fade-up">{renderFilter}</div>
 
       <div

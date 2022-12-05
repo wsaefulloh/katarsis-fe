@@ -4,10 +4,10 @@ export default {
       path: "/admin/banner",
       name: "Banner On Going",
     },
-    {
-      path: "/admin/visi-misi",
-      name: "Vision & Mission",
-    },
+    // {
+    //   path: "/admin/visi-misi",
+    //   name: "Vision & Mission",
+    // },
     {
       path: "/admin/desc-original-b2b",
       name: "Description Menu",
