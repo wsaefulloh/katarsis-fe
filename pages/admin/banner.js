@@ -30,6 +30,7 @@ function Banner() {
     date_banner: "",
     url_image: "",
     url: "",
+    button: "",
   });
   const [result, setResult] = useState([]);
 
@@ -117,6 +118,7 @@ function Banner() {
                   date_banner={val.date_banner}
                   url_image={val.url_imageOriginal}
                   url={val.url}
+                  button={val.button}
                 />
               );
             })}
@@ -210,6 +212,23 @@ function Banner() {
                     setDataValue({
                       ...dataValue,
                       url: `${e.target.value}`,
+                    });
+                  }}
+                />
+              </Col>
+            </div>
+          </Form>
+          <Form>
+            <div className="form-row">
+              <Col className="mb-3 p-0 text-left ">
+                <h5 className="pl-1 mb-1">Text Button</h5>
+                <Input
+                  type="text"
+                  defaultValue={`${dataValue.button}`}
+                  onChange={(e) => {
+                    setDataValue({
+                      ...dataValue,
+                      button: `${e.target.value}`,
                     });
                   }}
                 />

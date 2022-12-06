@@ -20,7 +20,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 
 function CardBanner(props) {
-  let { id, title_banner, date_banner, url_image, url } = props;
+  let { id, title_banner, date_banner, url_image, url, button } = props;
 
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -30,6 +30,7 @@ function CardBanner(props) {
     date_banner: `${date_banner}`,
     url_image: `${url_image}`,
     url: `${url}`,
+    button: `${button}`,
   });
 
   const router = useRouter();
@@ -237,6 +238,24 @@ function CardBanner(props) {
             </div>
           </Form>
 
+          <Form>
+            <div className="form-row">
+              <Col className="mb-3 p-0 text-left ">
+                <h5 className="pl-1 mb-1">Text Button</h5>
+                <Input
+                  type="text"
+                  defaultValue={`${newData.button}`}
+                  onChange={(e) => {
+                    setNewData({
+                      ...newData,
+                      button: `${e.target.value}`,
+                    });
+                  }}
+                />
+              </Col>
+            </div>
+          </Form>
+
           <Button
             color="secondary"
             style={{
@@ -278,6 +297,7 @@ CardBanner.propTypes = {
   date_banner: PropTypes.any,
   url_image: PropTypes.any,
   url: PropTypes.any,
+  button: PropTypes.any,
 };
 
 export default CardBanner;

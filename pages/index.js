@@ -372,7 +372,7 @@ function Home() {
                             cursor: "pointer",
                           }}
                         >
-                          MORE
+                          {`${val.button}`}
                         </div>
                       </a>
                     </div>
