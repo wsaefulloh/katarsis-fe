@@ -184,7 +184,7 @@ function Banner() {
               </Col>
             </div>
           </Form>
-          <Form>
+          {/* <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">
                 <h5 className="pl-1 mb-1">Date Banner</h5>
@@ -200,7 +200,7 @@ function Banner() {
                 />
               </Col>
             </div>
-          </Form>
+          </Form> */}
           <Form>
             <div className="form-row">
               <Col className="mb-3 p-0 text-left ">

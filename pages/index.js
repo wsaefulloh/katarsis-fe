@@ -352,30 +352,39 @@ function Home() {
                     <h1 className="m-0 pb-4 text_title_vision_mision">
                       {val.title_banner}
                     </h1>
-                    <div className="pb-4 text_vision_mision">{`${val.date_banner}`}</div>
-                    <div style={{ width: "200px" }} className="mx-auto">
-                      <a
-                        href={`${val.url}`}
-                        style={{ justifyContent: "center" }}
+                    {/* <div className="pb-4 text_vision_mision">{`${val.date_banner}`}</div> */}
+                  </div>
+                  <div
+                    style={{
+                      width: "200px",
+                      position: "absolute",
+                      top: "320px",
+                    }}
+                    className="mx-auto"
+                  >
+                    <a
+                      href={`${val.url}`}
+                      style={{
+                        justifyContent: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: "#ffffff",
+                          color: "#000000",
+                          width: "200px",
+                          textAlign: "center",
+                          padding: "10px",
+                          // border: "3px solid #000000",
+                          borderRadius: "25px",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                          cursor: "pointer",
+                        }}
                       >
-                        <div
-                          style={{
-                            backgroundColor: "#ffffff",
-                            color: "#000000",
-                            width: "200px",
-                            textAlign: "center",
-                            padding: "10px",
-                            // border: "3px solid #000000",
-                            borderRadius: "25px",
-                            marginLeft: "auto",
-                            marginRight: "auto",
-                            cursor: "pointer",
-                          }}
-                        >
-                          {`${val.button}`}
-                        </div>
-                      </a>
-                    </div>
+                        {`${val.button}`}
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
