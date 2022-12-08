@@ -331,36 +331,41 @@ function Home() {
           {banner.map((val) => {
             return (
               <div>
-                <div
-                  className="text-center"
+                <Col
+                  className="text-center m-0 p-0"
                   style={{
-                    backgroundColor: "#000000",
+                    // backgroundColor: "#000000",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    height: "450px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundImage:
-                      "url(" +
-                      // `https://drive.google.com/thumbnail?id=${img}&sz=w1000` +
-                      `https://drive.google.com/uc?export=view&id=${val.url_image}` +
-                      ")",
+                    // height: "450px",
+                    // display: "flex",
+                    // alignItems: "center",
+                    // justifyContent: "center",
+                    // backgroundImage:
+                    //   "url(" +
+                    //   // `https://drive.google.com/thumbnail?id=${img}&sz=w1000` +
+                    //   `https://drive.google.com/uc?export=view&id=${val.url_image}` +
+                    //   ")",
                   }}
                 >
-                  <div className="header-cover">
+                  <img
+                    src={`https://drive.google.com/uc?export=view&id=${val.url_image}`}
+                    style={{
+                      width: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                  {/* <div className="header-cover">
                     <h1 className="m-0 pb-4 text_title_vision_mision">
                       {val.title_banner}
                     </h1>
-                    {/* <div className="pb-4 text_vision_mision">{`${val.date_banner}`}</div> */}
-                  </div>
+                    <div className="pb-4 text_vision_mision">{`${val.date_banner}`}</div>
+                  </div> */}
                   <div
                     style={{
                       width: "200px",
-                      position: "absolute",
-                      top: "320px",
                     }}
-                    className="mx-auto"
+                    className="py-3 mx-auto"
                   >
                     <a
                       href={`${val.url}`}
@@ -375,7 +380,7 @@ function Home() {
                           width: "200px",
                           textAlign: "center",
                           padding: "10px",
-                          // border: "3px solid #000000",
+                          border: "3px solid #000000",
                           borderRadius: "25px",
                           marginLeft: "auto",
                           marginRight: "auto",
@@ -386,7 +391,7 @@ function Home() {
                       </div>
                     </a>
                   </div>
-                </div>
+                </Col>
               </div>
             );
           })}

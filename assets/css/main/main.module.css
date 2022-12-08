@@ -242,15 +242,15 @@ nav {
 }
 
 .banner_ongoing .slick-dots {
-  bottom: 50px;
+  bottom: -10px;
 }
 
 .banner_ongoing .slick-dots li button:before {
-  color: rgba(217, 217, 217, 0.534) !important;
+  color: rgba(112, 112, 112, 0.534) !important;
 }
 
 .banner_ongoing .slick-dots li.slick-active button:before {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 .banner_ongoing button.slick-prev {
