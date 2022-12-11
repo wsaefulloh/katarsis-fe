@@ -348,20 +348,24 @@ function Home() {
                     //   ")",
                   }}
                 >
-                  <img
-                    src={`https://drive.google.com/uc?export=view&id=${val.url_image}`}
-                    style={{
-                      width: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
+                  <a href={`${val.url}`} target="_blank">
+                    <img
+                      src={`https://drive.google.com/uc?export=view&id=${val.url_image}`}
+                      style={{
+                        width: "100%",
+                        objectFit: "cover",
+                        marginBottom: "20px",
+                      }}
+                    />
+                  </a>
+
                   {/* <div className="header-cover">
                     <h1 className="m-0 pb-4 text_title_vision_mision">
                       {val.title_banner}
                     </h1>
                     <div className="pb-4 text_vision_mision">{`${val.date_banner}`}</div>
                   </div> */}
-                  <div
+                  {/* <div
                     style={{
                       width: "200px",
                     }}
@@ -390,7 +394,7 @@ function Home() {
                         {`${val.button}`}
                       </div>
                     </a>
-                  </div>
+                  </div> */}
                 </Col>
               </div>
             );
