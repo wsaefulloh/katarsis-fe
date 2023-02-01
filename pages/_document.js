@@ -40,11 +40,10 @@ class MyDocument extends Document {
               fbq('track', 'PageView');`,
             }}
           />
-          <noscript
-            dangerouslySetInnerHTML={{
-              __html: `<img height="1" width="1" src="https://www.facebook.com/tr?id=853625249062079&ev=PageView&noscript=1"/>`,
-            }}
-          />
+          <noscript>
+            <img height="1" width="1" src="https://www.facebook.com/tr?id=853625249062079&ev=PageView&noscript=1" />
+          </noscript>
+
           {/* <!-- Meta Pixel Code --> */}
         </Head>
         <body className="g-sidenav-show g-sidenav-pinned">
