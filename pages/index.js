@@ -318,7 +318,7 @@ function Home() {
     getMission();
     handleWorkRef();
     getDataBrands();
-    getBanner();
+    // getBanner();
     // getDataProject(1, 1, 1)
     getBannerNew()
   }, []);
