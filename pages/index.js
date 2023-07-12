@@ -290,6 +290,23 @@ function Home() {
     }
   };
 
+  const getDataProject = async (menu, submenu, page) => {
+    let uri = `api/new-project/get-project?menu=${menu}&page=${page}`
+    if (submenu != undefined) {
+      uri = `api/new-project/get-project?menu=${menu}&submenu=${submenu}&page=${page}`
+    }
+    const data = await fetchWrapper.get(uri);
+    console.log(data)
+  };
+
+  const getBannerNew = async () => {
+    const data = await fetchWrapper.get(`api/new-banner`);
+    if (data) {
+      console.log(data.data[0].attributes.url_link)
+      setBanner(data.data);
+    }
+  };
+
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
     getDataProfile();
@@ -302,6 +319,8 @@ function Home() {
     handleWorkRef();
     getDataBrands();
     getBanner();
+    // getDataProject(1, 1, 1)
+    getBannerNew()
   }, []);
 
   useEffect(() => {
@@ -325,7 +344,6 @@ function Home() {
       <div
         id="top"
         className="banner_ongoing"
-        // style={{ backgroundColor: "#000000" }}
       >
         <Slider {...visiMission1}>
           {banner.map((val) => {
@@ -334,23 +352,13 @@ function Home() {
                 <Col
                   className="text-center m-0 p-0"
                   style={{
-                    // backgroundColor: "#000000",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    // height: "450px",
-                    // display: "flex",
-                    // alignItems: "center",
-                    // justifyContent: "center",
-                    // backgroundImage:
-                    //   "url(" +
-                    //   // `https://drive.google.com/thumbnail?id=${img}&sz=w1000` +
-                    //   `https://drive.google.com/uc?export=view&id=${val.url_image}` +
-                    //   ")",
                   }}
                 >
-                  <a href={`${val.url}`} target="_blank">
+                  <a href={`${val.attributes?.url_link}`} target="_blank">
                     <img
-                      src={`https://drive.google.com/uc?export=view&id=${val.url_image}`}
+                      src={`https://admin.katarsis.co.id${val.attributes?.images?.data?.attributes?.url}`}
                       style={{
                         width: "100%",
                         objectFit: "cover",
@@ -358,72 +366,13 @@ function Home() {
                       }}
                     />
                   </a>
-
-                  {/* <div className="header-cover">
-                    <h1 className="m-0 pb-4 text_title_vision_mision">
-                      {val.title_banner}
-                    </h1>
-                    <div className="pb-4 text_vision_mision">{`${val.date_banner}`}</div>
-                  </div> */}
-                  {/* <div
-                    style={{
-                      width: "200px",
-                    }}
-                    className="py-3 mx-auto"
-                  >
-                    <a
-                      href={`${val.url}`}
-                      style={{
-                        justifyContent: "center",
-                      }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: "#ffffff",
-                          color: "#000000",
-                          width: "200px",
-                          textAlign: "center",
-                          padding: "10px",
-                          border: "3px solid #000000",
-                          borderRadius: "25px",
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                          cursor: "pointer",
-                        }}
-                      >
-                        {`${val.button}`}
-                      </div>
-                    </a>
-                  </div> */}
                 </Col>
               </div>
             );
           })}
         </Slider>
       </div>
-      {/* <div className="py-6 visi_misi" style={{ backgroundColor: "#000000" }}>
-        <Slider {...visiMission}>
-          <div>
-            <div data-aos="fade-up" className="text-center header-cover">
-              <div className="pb-4 text_vision_mision">Our Vision</div>
-              <h1 className="m-0 pb-4 text_title_vision_mision">
-                {visi.description}
-              </h1>
-            </div>
-          </div>
-
-          <div>
-            <div className="text-center header-cover">
-              <div className="pb-4 text_vision_mision">Our Mission</div>
-              <h1 className="m-0 pb-4 text_title_vision_mision">
-                {misi.description}
-              </h1>
-            </div>
-          </div>
-        </Slider>
-      </div> */}
       <div data-aos="fade-up">{renderFilter}</div>
-
       <div
         ref={workRef}
         id="work"

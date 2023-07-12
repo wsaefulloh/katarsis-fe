@@ -29,6 +29,7 @@ module.exports = withFonts(
             serverRuntimeConfig: {
               // Will only be available on the server side
               api_host: process.env.NEXT_PUBLIC_API_HOST,
+              api_hoste: process.env.NEXT_PUBLIC_API_HOSTE,
             },
             publicRuntimeConfig: {
               // Will be available on both server and client
