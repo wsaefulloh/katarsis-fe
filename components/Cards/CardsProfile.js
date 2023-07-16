@@ -30,7 +30,8 @@ function CardsProfile(props) {
           style={{ width: "240px", marginBottom: "30px" }}
         >
           <img
-            src={`https://drive.google.com/uc?export=view&id=${img}`}
+            // src={`https://drive.google.com/uc?export=view&id=${img}`}
+            src={`https://admin.katarsis.co.id${img}`}
             alt={`Image ${name}`}
             style={{
               width: "100%",
@@ -67,7 +68,7 @@ function CardsProfile(props) {
           style={{ maxWidth: "240px", marginBottom: "30px" }}
         >
           <img
-            src={`https://drive.google.com/uc?export=view&id=${img}`}
+            src={`https://admin.katarsis.co.id${img}`}
             alt={`Image ${name}`}
             style={{
               width: "100%",

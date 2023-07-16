@@ -35,7 +35,7 @@ function SliderProcess() {
   const [result3, setResult3] = useState({});
 
   const getAllProcess = async () => {
-    const data = await fetchWrapper.get(`api/content/get-all-process`);
+    const data = await fetchWrapper.get(`api/content/get-process`);
     if (data) {
       let obj = data.data;
       setResult1(obj[0]);
@@ -129,7 +129,7 @@ function SliderProcess() {
                 {index == 1 ? (
                   <>
                     <div className="title_slider title_slider_active">
-                      {`${result1.title}`}
+                      {`${result1.attributes?.type}`}
                     </div>
                     <div
                       className="my-2 dot_slider dot_slider_active"
@@ -144,7 +144,7 @@ function SliderProcess() {
                   </>
                 ) : (
                   <>
-                    <div className="title_slider ">{`${result1.title}`}</div>
+                    <div className="title_slider ">{`${result1.attributes?.type}`}</div>
                     <div
                       className="my-2 dot_slider "
                       style={{
@@ -176,7 +176,7 @@ function SliderProcess() {
                 {index == 2 ? (
                   <>
                     <div className="title_slider title_slider_active">
-                      {`${result2.title}`}
+                      {`${result2.attributes?.type}`}
                     </div>
                     <div
                       className="my-2 dot_slider dot_slider_active"
@@ -191,7 +191,7 @@ function SliderProcess() {
                   </>
                 ) : (
                   <>
-                    <div className="title_slider ">{`${result2.title}`}</div>
+                    <div className="title_slider ">{`${result2.attributes?.type}`}</div>
                     <div
                       className="my-2 dot_slider "
                       style={{
@@ -223,7 +223,7 @@ function SliderProcess() {
                 {index == 3 ? (
                   <>
                     <div className="title_slider title_slider_active">
-                      {`${result3.title}`}
+                      {`${result3.attributes?.type}`}
                     </div>
                     <div
                       className="my-2 dot_slider dot_slider_active"
@@ -238,7 +238,7 @@ function SliderProcess() {
                   </>
                 ) : (
                   <>
-                    <div className="title_slider ">{`${result3.title}`}</div>
+                    <div className="title_slider ">{`${result3.attributes?.type}`}</div>
                     <div
                       className="my-2 dot_slider "
                       style={{
@@ -262,8 +262,8 @@ function SliderProcess() {
           <div className="py-4 text-center">
             <Container>
               <img
-                src={`https://drive.google.com/uc?export=view&id=${result1.url_image}`}
-                alt={`${result1.title}`}
+                src={`https://admin.katarsis.co.id${result1.attributes?.image?.data?.attributes?.url}`}
+                alt={`${result1.attributes?.type}`}
                 style={{
                   height: "400px",
                   objectFit: "cover",
@@ -281,7 +281,7 @@ function SliderProcess() {
                       color: "#000000",
                     }}
                   >
-                    {`${result1.title}`}
+                    {`${result1.attributes?.type}`}
                   </h2>
                 </Col>
                 <Col>
@@ -295,7 +295,7 @@ function SliderProcess() {
                       textAlign: "justify",
                     }}
                   >
-                    {`${result1.description}`}
+                    {`${result1.attributes?.description}`}
                   </div>
                 </Col>
               </Row>
@@ -307,8 +307,9 @@ function SliderProcess() {
           <div className="py-4 text-center">
             <Container>
               <img
-                src={`https://drive.google.com/uc?export=view&id=${result2.url_image}`}
-                alt={`${result2.title}`}
+                // src={`https://drive.google.com/uc?export=view&id=${result2.url_image}`}
+                src={`https://admin.katarsis.co.id${result2.attributes?.image?.data?.attributes?.url}`}
+                alt={`${result2.type}`}
                 style={{
                   height: "400px",
                   objectFit: "cover",
@@ -326,7 +327,7 @@ function SliderProcess() {
                       color: "#000000",
                     }}
                   >
-                    {result2.title}
+                    {result2.attributes?.type}
                   </h2>
                 </Col>
                 <Col>
@@ -341,7 +342,7 @@ function SliderProcess() {
                       textAlign: "justify",
                     }}
                   >
-                    {`${result2.description}`}
+                    {`${result2.attributes?.description}`}
                   </div>
                 </Col>
               </Row>
@@ -353,8 +354,9 @@ function SliderProcess() {
           <div className="py-4 text-center">
             <Container>
               <img
-                src={`https://drive.google.com/uc?export=view&id=${result3.url_image}`}
-                alt={`${result3.title}`}
+                // src={`https://drive.google.com/uc?export=view&id=${result3.url_image}`}
+                src={`https://admin.katarsis.co.id${result3.attributes?.image?.data?.attributes?.url}`}
+                alt={`${result3.attributes?.type}`}
                 style={{
                   height: "400px",
                   objectFit: "cover",
@@ -372,7 +374,7 @@ function SliderProcess() {
                       color: "#000000",
                     }}
                   >
-                    {`${result3.title}`}
+                    {`${result3.attributes?.type}`}
                   </h2>
                 </Col>
                 <Col>
@@ -386,7 +388,7 @@ function SliderProcess() {
                       textAlign: "justify",
                     }}
                   >
-                    {`${result3.description}`}
+                    {`${result3.attributes?.description}`}
                   </div>
                 </Col>
               </Row>
@@ -402,7 +404,7 @@ function SliderProcess() {
               <Slider {...slider}>
                 <div>
                   <div className="text-center title_slider title_slider_active">
-                    {`${result1.title}`}
+                    {`${result1.attributes?.type}`}
                   </div>
                   <div
                     className="my-2 dot_slider dot_slider_active"
@@ -417,8 +419,9 @@ function SliderProcess() {
                   <div className="py-4">
                     <Container>
                       <img
-                        src={`https://drive.google.com/uc?export=view&id=${result1.url_image}`}
-                        alt={`${result1.title}`}
+                        // src={`https://drive.google.com/uc?export=view&id=${result1.url_image}`}
+                        src={`https://admin.katarsis.co.id${result1.attributes?.image?.data?.attributes?.url}`}
+                        alt={`${result1.attributes?.type}`}
                         style={{
                           width: "100%",
                           objectFit: "cover",
@@ -438,7 +441,7 @@ function SliderProcess() {
                               color: "#000000",
                             }}
                           >
-                            {`${result1.title}`}
+                            {`${result1.attributes?.type}`}
                           </h2>
                         </div>
                         <div>
@@ -453,7 +456,7 @@ function SliderProcess() {
                               textAlign: "justify",
                             }}
                           >
-                            {`${result1.description}`}
+                            {`${result1.attributes?.description}`}
                           </div>
                         </div>
                       </div>
@@ -463,7 +466,7 @@ function SliderProcess() {
 
                 <div>
                   <div className="text-center title_slider title_slider_active">
-                    {`${result2.title}`}
+                    {`${result2.attributes?.type}`}
                   </div>
                   <div
                     className="my-2 dot_slider dot_slider_active"
@@ -478,8 +481,9 @@ function SliderProcess() {
                   <div className="py-4">
                     <Container>
                       <img
-                        src={`https://drive.google.com/uc?export=view&id=${result2.url_image}`}
-                        alt={`${result2.title}`}
+                        // src={`https://drive.google.com/uc?export=view&id=${result2.url_image}`}
+                        src={`https://admin.katarsis.co.id${result2.attributes?.image?.data?.attributes?.url}`}
+                        alt={`${result2.attributes?.type}`}
                         style={{
                           width: "100%",
                           objectFit: "cover",
@@ -499,7 +503,7 @@ function SliderProcess() {
                               color: "#000000",
                             }}
                           >
-                            {`${result2.title}`}
+                            {`${result2.attributes?.type}`}
                           </h2>
                         </div>
                         <div>
@@ -514,7 +518,7 @@ function SliderProcess() {
                               textAlign: "justify",
                             }}
                           >
-                            {`${result2.description}`}
+                            {`${result2.attributes?.description}`}
                           </div>
                         </div>
                       </div>
@@ -524,7 +528,7 @@ function SliderProcess() {
 
                 <div>
                   <div className="text-center title_slider title_slider_active">
-                    {`${result3.title}`}
+                    {`${result3.attributes?.type}`}
                   </div>
                   <div
                     className="my-2 dot_slider dot_slider_active"
@@ -539,8 +543,9 @@ function SliderProcess() {
                   <div className="py-4">
                     <Container>
                       <img
-                        src={`https://drive.google.com/uc?export=view&id=${result3.url_image}`}
-                        alt={`${result3.title}`}
+                        // src={`https://drive.google.com/uc?export=view&id=${result3.url_image}`}
+                        src={`https://admin.katarsis.co.id${result3.attributes?.image?.data?.attributes?.url}`}
+                        alt={`${result3.attributes?.type}`}
                         style={{
                           width: "100%",
                           objectFit: "cover",
@@ -560,7 +565,7 @@ function SliderProcess() {
                               color: "#000000",
                             }}
                           >
-                            {`${result3.title}`}
+                            {`${result3.attributes?.type}`}
                           </h2>
                         </div>
                         <div>
@@ -575,7 +580,7 @@ function SliderProcess() {
                               textAlign: "justify",
                             }}
                           >
-                            {`${result3.description}`}
+                            {`${result3.attributes?.description}`}
                           </div>
                         </div>
                       </div>

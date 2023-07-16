@@ -3,12 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 // reactstrap components
 import {
-  UncontrolledCollapse,
-  NavbarBrand,
-  Navbar,
-  NavItem,
-  NavLink,
-  Nav,
   Container,
   Row,
   Col,
@@ -19,31 +13,18 @@ import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
 function WorkflowGraph() {
   const [result, setResult] = useState({});
-  const [process1, setProcess1] = useState({});
-  const [process2, setProcess2] = useState({});
-  const [process3, setProcess3] = useState({});
   const [cta, setCta] = useState({});
 
   const getWorkflow = async () => {
-    const data = await fetchWrapper.get(`api/content/get-workflow`);
+    const data = await fetchWrapper.get(`api/content/get-content?type=workflow`);
     if (data) {
       let obj = data.data;
       setResult(obj[0]);
     }
   };
 
-  const getWorkflowProcess = async () => {
-    const data = await fetchWrapper.get(`api/content/get-process-workflow`);
-    if (data) {
-      let obj = data.data;
-      setProcess1(obj[0]);
-      setProcess2(obj[1]);
-      setProcess3(obj[2]);
-    }
-  };
-
   const getCTA = async () => {
-    const data = await fetchWrapper.get(`api/links/get-cta-partnership`);
+    const data = await fetchWrapper.get(`api/content/get-link?type=cta_partnership`);
     if (data) {
       let obj = data.data;
       setCta(obj[0]);
@@ -52,7 +33,6 @@ function WorkflowGraph() {
 
   useEffect(() => {
     getWorkflow();
-    getWorkflowProcess();
     getCTA();
   }, []);
 
@@ -69,7 +49,7 @@ function WorkflowGraph() {
               fontStyle: "bold",
             }}
           >
-            {`${result.title}`}
+            {`${result.attributes?.title}`}
           </h1>
         </div>
       </Container>
@@ -1180,10 +1160,10 @@ function WorkflowGraph() {
               marginRight: "auto",
             }}
           >
-            {`${result.description}`}
+            {`${result.attributes?.description}`}
           </div>
-          <div style={{width: "200px"}} className="mx-auto">
-            <a href={`${cta.url}`} style={{ justifyContent: "center" }}>
+          <div style={{ width: "200px" }} className="mx-auto">
+            <a href={`${cta.attributes?.url}`} style={{ justifyContent: "center" }}>
               <div
                 style={{
                   backgroundColor: "#000000",
@@ -1198,7 +1178,7 @@ function WorkflowGraph() {
                   cursor: "pointer",
                 }}
               >
-                {`${cta.title}`}
+                {`${cta.attributes?.title}`}
               </div>
             </a>
           </div>

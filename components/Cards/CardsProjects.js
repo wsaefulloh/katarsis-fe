@@ -1,16 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 // reactstrap components
 import {
-  UncontrolledCollapse,
-  NavbarBrand,
-  Navbar,
-  NavItem,
-  NavLink,
-  Nav,
-  Container,
-  Row,
   Col,
   Card,
 } from "reactstrap";
@@ -40,7 +31,8 @@ function CardsProject(props) {
                   backgroundImage:
                     "url(" +
                     // `https://drive.google.com/thumbnail?id=${img}&sz=w1000` +
-                    `https://drive.google.com/uc?export=view&id=${img}` +
+                    `https://admin.katarsis.co.id${img}` +
+                    // `https://drive.google.com/uc?export=view&id=${img}` +
                     ")",
                 }}
               >

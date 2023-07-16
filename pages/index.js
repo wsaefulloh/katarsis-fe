@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
 
 // reactstrap components
-import { Button, Card, Container, Row, Col, Modal } from "reactstrap";
+import { Card, Container, Row, Col } from "reactstrap";
 // layout for this page
 import HomeLayout from "layouts/Homepage.js";
 import Filter from "../components/Filter/Filter";
@@ -33,24 +33,6 @@ function Home() {
     } else {
     }
   }
-
-  const slider = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-  const visiMission = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    pauseOnHover: true,
-  };
 
   const visiMission1 = {
     dots: true,
@@ -147,156 +129,70 @@ function Home() {
 
   const { menu, renderFilter } = Filter();
   const [newMenu, setNewMenu] = useState("");
-
-  const [project, setProject] = useState([]);
   const [profile, setProfile] = useState([]);
   const [media, setMedia] = useState([]);
   const [brands, setBrands] = useState([]);
   const [HWDI, setHWDI] = useState({});
   const [ourTeam, setOurTeam] = useState({});
-  const [visi, setVisi] = useState({});
-  const [misi, setMisi] = useState({});
-  const [fixProject, setFixProject] = useState([]);
   const [banner, setBanner] = useState([]);
-  const [count, setCount] = useState(0);
-  const [showMoreActive, setShowMoreActive] = useState(true);
+  const [page, setPage] = useState(1);
+  const [menuProject, setMenuProject] = useState(1);
+  const [submenuProject, setSubmenuProject] = useState(null);
+  const [newProject, setNewProject] = useState([]);
+  const [totalPage, setTotalPage] = useState(0);
 
-  const showMore = async () => {
-    let array_project = project;
-    let array_fix = fixProject;
-    let pangkat = count + 1;
-    let start = pangkat * 4;
-    let new_array = array_project.slice(start, start + 4);
-    setCount(pangkat);
-    let newArray = array_fix.concat(new_array);
-    setFixProject(newArray);
-    if (newArray.length >= project.length) {
-      setShowMoreActive(false);
+  const getDataProject = async (id_menu, id_submenu, page) => {
+    let data
+    setPage(Number(page))
+    if (page === 1) {
+      data = await fetchWrapper.get(`api/get-project?menu=${id_menu}&submenu=${id_submenu}&page=${page}`);
+      setNewProject(data.data)
+      setTotalPage(Number(data.meta.pagination.pageCount))
     } else {
-      setShowMoreActive(true);
+      data = await fetchWrapper.get(`api/get-project?menu=${id_menu}&submenu=${id_submenu}&page=${page}`);
+      let dataNewProject = newProject
+      let newDataArray = data.data
+      setNewProject(dataNewProject.concat(newDataArray))
+      setTotalPage(Number(data.meta.pagination.pageCount))
     }
   };
 
-  const getDataOriginalIP = async () => {
-    const data = await fetchWrapper.get(`api/new-project/get-by-menu?id=1`);
-    if (data) {
-      setProject(data.data);
-      let array = data.data;
-      setCount(0);
-      if (array.length <= 4) {
-        setShowMoreActive(false);
-        setFixProject(data.data);
-      } else {
-        let fixArray = array.slice(0, 4);
-        setFixProject(fixArray);
-        setShowMoreActive(true);
-      }
-    }
-  };
-
-  const getDataB2B = async () => {
-    const data = await fetchWrapper.get(`api/new-project/get-by-menu?id=2`);
-    if (data) {
-      setProject(data.data);
-      let array = data.data;
-      setCount(0);
-      if (array.length <= 4) {
-        setShowMoreActive(false);
-        setFixProject(data.data);
-      } else {
-        let fixArray = array.slice(0, 4);
-        setFixProject(fixArray);
-        setShowMoreActive(true);
-      }
-    }
-  };
-
-  const getDataSubMenu = async (id) => {
-    const data = await fetchWrapper.get(
-      `api/new-project/get-by-submenu?id=${id}`
-    );
-    if (data) {
-      setProject(data.data);
-      let array = data.data;
-      setCount(0);
-      if (array.length <= 4) {
-        setShowMoreActive(false);
-        setFixProject(data.data);
-      } else {
-        let fixArray = array.slice(0, 4);
-        setFixProject(fixArray);
-        setShowMoreActive(true);
-      }
-    }
-  };
-
-  const getDataProfile = async () => {
-    const data = await fetchWrapper.get(`api/profile`);
+  const getDataProfileNew = async () => {
+    const data = await fetchWrapper.get(`api/content/get-profile`);
     if (data) {
       setProfile(data.data);
+      console.log(data)
     }
   };
 
-  const getDataMedia = async () => {
-    const data = await fetchWrapper.get(`api/media`);
-    if (data) {
-      setMedia(data.data);
-    }
-  };
-
-  const getDataBrands = async () => {
-    const data = await fetchWrapper.get(`api/brands`);
-    if (data) {
-      setBrands(data.data);
-    }
-  };
-
-  const getHowWeDoIt = async () => {
-    const data = await fetchWrapper.get(`api/content/get-how`);
-    if (data) {
-      let obj = data.data;
-      setHWDI(obj[0]);
-    }
-  };
-
-  const getOurTeam = async () => {
-    const data = await fetchWrapper.get(`api/content/get-our-team`);
+  const getOurTeamNew = async () => {
+    const data = await fetchWrapper.get(`api/content/get-profile?team=true`);
     if (data) {
       let obj = data.data;
       setOurTeam(obj[0]);
     }
   };
 
-  const getMission = async () => {
-    const data = await fetchWrapper.get(`api/content/get-misi`);
+  const getDataMediaNew = async () => {
+    const data = await fetchWrapper.get(`api/content/get-media`);
+    if (data) {
+      setMedia(data.data);
+    }
+  };
+
+  const getDataBrandsNew = async () => {
+    const data = await fetchWrapper.get(`api/content/get-brands`);
+    if (data) {
+      setBrands(data.data);
+    }
+  };
+
+  const getHowWeDoItNew = async () => {
+    const data = await fetchWrapper.get(`api/content/get-content?type=how-we-do-it`);
     if (data) {
       let obj = data.data;
-      setMisi(obj[0]);
+      setHWDI(obj[0]);
     }
-  };
-
-  const getVision = async () => {
-    const data = await fetchWrapper.get(`api/content/get-visi`);
-    if (data) {
-      let obj = data.data;
-      setVisi(obj[0]);
-    }
-  };
-
-  const getBanner = async () => {
-    const data = await fetchWrapper.get(`api/banner`);
-    if (data) {
-      setBanner(data.data);
-    }
-  };
-
-  const getDataProject = async (menu, submenu, page) => {
-    let uri = `api/new-project/get-project?menu=${menu}&page=${page}`
-    if (submenu != undefined) {
-      uri = `api/new-project/get-project?menu=${menu}&submenu=${submenu}&page=${page}`
-    }
-    const data = await fetchWrapper.get(uri);
-    console.log(data)
   };
 
   const getBannerNew = async () => {
@@ -309,33 +205,33 @@ function Home() {
 
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
-    getDataProfile();
-    getDataOriginalIP();
-    getDataMedia();
-    getHowWeDoIt();
-    getOurTeam();
-    // getVision();
-    getMission();
+    getDataMediaNew()
+    getHowWeDoItNew();
+    getOurTeamNew();
     handleWorkRef();
-    getDataBrands();
-    // getBanner();
-    // getDataProject(1, 1, 1)
+    getDataBrandsNew()
     getBannerNew()
+    getDataProfileNew()
   }, []);
 
   useEffect(() => {
     let menu_baru = menu.split("/");
     setNewMenu(`${menu_baru[0]}`);
-    console.log(menu_baru[1]);
     if (menu_baru[1] == " Original IP") {
-      getDataOriginalIP();
-      setFixProject([]);
+      getDataProject(1, null, 1)
+      setPage(1)
+      setMenuProject(1)
+      setSubmenuProject(null)
     } else if (menu_baru[1] == " B2B") {
-      getDataB2B();
-      setFixProject([]);
+      getDataProject(2, null, 1)
+      setPage(1)
+      setMenuProject(2)
+      setSubmenuProject(null)
     } else {
-      getDataSubMenu(`${menu_baru[1]}`);
-      setFixProject([]);
+      getDataProject(null, Number(menu_baru[1]), 1)
+      setPage(1)
+      setMenuProject(null)
+      setSubmenuProject(Number(menu_baru[1]))
     }
   }, [menu]);
 
@@ -390,15 +286,15 @@ function Home() {
 
         <Container>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 box">
-            {fixProject.map((val) => {
+            {newProject.map((val) => {
               return (
                 <div data-aos="fade-up">
                   <CardsProject
-                    img={val.url_image_cover}
-                    place={val.place_project}
+                    img={val.attributes?.images_cover?.data?.attributes?.url}
+                    place={val.attributes?.place_project}
                     id={val.id}
-                    childTitle={val.child_title}
-                    title={val.title_project}
+                    childTitle={val.attributes?.child_title}
+                    title={val.attributes?.title_project}
                   />
                 </div>
               );
@@ -406,7 +302,7 @@ function Home() {
           </div>
         </Container>
 
-        {showMoreActive == true ? (
+        {page !== totalPage ? (
           <Container className="pt-5 pb-2">
             <div style={{ justifyContent: "center" }}>
               <div
@@ -423,7 +319,7 @@ function Home() {
                   marginRight: "auto",
                   cursor: "pointer",
                 }}
-                onClick={() => showMore()}
+                onClick={() => getDataProject(menuProject, submenuProject, page + 1)}
               >
                 {`SHOW MORE`}
               </div>
@@ -467,7 +363,7 @@ function Home() {
               }}
               className="py-4"
             >
-              {`${HWDI.title}`}
+              {`${HWDI.attributes?.title}`}
             </h2>
             <div
               data-aos="fade-up"
@@ -479,7 +375,7 @@ function Home() {
                 color: "#000000",
               }}
             >
-              {`${HWDI.description}`}
+              {`${HWDI.attributes?.description}`}
             </div>
           </div>
         </Container>
@@ -538,7 +434,7 @@ function Home() {
                               style={{ height: "100px", width: "100%" }}
                             >
                               <img
-                                src={`https://drive.google.com/uc?export=view&id=${val.url}`}
+                                src={`https://admin.katarsis.co.id${val.attributes?.images?.data?.attributes?.url}`}
                                 style={{ maxWidth: "100%", maxHeight: "100px" }}
                               />
                             </Row>
@@ -594,7 +490,7 @@ function Home() {
                               style={{ height: "100px", width: "100%" }}
                             >
                               <img
-                                src={`https://drive.google.com/uc?export=view&id=${val.url}`}
+                                src={`https://admin.katarsis.co.id${val.attributes?.images?.data?.attributes?.url}`}
                                 style={{ maxWidth: "100%", maxHeight: "100px" }}
                               />
                             </Row>
@@ -669,11 +565,11 @@ function Home() {
                     return (
                       <div data-aos="fade-up">
                         <CardsProfile
-                          img={val.url_image}
-                          name={val.name}
-                          id={val.id}
-                          url={val.url_linkedin}
-                          position={val.position}
+                          img={val.attributes?.image?.data?.attributes?.url}
+                          name={val.attributes?.name}
+                          id={val?.id}
+                          url={val.attributes?.url_linkedin}
+                          position={val.attributes?.position}
                         />
                       </div>
                     );
@@ -714,7 +610,7 @@ function Home() {
         style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
       ></div>
 
-      <Container>
+      {/* <Container>
         <div
           data-aos="fade-up"
           className="pb-5 desc_section"
@@ -727,11 +623,11 @@ function Home() {
         >
           {`${ourTeam.description}`}
         </div>
-      </Container>
+      </Container> */}
 
       <img
         data-aos="fade-up"
-        src={`https://drive.google.com/uc?export=view&id=${ourTeam.url_image}`}
+        src={`https://admin.katarsis.co.id${ourTeam.attributes?.image?.data?.attributes?.url}`}
         alt="Image Out Team"
         style={{
           width: "100%",

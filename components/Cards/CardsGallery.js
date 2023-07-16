@@ -38,7 +38,8 @@ function CardsGallery(props) {
               style={{
                 backgroundImage:
                   "url(" +
-                  `https://drive.google.com/uc?export=view&id=${img}` +
+                  `https://admin.katarsis.co.id${img}` +
+                  // `https://drive.google.com/uc?export=view&id=${img}` +
                   ")",
               }}
             >

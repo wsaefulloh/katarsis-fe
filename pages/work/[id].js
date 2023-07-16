@@ -24,40 +24,39 @@ function Work() {
 
   const [projects, setProjects] = useState({});
   const [gallery, setGallery] = useState([]);
-  const [next, setNext] = useState("");
-  const [previous, setPrevious] = useState("");
+  // const [next, setNext] = useState("");
+  // const [previous, setPrevious] = useState("");
 
   const getDetailProject = async () => {
     const data = await fetchWrapper.get(
-      `../api/new-project/detail-project?id_project=${id}`
+      `../api/get-project-details?id=${id}`
     );
     if (data) {
       let object = data.data;
-      let dataObj = object[0];
-      getNextandPrevious(dataObj.id_submenu);
       setProjects(object[0]);
-      console.log();
+      console.log(data);
     }
   };
 
   const getFile = async () => {
-    const data = await fetchWrapper.get(`../api/gallery?id_project=${id}`);
+    const data = await fetchWrapper.get(`../api/get-project-file?id=${id}`);
     if (data) {
       setGallery(data.data);
+      console.log(data)
     }
   };
 
-  const getNextandPrevious = async (submenu) => {
-    const data = await fetchWrapper.get(
-      `../api/new-project/get-next-previous?id_project=${id}&submenu=${submenu}`
-    );
-    if (data) {
-      let object = data.data;
-      let dataObj = object[0];
-      setNext(dataObj.next);
-      setPrevious(dataObj.previous);
-    }
-  };
+  // const getNextandPrevious = async (submenu) => {
+  //   const data = await fetchWrapper.get(
+  //     `../api/new-project/get-next-previous?id_project=${id}&submenu=${submenu}`
+  //   );
+  //   if (data) {
+  //     let object = data.data;
+  //     let dataObj = object[0];
+  //     setNext(dataObj.next);
+  //     setPrevious(dataObj.previous);
+  //   }
+  // };
 
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
@@ -74,7 +73,8 @@ function Work() {
           width: "100%",
           backgroundImage:
             "url(" +
-            `https://drive.google.com/uc?export=view&id=${projects.url_image_cover}` +
+            `https://admin.katarsis.co.id${projects.attributes?.images_cover?.data?.attributes?.url}` +
+            // `https://drive.google.com/uc?export=view&id=${projects.url_image_cover}` +
             ")",
         }}
         className="background_image"
@@ -103,7 +103,7 @@ function Work() {
             paddingRight: "30px",
           }}
         >
-          {previous == null ? (
+          {/* {previous == null ? (
             <a href={`#`} style={{ cursor: "unset" }}>
               <div className="col d-flex align-items-center">
                 <div className="img-nav"></div>
@@ -126,7 +126,7 @@ function Work() {
                 </div>
               </div>
             </a>
-          )}
+          )} */}
 
           <div
             style={{
@@ -135,7 +135,7 @@ function Work() {
             className="col justify-content-center mx-auto"
           >
             <div className=" mx-auto" style={{ width: "180px" }}>
-              <a href={`${projects.url_video}`}>
+              <a href={`${projects?.url_video}`}>
                 <a target="_blank">
                   <div
                     data-aos="fade-up"
@@ -150,7 +150,7 @@ function Work() {
             </div>
           </div>
 
-          {next == null ? (
+          {/* {next == null ? (
             <a href={`#`} style={{ cursor: "unset" }}>
               <div className="col d-flex align-items-center justify-content-end">
                 <div className="text-left mr-3 text-prevnext">
@@ -173,7 +173,7 @@ function Work() {
                 />
               </div>
             </a>
-          )}
+          )} */}
         </div>
       </div>
       <div className="display-large">
@@ -188,7 +188,7 @@ function Work() {
                   className="d-flex align-items-center "
                   style={{ height: "100px" }}
                 >
-                  <h2 className="m-0 p-0">{`${projects.title_project}`}</h2>
+                  <h2 className="m-0 p-0">{`${projects?.attributes?.title_project}`}</h2>
                 </div>
               </Col>
               <Col className="m-0 p-0">
@@ -197,7 +197,7 @@ function Work() {
                   style={{ height: "100px" }}
                 >
                   <div className="mx-4 p-0" style={{ fontSize: "10px" }}>
-                    {`${projects.short_desc}`}
+                    {`${projects?.attributes?.short_desc}`}
                   </div>
                 </div>
               </Col>
@@ -221,7 +221,7 @@ function Work() {
                       className="py-1 arrow_hover "
                       style={{ width: "fit-content", cursor: "pointer" }}
                     >
-                      {`${projects.name_menu}`}
+                      {`${projects?.attributes?.menu?.data?.attributes?.title}`}
                     </div>
                   </a>
                 </div>
@@ -232,7 +232,7 @@ function Work() {
                   className="d-flex align-items-center "
                   style={{ height: "100px" }}
                 >
-                  <div className="mx-4 p-0">{`${projects.year_project}, ${projects.place_project}`}</div>
+                  <div className="mx-4 p-0">{`${projects?.attributes?.year_project}, ${projects?.attributes?.place_project}`}</div>
                 </div>
               </Col>
             </Row>
@@ -249,7 +249,7 @@ function Work() {
                 className="d-flex align-items-center justify-content-center"
                 style={{ height: "100px" }}
               >
-                <h2 className="m-0 p-0">{`${projects.title_project}`}</h2>
+                <h2 className="m-0 p-0">{`${projects?.attributes?.title_project}`}</h2>
               </div>
             </div>
           </Container>
@@ -267,7 +267,7 @@ function Work() {
                   className="m-0 p-0"
                   style={{ fontSize: "10px" }}
                 >
-                  {`${projects.short_desc}`}
+                  {`${projects?.attributes?.short_desc}`}
                 </div>
               </div>
             </div>
@@ -290,7 +290,7 @@ function Work() {
                       className="py-1 arrow_hover "
                       style={{ width: "fit-content", cursor: "pointer" }}
                     >
-                      {`${projects.name_menu}`}
+                      {`${projects?.attributes?.menu?.data?.attributes?.title}`}
                     </div>
                   </a>
                 </div>
@@ -303,7 +303,7 @@ function Work() {
                   <div
                     data-aos="fade-up"
                     className="mx-4 p-0"
-                  >{`${projects.year_project}, ${projects.place_project}`}</div>
+                  >{`${projects?.attributes?.year_project}, ${projects?.attributes?.place_project}`}</div>
                 </div>
               </Col>
             </Row>
@@ -314,7 +314,7 @@ function Work() {
       <div data-aos="fade-up" className="py-4">
         <Container>
           <h3>About</h3>
-          <div>{`${projects.about}`}</div>
+          <div>{`${projects?.attributes?.about}`}</div>
         </Container>
       </div>
 
@@ -341,27 +341,32 @@ function Work() {
           <Container>
             <Row className="m-0 p-0 align-items-center">
               <Col className="m-0 p-0">
-                <h3>{`${projects.metrics_one_desc}`}</h3>
+                <h3>{`${projects?.attributes?.metrics_one_desc}`}</h3>
                 <div
                   style={{
                     color: "#FF0000",
                   }}
                 >
-                  {`${projects.metrics_one_title}`}
+                  {`${projects?.attributes?.metrics_one_title}`}
                 </div>
               </Col>
               <Col className="m-0 p-0">
-                <h3>{`${projects.metrics_two_desc}`}</h3>
+                <h3>{`${projects?.attributes?.metrics_two_desc}`}</h3>
                 <div
                   style={{
                     color: "#FF0000",
                   }}
                 >
-                  {`${projects.metrics_two_title}`}
+                  {`${projects?.attributes?.metrics_two_title}`}
                 </div>
               </Col>
               <Col className="m-0 p-0">
-                <h3>{`${projects.desc_result}`}</h3>
+                {projects?.attributes?.desc_result !== null ? (
+                  <h3>{`${projects?.attributes?.desc_result}`}</h3>
+                ) : (
+                  <></>
+                )}
+
               </Col>
             </Row>
           </Container>
@@ -373,29 +378,33 @@ function Work() {
           <Container>
             <Row className="m-0 p-0 align-items-center">
               <Col className="m-0 p-0">
-                <h3>{`${projects.metrics_one_desc}`}</h3>
+                <h3>{`${projects?.attributes?.metrics_one_desc}`}</h3>
                 <div
                   style={{
                     color: "#FF0000",
                   }}
                 >
-                  {`${projects.metrics_one_title}`}
+                  {`${projects?.attributes?.metrics_one_title}`}
                 </div>
               </Col>
               <Col className="m-0 p-0">
-                <h3>{`${projects.metrics_two_desc}`}</h3>
+                <h3>{`${projects?.attributes?.metrics_two_desc}`}</h3>
                 <div
                   style={{
                     color: "#FF0000",
                   }}
                 >
-                  {`${projects.metrics_two_title}`}
+                  {`${projects?.attributes?.metrics_two_title}`}
                 </div>
               </Col>
             </Row>
             <Row className="pt-4">
               <Col className="m-0 p-0">
-                <h1>{`${projects.desc_result}`}</h1>
+                {projects?.attributes?.desc_result !== null ? (
+                  <h1>{`${projects?.attributes?.desc_result}`}</h1>
+                ) : (
+                  <></>
+                )}
               </Col>
             </Row>
           </Container>
@@ -409,11 +418,11 @@ function Work() {
               return (
                 <div data-aos="fade-up">
                   <CardsGallery
-                    img={val.url}
-                    place={val.place}
-                    id={val.id}
-                    childTitle={val.title}
-                    title={val.name_project}
+                    img={val.attributes?.images?.data?.attributes?.url}
+                    place={val?.attributes?.place}
+                    id={val?.attributes?.id}
+                    childTitle={val?.attributes?.title}
+                    title={val?.attributes?.project?.data?.attributes?.title_project}
                   />
                 </div>
               );
@@ -421,25 +430,30 @@ function Work() {
           </div>
         </Container>
       </div>
-      <div data-aos="fade-up">
-        <Container className="d-flex align-items-center justify-content-center">
-          <a href={`${projects.url_website}`}>
-            <a target="_blank">
-              <h3
-                style={{
-                  padding: "15px",
-                  backgroundColor: "#000000",
-                  color: "#ffffff",
-                  borderRadius: "50px",
-                  cursor: "pointer",
-                }}
-              >
-                {`${projects.url_website}`}
-              </h3>
+      {projects?.attributes?.url_website !== null ? (
+        <div data-aos="fade-up">
+          <Container className="d-flex align-items-center justify-content-center">
+            <a href={`${projects?.attributes?.url_website}`}>
+              <a target="_blank">
+                <h3
+                  style={{
+                    padding: "15px",
+                    backgroundColor: "#000000",
+                    color: "#ffffff",
+                    borderRadius: "50px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {`${projects?.attributes?.url_website}`}
+                </h3>
+              </a>
             </a>
-          </a>
-        </Container>
-      </div>
+          </Container>
+        </div>
+      ) : (
+        <></>
+      )}
+
 
       <div
         data-aos="fade-up"
@@ -449,7 +463,7 @@ function Work() {
           paddingRight: "30px",
         }}
       >
-        {previous == null ? (
+        {/* {previous == null ? (
           <a href={`#`} style={{ cursor: "unset", width: "250px" }}>
             <div className="col d-flex align-items-center">
               <div className="img-nav"></div>
@@ -472,7 +486,7 @@ function Work() {
               </div>
             </div>
           </a>
-        )}
+        )} */}
         <div className="col">
           <Link
             activeClass="active"
@@ -499,7 +513,7 @@ function Work() {
           </Link>
         </div>
 
-        {next == null ? (
+        {/* {next == null ? (
           <a href={`#`} style={{ cursor: "unset", width: "250px" }}>
             <div className="col d-flex align-items-center justify-content-end">
               <div className="text-right mr-3 text-prevnext">
@@ -522,7 +536,7 @@ function Work() {
               />
             </div>
           </a>
-        )}
+        )} */}
       </div>
 
       <HomeFooter />

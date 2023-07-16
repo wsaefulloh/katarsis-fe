@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
-import { useRouter } from "next/router";
 // reactstrap components
 import {
-  UncontrolledCollapse,
-  NavbarBrand,
-  Navbar,
-  NavItem,
-  NavLink,
-  Nav,
   Container,
   Row,
   Col,
@@ -19,35 +12,45 @@ import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
 function Filter() {
   const [menu, setMenu] = useState("Original IP / Original IP");
-  const [originalIP, setOriginalIP] = useState({});
-  const [b2b, setB2B] = useState({});
+  const [originalIP, setOriginalIP] = useState({
+    attributes: {
+      description: ""
+    }
+  });
+  const [b2b, setB2B] = useState({
+    attributes: {
+      description: ""
+    }
+  });
   const [menuOriginalIP, setMenuOriginalIP] = useState([]);
   const [menuB2B, setMenuB2B] = useState([]);
 
-  const getOriginalIP = async () => {
-    const data = await fetchWrapper.get(`api/content/get-original`);
+  const getOriginalIPNew = async () => {
+    const data = await fetchWrapper.get(`api/content/get-menu?id=1`);
     if (data) {
       let obj = data.data;
       setOriginalIP(obj[0]);
     }
   };
 
-  const getMenuOriginalIP = async () => {
-    const data = await fetchWrapper.get(`api/get-submenu?id=1`);
+  const getMenuOriginalIPNew = async () => {
+    const data = await fetchWrapper.get(`api/content/get-submenu?id=1`);
+    console.log(data)
     if (data) {
       setMenuOriginalIP(data.data);
     }
   };
 
-  const getMenuB2B = async () => {
-    const data = await fetchWrapper.get(`api/get-submenu?id=2`);
+  const getMenuB2BNew = async () => {
+    const data = await fetchWrapper.get(`api/content/get-submenu?id=2`);
+    console.log(data)
     if (data) {
       setMenuB2B(data.data);
     }
   };
 
-  const getB2B = async () => {
-    const data = await fetchWrapper.get(`api/content/get-b2b`);
+  const getB2BNew = async () => {
+    const data = await fetchWrapper.get(`api/content/get-menu?id=2`);
     if (data) {
       let obj = data.data;
       setB2B(obj[0]);
@@ -55,10 +58,10 @@ function Filter() {
   };
 
   useEffect(() => {
-    getB2B();
-    getOriginalIP();
-    getMenuB2B();
-    getMenuOriginalIP();
+    getB2BNew();
+    getOriginalIPNew();
+    getMenuOriginalIPNew();
+    getMenuB2BNew();
   }, []);
 
   const onClickMenu1 = () => {
@@ -154,30 +157,16 @@ function Filter() {
                             className="py-1 arrow_hover "
                             onClick={() =>
                               setMenu(
-                                `Original IP -> ${val.name_submenu} / ${val.id}`
+                                `Original IP -> ${val.attributes.name_submenu} / ${val.id}`
                               )
                             }
                             style={{ width: "fit-content", cursor: "pointer" }}
                           >
-                            {val.name_submenu}
+                            {val.attributes.name_submenu}
                           </div>
                         </Link>
                       );
                     })}
-                    {/* <div
-                      className="py-1 arrow_hover "
-                      onClick={() => setMenu("Original IP -> Experiences")}
-                      style={{ width: "fit-content", cursor: "pointer" }}
-                    >
-                      Experiences
-                    </div>
-                    <div
-                      onClick={() => setMenu("Original IP -> Content")}
-                      className="py-1 arrow_hover"
-                      style={{ width: "fit-content", cursor: "pointer" }}
-                    >
-                      Content
-                    </div> */}
                   </div>
                 </Col>
               </Row>
@@ -211,38 +200,16 @@ function Filter() {
                             className="py-1 arrow_hover "
                             onClick={() =>
                               setMenu(
-                                `Business to Business (B2B) -> ${val.name_submenu} / ${val.id}`
+                                `Business to Business (B2B) -> ${val.attributes.name_submenu} / ${val.id}`
                               )
                             }
                             style={{ width: "fit-content", cursor: "pointer" }}
                           >
-                            {val.name_submenu}
+                            {val.attributes.name_submenu}
                           </div>
                         </Link>
                       );
                     })}
-                    {/* <div
-                      onClick={() =>
-                        setMenu(
-                          "Business to Business (B2B) -> Marketing & Sponsorship"
-                        )
-                      }
-                      className="py-1 arrow_hover "
-                      style={{ width: "fit-content", cursor: "pointer" }}
-                    >
-                      Marketing & Sponsorship
-                    </div>
-                    <div
-                      onClick={() =>
-                        setMenu(
-                          "Business to Business (B2B) -> Ceremonies & Events"
-                        )
-                      }
-                      className="py-1 arrow_hover "
-                      style={{ width: "fit-content", cursor: "pointer" }}
-                    >
-                      Ceremonies & Events
-                    </div> */}
                   </div>
                 </Col>
               </Row>
@@ -267,7 +234,7 @@ function Filter() {
                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACbklEQVRYhe3XSY8NURQH8N/rJkTaFOloJLQprGkrSRMRU/RG+AAiIj6BnWFtQ8TwJYgxvaJZGRJiiCFEzEOwY2PjWdxTqUeq6tV7zYp/cpPKPf/zP3c4de+5/OtodMhdiRGsxVzMCdt7fMAYLuI2mn9ykCO4F6J12mPs0NkEC7EQt1qE3+A4tmAZpqIvvjfjGF618G9isNvgq/ExhD5hHybV8OuRZv88fL9gXafB1+B7CIxiRqcC0uqcD43voVkLC/E5HE+ht4vgGXpwRL6KbbejId/z0XEGbx3E2dC8oU1i7gjiO90texmmSgncxPYyUkP6fZrY+weDZ9gV2o+UrMKqILzFxBKR+VJi9RfY+nEBi0p8e/EyYgwVEQ6F8WSJAHlWP/htEP3R18TlCv+jwTlQZLwWxpEKgdZA2SBa+x5LR3QZNgZvrMj4LIzLKwSKBpF9P8JAG99FwX1aZPwWxultRLJB3Pfr2T+n0iNhMn7ga9bR02LMbq86F0i3N10jWqF/3S2Yhbv+whZc1T4JZ+JO8B5idrSH6iXhBhVJeDCMJyoEzgXniV9nOxB9peKB7F7YX2Qckt/5ZQfRUlxRPMu5YVta4tuLFxFjZRGhIe1jE3tKRMaDnfKtK0307fLjuM7vWBd9eB3a26qIDamMakrFZU8VuSYaOB2a19X4zQel4qEp1XjjGUQDh+UFyYK6jsPykuwipnURvA9n5CXZcKcCw/KVeIPdmFDDr1dKuOzq/dRN8AyDUhmVnfmvpG3ZjCWYEm0xNkn/+YsW/nUdLHsV1vtLD5NOn2YrsFX+NJsXtnfS82wMl+TH9X+0xU/nf8f7CQu+owAAAABJRU5ErkJggg=="
                 />
               </div>
-              <div style={{ maxWidth: "800px" }}>{originalIP.description}</div>
+              <div style={{ maxWidth: "800px" }}>{originalIP.attributes.description}</div>
             </Col>
           </Row>
 
@@ -290,7 +257,8 @@ function Filter() {
                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAACbklEQVRYhe3XSY8NURQH8N/rJkTaFOloJLQprGkrSRMRU/RG+AAiIj6BnWFtQ8TwJYgxvaJZGRJiiCFEzEOwY2PjWdxTqUeq6tV7zYp/cpPKPf/zP3c4de+5/OtodMhdiRGsxVzMCdt7fMAYLuI2mn9ykCO4F6J12mPs0NkEC7EQt1qE3+A4tmAZpqIvvjfjGF618G9isNvgq/ExhD5hHybV8OuRZv88fL9gXafB1+B7CIxiRqcC0uqcD43voVkLC/E5HE+ht4vgGXpwRL6KbbejId/z0XEGbx3E2dC8oU1i7gjiO90texmmSgncxPYyUkP6fZrY+weDZ9gV2o+UrMKqILzFxBKR+VJi9RfY+nEBi0p8e/EyYgwVEQ6F8WSJAHlWP/htEP3R18TlCv+jwTlQZLwWxpEKgdZA2SBa+x5LR3QZNgZvrMj4LIzLKwSKBpF9P8JAG99FwX1aZPwWxultRLJB3Pfr2T+n0iNhMn7ga9bR02LMbq86F0i3N10jWqF/3S2Yhbv+whZc1T4JZ+JO8B5idrSH6iXhBhVJeDCMJyoEzgXniV9nOxB9peKB7F7YX2Qckt/5ZQfRUlxRPMu5YVta4tuLFxFjZRGhIe1jE3tKRMaDnfKtK0307fLjuM7vWBd9eB3a26qIDamMakrFZU8VuSYaOB2a19X4zQel4qEp1XjjGUQDh+UFyYK6jsPykuwipnURvA9n5CXZcKcCw/KVeIPdmFDDr1dKuOzq/dRN8AyDUhmVnfmvpG3ZjCWYEm0xNkn/+YsW/nUdLHsV1vtLD5NOn2YrsFX+NJsXtnfS82wMl+TH9X+0xU/nf8f7CQu+owAAAABJRU5ErkJggg=="
                 />
               </div>
-              <div style={{ maxWidth: "800px" }}>{b2b.description}</div>
+              <div style={{ maxWidth: "800px" }}>{b2b.attributes.description}</div>
+
             </Col>
           </Row>
         </Container>
