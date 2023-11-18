@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { API_APPS_HOSTE } from "../config/index2";
 
 // reactstrap components
 import { Button, Card, Container, Row, Col, Modal } from "reactstrap";
@@ -27,19 +28,29 @@ import "../assets/css/main/main.module.css";
 function Career() {
   const [departement, setDepartement] = useState([]);
   const [status, setStatus] = useState({});
+  const [video, setVideo] = useState();
 
   const getAllDepartement = async () => {
-    const data = await fetchWrapper.get(`api/get-departement`);
+    const data = await fetchWrapper.get(`api/strapi/career/get-departement`);
     if (data) {
       setDepartement(data.data);
     }
   };
 
   const getStatus = async () => {
-    const data = await fetchWrapper.get(`api/content/get-status-career`);
+    const data = await fetchWrapper.get(`api/strapi/career/get-status-career`);
     if (data) {
       let obj = data.data;
-      setStatus(obj[0]);
+      setStatus(obj[0].attributes.status);
+    }
+  };
+
+  const getVideo = async () => {
+    const data = await fetchWrapper.get(`api/strapi/career/get-video`);
+    if (data) {
+      let obj = data.data;
+      setVideo(obj.attributes.video.data.attributes.url);
+      // console.log(`https://admin.katarsis.co.id${obj.attributes.video.data.attributes.url}`)
     }
   };
 
@@ -47,6 +58,7 @@ function Career() {
     AOS.init({ duration: 2000, once: true });
     getAllDepartement();
     getStatus();
+    getVideo();
   }, []);
 
   return (
@@ -65,22 +77,27 @@ function Career() {
           height="480"
           allow="autoplay"
         ></iframe> */}
-        <video
-          style={{
-            width: "100%",
-            maxHeight: "400px",
-            objectFit: "contain",
-            backgroundColor: "#000000",
-          }}
-          // autoplay="autoplay"
-          // loop="true"
-          controls
-        >
-          {/* <source src={require("assets/Katarsis HD.mp4")} type="video/mp4" /> */}
-          <source src="https://api.katarsis.co.id/video" type="video/mp4" />
-        </video>
+        {video ? (
+          <video
+            style={{
+              width: "100%",
+              maxHeight: "400px",
+              objectFit: "contain",
+              backgroundColor: "#000000",
+            }}
+            // autoplay="autoplay"
+            // loop="true"
+            controls
+          >
+            {/* <source src={require("assets/Katarsis HD.mp4")} type="video/mp4" /> */}
+            <source src={`https://admin.katarsis.co.id${video}`} type="video/mp4" />
+          </video>
+        ) : (
+          <></>
+        )}
+
       </div>
-      {status.description == "true" || status.description == "True" ? (
+      {status == "true" || status == "True" || status == true ? (
         <>
           <div data-aos="fade-up" className="my-5 py-3">
             <Container>
@@ -104,8 +121,8 @@ function Career() {
               return (
                 <div data-aos="fade-up">
                   <CardsCareer
-                    description_departement={val.description_departement}
-                    title_departement={val.title_departement}
+                    description_departement={val.attributes.description_departement}
+                    title_departement={val.attributes.title_departement}
                     id={val.id}
                     last={true}
                   />
@@ -115,8 +132,8 @@ function Career() {
               return (
                 <div data-aos="fade-up">
                   <CardsCareer
-                    description_departement={val.description_departement}
-                    title_departement={val.title_departement}
+                    description_departement={val.attributes.description_departement}
+                    title_departement={val.attributes.title_departement}
                     id={val.id}
                     last={false}
                   />

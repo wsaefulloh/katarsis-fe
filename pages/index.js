@@ -145,11 +145,11 @@ function Home() {
     let data
     setPage(Number(page))
     if (page === 1) {
-      data = await fetchWrapper.get(`api/get-project?menu=${id_menu}&submenu=${id_submenu}&page=${page}`);
+      data = await fetchWrapper.get(`api/strapi/get-project?menu=${id_menu}&submenu=${id_submenu}&page=${page}`);
       setNewProject(data.data)
       setTotalPage(Number(data.meta.pagination.pageCount))
     } else {
-      data = await fetchWrapper.get(`api/get-project?menu=${id_menu}&submenu=${id_submenu}&page=${page}`);
+      data = await fetchWrapper.get(`api/strapi/get-project?menu=${id_menu}&submenu=${id_submenu}&page=${page}`);
       let dataNewProject = newProject
       let newDataArray = data.data
       setNewProject(dataNewProject.concat(newDataArray))
@@ -158,7 +158,7 @@ function Home() {
   };
 
   const getDataProfileNew = async () => {
-    const data = await fetchWrapper.get(`api/content/get-profile`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-profile`);
     if (data) {
       setProfile(data.data);
       console.log(data)
@@ -166,7 +166,7 @@ function Home() {
   };
 
   const getOurTeamNew = async () => {
-    const data = await fetchWrapper.get(`api/content/get-profile?team=true`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-profile?team=true`);
     if (data) {
       let obj = data.data;
       setOurTeam(obj[0]);
@@ -174,21 +174,21 @@ function Home() {
   };
 
   const getDataMediaNew = async () => {
-    const data = await fetchWrapper.get(`api/content/get-media`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-media`);
     if (data) {
       setMedia(data.data);
     }
   };
 
   const getDataBrandsNew = async () => {
-    const data = await fetchWrapper.get(`api/content/get-brands`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-brands`);
     if (data) {
       setBrands(data.data);
     }
   };
 
   const getHowWeDoItNew = async () => {
-    const data = await fetchWrapper.get(`api/content/get-content?type=how-we-do-it`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-content?type=how-we-do-it`);
     if (data) {
       let obj = data.data;
       setHWDI(obj[0]);
@@ -196,7 +196,7 @@ function Home() {
   };
 
   const getBannerNew = async () => {
-    const data = await fetchWrapper.get(`api/new-banner`);
+    const data = await fetchWrapper.get(`api/strapi/new-banner`);
     if (data) {
       console.log(data.data[0].attributes.url_link)
       setBanner(data.data);
@@ -538,24 +538,6 @@ function Home() {
       </div>
 
       <div className="py-3">
-        {/* <Container className="display-large">
-          <div className="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 box">
-            {profile.map((val) => {
-              return (
-                <div data-aos="fade-up">
-                  <CardsProfile
-                    img={val.url_image}
-                    name={val.name}
-                    id={val.id}
-                    url={val.url_linkedin}
-                    position={val.position}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </Container> */}
-
         <div className="media_coverage">
           <Container>
             <Card className="content">
@@ -579,51 +561,12 @@ function Home() {
             </Card>
           </Container>
         </div>
-
-        {/* <div className="display-small media_coverage">
-          <Container>
-            <Card className="content">
-              <Container>
-                <Slider {...slider}>
-                  {profile.map((val) => {
-                    return (
-                      <div data-aos="fade-up">
-                        <CardsProfile
-                          img={val.url_image}
-                          name={val.name}
-                          id={val.id}
-                          url={val.url_linkedin}
-                          position={val.position}
-                        />
-                      </div>
-                    );
-                  })}
-                </Slider>
-              </Container>
-            </Card>
-          </Container>
-        </div> */}
       </div>
 
       <div
         className="my-5"
         style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
       ></div>
-
-      {/* <Container>
-        <div
-          data-aos="fade-up"
-          className="pb-5 desc_section"
-          style={{
-            color: "#000000",
-            paddingLeft: "50px",
-            paddingRight: "50px",
-            textAlign: "justify",
-          }}
-        >
-          {`${ourTeam.description}`}
-        </div>
-      </Container> */}
 
       <img
         data-aos="fade-up"

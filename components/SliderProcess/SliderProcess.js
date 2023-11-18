@@ -30,12 +30,13 @@ function SliderProcess() {
 
   const [index, setIndex] = useState(1);
 
-  const [result1, setResult1] = useState({});
+  const [result1, setResult1] = useState({ attributes: { image: { data: { attributes: { url: '/uploads/kuis_366c61ba51.jpg' } } } } });
   const [result2, setResult2] = useState({});
   const [result3, setResult3] = useState({});
 
   const getAllProcess = async () => {
-    const data = await fetchWrapper.get(`api/content/get-process`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-process`);
+    console.log(data)
     if (data) {
       let obj = data.data;
       setResult1(obj[0]);

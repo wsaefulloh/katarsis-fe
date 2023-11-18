@@ -9,7 +9,7 @@ import "../../assets/css/main/main.module.css";
 import { fetchWrapper } from "../../helpers/fetch-wrapper";
 import Cookies from "js-cookie";
 
-function HomeFooter() {
+function HomeFooterDetails() {
   const [linkedin, setLinkedin] = useState("");
   const [instagram, setInstagram] = useState("");
   const [tiktok, setTiktok] = useState("");
@@ -32,7 +32,7 @@ function HomeFooter() {
   }
 
   const getInstagram = async () => {
-    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=instagram`);
+    const data = await fetchWrapper.get(`../api/strapi/content/get-link?type=instagram`);
     if (data) {
       let newData = data.data;
       let link = newData[0];
@@ -41,7 +41,7 @@ function HomeFooter() {
   };
 
   const getLinkedin = async () => {
-    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=linkedin`);
+    const data = await fetchWrapper.get(`../api/strapi/content/get-link?type=linkedin`);
     if (data) {
       let newData = data.data;
       let link = newData[0];
@@ -50,7 +50,7 @@ function HomeFooter() {
   };
 
   const getTiktok = async () => {
-    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=tiktok`);
+    const data = await fetchWrapper.get(`../api/strapi/content/get-link?type=tiktok`);
     if (data) {
       let newData = data.data;
       let link = newData[0];
@@ -59,7 +59,7 @@ function HomeFooter() {
   };
 
   const getNumber = async () => {
-    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=number`);
+    const data = await fetchWrapper.get(`../api/strapi/content/get-link?type=number`);
     if (data) {
       let newData = data.data;
       let link = newData[0];
@@ -68,7 +68,7 @@ function HomeFooter() {
   };
 
   const getWhatsapp = async () => {
-    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=whatsapp`);
+    const data = await fetchWrapper.get(`../api/strapi/content/get-link?type=whatsapp`);
     if (data) {
       let newData = data.data;
       let link = newData[0];
@@ -77,7 +77,7 @@ function HomeFooter() {
   };
 
   const getInfo = async () => {
-    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=info`);
+    const data = await fetchWrapper.get(`../api/strapi/content/get-link?type=info`);
     if (data) {
       let newData = data.data;
       let link = newData[0];
@@ -86,7 +86,7 @@ function HomeFooter() {
   };
 
   const getMarketing = async () => {
-    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=marketing`);
+    const data = await fetchWrapper.get(`../api/strapi/content/get-link?type=marketing`);
     if (data) {
       let newData = data.data;
       let link = newData[0];
@@ -95,7 +95,7 @@ function HomeFooter() {
   };
 
   const getPartnership = async () => {
-    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=partnership`);
+    const data = await fetchWrapper.get(`../api/strapi/content/get-link?type=partnership`);
     if (data) {
       let newData = data.data;
       let link = newData[0];
@@ -104,7 +104,7 @@ function HomeFooter() {
   };
 
   const getCareer = async () => {
-    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=career`);
+    const data = await fetchWrapper.get(`../api/strapi/content/get-link?type=career`);
     if (data) {
       let newData = data.data;
       let link = newData[0];
@@ -328,4 +328,4 @@ function HomeFooter() {
   );
 }
 
-export default HomeFooter;
+export default HomeFooterDetails;

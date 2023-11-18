@@ -28,7 +28,7 @@ function CardsCareer(props) {
   const [length, setLength] = useState(0);
 
   const getAllJob = async () => {
-    const data = await fetchWrapper.get(`api/get-job?id_departement=${id}`);
+    const data = await fetchWrapper.get(`api/strapi/career/get-job?id_departement=${id}`);
     if (data) {
       setJob(data.data);
       let forLength = data.data;
@@ -112,15 +112,15 @@ function CardsCareer(props) {
                         style={{ backgroundColor: "#D9D9D9CC" }}
                         className="p-3 d-flex align-items-center"
                       >
-                        <Col>{`${val.job_title}`}</Col>
-                        <Col className="text-center">{`${val.type_job}`}</Col>
-                        <Col className="text-center">{`${val.city}`}</Col>
+                        <Col>{`${val.attributes.job_title}`}</Col>
+                        <Col className="text-center">{`${val.attributes.type_job}`}</Col>
+                        <Col className="text-center">{`${val.attributes.city}`}</Col>
                         <Col className="text-center justify-content-center">
                           <div
                             className="mx-auto"
                             style={{ maxWidth: "150px", cursor: "pointer" }}
                           >
-                            <a href={`${val.url}`}>
+                            <a href={`${val.attributes.url}`}>
                               <div
                                 className="p-2"
                                 style={{
@@ -143,15 +143,15 @@ function CardsCareer(props) {
                         style={{ backgroundColor: "rgba(217, 217, 217, 0.28)" }}
                         className="p-3 d-flex align-items-center"
                       >
-                        <Col>{`${val.job_title}`}</Col>
-                        <Col className="text-center">{`${val.type_job}`}</Col>
-                        <Col className="text-center">{`${val.city}`}</Col>
+                        <Col>{`${val.attributes.job_title}`}</Col>
+                        <Col className="text-center">{`${val.attributes.type_job}`}</Col>
+                        <Col className="text-center">{`${val.attributes.city}`}</Col>
                         <Col className="text-center justify-content-center">
                           <div
                             className="mx-auto"
                             style={{ maxWidth: "150px", cursor: "pointer" }}
                           >
-                            <a href={`${val.url}`}>
+                            <a href={`${val.attributes.url}`}>
                               <div
                                 className="p-2"
                                 style={{

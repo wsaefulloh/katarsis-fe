@@ -5,7 +5,6 @@ import { Button, Card, Container, Row, Col, Modal } from "reactstrap";
 
 // core components
 
-import HomeFooter from "../../components/Footers/HomeFooter";
 import CardsGallery from "../../components/Cards/CardsGallery";
 
 import { fetchWrapper } from "../../helpers/fetch-wrapper";
@@ -16,6 +15,7 @@ import "../../assets/css/main/main.module.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useRouter } from "next/router";
+import HomeFooterDetails from "../../components/Footers/HomeFooterDetails";
 
 function Work() {
   const router = useRouter();
@@ -29,7 +29,7 @@ function Work() {
 
   const getDetailProject = async () => {
     const data = await fetchWrapper.get(
-      `../api/get-project-details?id=${id}`
+      `../api/strapi/get-project-details?id=${id}`
     );
     if (data) {
       let object = data.data;
@@ -39,7 +39,7 @@ function Work() {
   };
 
   const getFile = async () => {
-    const data = await fetchWrapper.get(`../api/get-project-file?id=${id}`);
+    const data = await fetchWrapper.get(`../api/strapi/get-project-file?id=${id}`);
     if (data) {
       setGallery(data.data);
       console.log(data)
@@ -539,7 +539,7 @@ function Work() {
         )} */}
       </div>
 
-      <HomeFooter />
+      <HomeFooterDetails />
     </>
   );
 }

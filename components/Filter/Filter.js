@@ -26,7 +26,7 @@ function Filter() {
   const [menuB2B, setMenuB2B] = useState([]);
 
   const getOriginalIPNew = async () => {
-    const data = await fetchWrapper.get(`api/content/get-menu?id=1`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-menu?id=1`);
     if (data) {
       let obj = data.data;
       setOriginalIP(obj[0]);
@@ -34,7 +34,7 @@ function Filter() {
   };
 
   const getMenuOriginalIPNew = async () => {
-    const data = await fetchWrapper.get(`api/content/get-submenu?id=1`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-submenu?id=1`);
     console.log(data)
     if (data) {
       setMenuOriginalIP(data.data);
@@ -42,7 +42,7 @@ function Filter() {
   };
 
   const getMenuB2BNew = async () => {
-    const data = await fetchWrapper.get(`api/content/get-submenu?id=2`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-submenu?id=2`);
     console.log(data)
     if (data) {
       setMenuB2B(data.data);
@@ -50,7 +50,7 @@ function Filter() {
   };
 
   const getB2BNew = async () => {
-    const data = await fetchWrapper.get(`api/content/get-menu?id=2`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-menu?id=2`);
     if (data) {
       let obj = data.data;
       setB2B(obj[0]);

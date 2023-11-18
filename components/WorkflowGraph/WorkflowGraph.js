@@ -16,7 +16,7 @@ function WorkflowGraph() {
   const [cta, setCta] = useState({});
 
   const getWorkflow = async () => {
-    const data = await fetchWrapper.get(`api/content/get-content?type=workflow`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-content?type=workflow`);
     if (data) {
       let obj = data.data;
       setResult(obj[0]);
@@ -24,7 +24,7 @@ function WorkflowGraph() {
   };
 
   const getCTA = async () => {
-    const data = await fetchWrapper.get(`api/content/get-link?type=cta_partnership`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=cta_partnership`);
     if (data) {
       let obj = data.data;
       setCta(obj[0]);
@@ -53,43 +53,6 @@ function WorkflowGraph() {
           </h1>
         </div>
       </Container>
-
-      {/* <Container>
-        <div className="pb-4 d-flex align-items-center justify-content-center">
-          <div
-            style={{
-              backgroundColor: "#E1E1E1",
-              height: "10px",
-              width: "10px",
-              borderRadius: "5px",
-              marginRight: "5px",
-            }}
-          ></div>
-          <div>{process1.description}</div>
-          <div
-            style={{
-              backgroundColor: "#BABABA",
-              height: "10px",
-              width: "10px",
-              borderRadius: "5px",
-              marginLeft: "18px",
-              marginRight: "5px",
-            }}
-          ></div>
-          <div>{process2.description}</div>
-          <div
-            style={{
-              backgroundColor: "#818181",
-              height: "10px",
-              width: "10px",
-              borderRadius: "5px",
-              marginLeft: "18px",
-              marginRight: "5px",
-            }}
-          ></div>
-          <div>{process3.description}</div>
-        </div>
-      </Container> */}
 
       <div className="py-4">
         <div className="display-large">
