@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_APPS_HOSTE } from "../config/index2";
+import Fade from 'react-reveal/Fade';
 
 // reactstrap components
 import { Button, Card, Container, Row, Col, Modal } from "reactstrap";
@@ -99,97 +100,118 @@ function Career() {
       </div>
       {status == "true" || status == "True" || status == true ? (
         <>
-          <div data-aos="fade-up" className="my-5 py-3">
-            <Container>
-              <div className="text-center justify-content-center">
-                <h1
-                  className="title_section"
-                  style={{
-                    color: "#000000",
-                    fontStyle: "bold",
-                  }}
-                >
-                  We're Hiring
-                </h1>
-                <div>what role would you like to be cast for?</div>
-              </div>
-            </Container>
-          </div>
+          <Fade bottom duration={2000}>
+            <div
+              // data-aos="fade-up"
+              className="my-5 py-3">
+              <Container>
+                <div className="text-center justify-content-center">
+                  <h1
+                    className="title_section"
+                    style={{
+                      color: "#000000",
+                      fontStyle: "bold",
+                    }}
+                  >
+                    We're Hiring
+                  </h1>
+                  <div>what role would you like to be cast for?</div>
+                </div>
+              </Container>
+            </div>
+          </Fade>
+
 
           {departement.map((val, index) => {
             if (index == departement.length - 1) {
               return (
-                <div data-aos="fade-up">
-                  <CardsCareer
-                    description_departement={val.attributes.description_departement}
-                    title_departement={val.attributes.title_departement}
-                    id={val.id}
-                    last={true}
-                  />
-                </div>
+                <Fade bottom duration={2000}>
+                  <div
+                  // data-aos="fade-up"
+                  >
+                    <CardsCareer
+                      description_departement={val.attributes.description_departement}
+                      title_departement={val.attributes.title_departement}
+                      id={val.id}
+                      last={true}
+                    />
+                  </div>
+                </Fade>
+
               );
             } else {
               return (
-                <div data-aos="fade-up">
-                  <CardsCareer
-                    description_departement={val.attributes.description_departement}
-                    title_departement={val.attributes.title_departement}
-                    id={val.id}
-                    last={false}
-                  />
-                </div>
+                <Fade bottom duration={2000}>
+                  <div
+                  // data-aos="fade-up"
+                  >
+                    <CardsCareer
+                      description_departement={val.attributes.description_departement}
+                      title_departement={val.attributes.title_departement}
+                      id={val.id}
+                      last={false}
+                    />
+                  </div>
+                </Fade>
+
               );
             }
           })}
         </>
       ) : (
         <>
-          <div data-aos="fade-up" className="mt-5 py-3">
-            <Container>
-              <div className="text-center justify-content-center">
-                <h1
-                  className="title_section"
-                  style={{
-                    color: "#000000",
-                    fontStyle: "bold",
-                  }}
-                >
-                  Coming Soon
-                </h1>
-              </div>
-            </Container>
-          </div>
+          <Fade bottom duration={2000}>
+            <div
+              // data-aos="fade-up"
+              className="mt-5 py-3">
+              <Container>
+                <div className="text-center justify-content-center">
+                  <h1
+                    className="title_section"
+                    style={{
+                      color: "#000000",
+                      fontStyle: "bold",
+                    }}
+                  >
+                    Coming Soon
+                  </h1>
+                </div>
+              </Container>
+            </div>
+          </Fade>
         </>
       )}
-
-      <div
-        data-aos="fade-up"
-        className="pt-5 text-center justify-content-center"
-      >
-        <Link
-          activeClass="active"
-          to={"top"}
-          spy={true}
-          smooth={true}
-          offset={-70}
-          duration={500}
+      <Fade bottom duration={2000}>
+        <div
+          // data-aos="fade-up"
+          className="pt-5 text-center justify-content-center"
         >
-          <div
-            style={{
-              marginLeft: "auto",
-              marginRight: "auto",
-              cursor: "pointer",
-              width: "fit-content",
-            }}
+          <Link
+            activeClass="active"
+            to={"top"}
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
           >
-            <img
-              src={require("assets/img/icons/common/up.svg")}
-              style={{ width: "50px", height: "50px" }}
-            />
-            <div className="pt-2">TOP</div>
-          </div>
-        </Link>
-      </div>
+            <div
+              style={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                cursor: "pointer",
+                width: "fit-content",
+              }}
+            >
+              <img
+                src={require("assets/img/icons/common/up.svg")}
+                style={{ width: "50px", height: "50px" }}
+              />
+              <div className="pt-2">TOP</div>
+            </div>
+          </Link>
+        </div>
+      </Fade>
+
     </>
   );
 }

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
+import Fade from 'react-reveal/Fade';
+
 // reactstrap components
 import { Button, Card, Container, Row, Col, Modal } from "reactstrap";
 
@@ -137,14 +139,17 @@ function Work() {
             <div className=" mx-auto" style={{ width: "180px" }}>
               <a href={`${projects?.url_video}`}>
                 <a target="_blank">
-                  <div
-                    data-aos="fade-up"
-                    className="button_header mx-auto text-center"
-                  >
-                    <h5 className="m-0 p-0" style={{ color: "#ffffff" }}>
-                      WATCH THE VIDEO
-                    </h5>
-                  </div>
+                  <Fade bottom duration={2000}>
+                    <div
+                      // data-aos="fade-up"
+                      className="button_header mx-auto text-center"
+                    >
+                      <h5 className="m-0 p-0" style={{ color: "#ffffff" }}>
+                        WATCH THE VIDEO
+                      </h5>
+                    </div>
+                  </Fade>
+
                 </a>
               </a>
             </div>
@@ -216,19 +221,23 @@ function Work() {
                   style={{ height: "100px" }}
                 >
                   <a href={`/`}>
-                    <div
-                      data-aos="fade-up"
-                      className="py-1 arrow_hover "
-                      style={{ width: "fit-content", cursor: "pointer" }}
-                    >
-                      {`${projects?.attributes?.menu?.data?.attributes?.title}`}
-                    </div>
+                    <Fade bottom duration={2000}>
+                      <div
+                        // data-aos="fade-up"
+                        className="py-1 arrow_hover "
+                        style={{ width: "fit-content", cursor: "pointer" }}
+                      >
+                        {`${projects?.attributes?.menu?.data?.attributes?.title}`}
+                      </div>
+                    </Fade>
+
                   </a>
                 </div>
               </Col>
               <Col className="m-0 p-0">
+                <Fade bottom duration={2000}></Fade>
                 <div
-                  data-aos="fade-up"
+                  // data-aos="fade-up"
                   className="d-flex align-items-center "
                   style={{ height: "100px" }}
                 >
@@ -240,230 +249,276 @@ function Work() {
         </div>
       </div>
 
-      <div data-aos="fade-up" className="display-small">
-        <div className="m-0 p-0" style={{ borderBottom: "1px solid #000000" }}>
-          <Container>
-            <div className="m-0 p-0">
-              <div
-                data-aos="fade-up"
-                className="d-flex align-items-center justify-content-center"
-                style={{ height: "100px" }}
-              >
-                <h2 className="m-0 p-0">{`${projects?.attributes?.title_project}`}</h2>
+      <Fade bottom duration={2000}>
+        <div
+          // data-aos="fade-up"
+          className="display-small">
+          <div className="m-0 p-0" style={{ borderBottom: "1px solid #000000" }}>
+            <Container>
+              <div className="m-0 p-0">
+                <Fade bottom duration={2000}>
+                  <div
+                    // data-aos="fade-up"
+                    className="d-flex align-items-center justify-content-center"
+                    style={{ height: "100px" }}
+                  >
+                    <h2 className="m-0 p-0">{`${projects?.attributes?.title_project}`}</h2>
+                  </div>
+                </Fade>
+
               </div>
-            </div>
-          </Container>
-          <div
-            style={{ height: "1px", backgroundColor: "#000000", width: "100%" }}
-          ></div>
-          <Container>
-            <div className="m-0 p-0">
-              <div
-                className="d-flex align-items-center justify-content-center text-center"
-                style={{ height: "100px" }}
-              >
-                <div
-                  data-aos="fade-up"
-                  className="m-0 p-0"
-                  style={{ fontSize: "10px" }}
-                >
-                  {`${projects?.attributes?.short_desc}`}
-                </div>
-              </div>
-            </div>
-          </Container>
-        </div>
-        <div className="m-0 p-0" style={{ borderBottom: "1px solid #000000" }}>
-          <Container>
-            <Row>
-              <Col
-                className="m-0 p-0"
-                style={{ borderRight: "1px solid #000000" }}
-              >
+            </Container>
+            <div
+              style={{ height: "1px", backgroundColor: "#000000", width: "100%" }}
+            ></div>
+            <Container>
+              <div className="m-0 p-0">
                 <div
                   className="d-flex align-items-center justify-content-center text-center"
                   style={{ height: "100px" }}
                 >
-                  <a href={`/`}>
+                  <Fade bottom duration={2000}>
                     <div
-                      data-aos="fade-up"
-                      className="py-1 arrow_hover "
-                      style={{ width: "fit-content", cursor: "pointer" }}
+                      // data-aos="fade-up"
+                      className="m-0 p-0"
+                      style={{ fontSize: "10px" }}
                     >
-                      {`${projects?.attributes?.menu?.data?.attributes?.title}`}
+                      {`${projects?.attributes?.short_desc}`}
                     </div>
-                  </a>
+                  </Fade>
+
                 </div>
-              </Col>
-              <Col className="m-0 p-0">
-                <div
-                  className="d-flex align-items-center justify-content-center text-center"
-                  style={{ height: "100px" }}
+              </div>
+            </Container>
+          </div>
+          <div className="m-0 p-0" style={{ borderBottom: "1px solid #000000" }}>
+            <Container>
+              <Row>
+                <Col
+                  className="m-0 p-0"
+                  style={{ borderRight: "1px solid #000000" }}
                 >
                   <div
-                    data-aos="fade-up"
-                    className="mx-4 p-0"
-                  >{`${projects?.attributes?.year_project}, ${projects?.attributes?.place_project}`}</div>
-                </div>
-              </Col>
-            </Row>
+                    className="d-flex align-items-center justify-content-center text-center"
+                    style={{ height: "100px" }}
+                  >
+                    <a href={`/`}>
+                      <Fade bottom duration={2000}>
+                        <div
+                          // data-aos="fade-up"
+                          className="py-1 arrow_hover "
+                          style={{ width: "fit-content", cursor: "pointer" }}
+                        >
+                          {`${projects?.attributes?.menu?.data?.attributes?.title}`}
+                        </div>
+                      </Fade>
+                    </a>
+                  </div>
+                </Col>
+                <Col className="m-0 p-0">
+                  <div
+                    className="d-flex align-items-center justify-content-center text-center"
+                    style={{ height: "100px" }}
+                  >
+                    <Fade bottom duration={2000}>
+                      <div
+                        // data-aos="fade-up"
+                        className="mx-4 p-0"
+                      >{`${projects?.attributes?.year_project}, ${projects?.attributes?.place_project}`}</div>
+                    </Fade>
+
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </div>
+      </Fade>
+
+      <Fade bottom duration={2000}>
+        <div
+          // data-aos="fade-up"
+          className="py-4">
+          <Container>
+            <h3>About</h3>
+            <div>{`${projects?.attributes?.about}`}</div>
           </Container>
         </div>
-      </div>
+      </Fade>
 
-      <div data-aos="fade-up" className="py-4">
-        <Container>
-          <h3>About</h3>
-          <div>{`${projects?.attributes?.about}`}</div>
-        </Container>
-      </div>
 
       <div
         className="my-3"
         style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
       ></div>
 
-      <div data-aos="fade-up" className="py-4">
-        <Container>
-          <h1 className="pb-2">Result</h1>
-          <div
-            style={{
-              backgroundColor: "#000000",
-              height: "2px",
-              width: "180px",
-            }}
-          ></div>
-        </Container>
-      </div>
-
-      <div data-aos="fade-up" className="display-large">
-        <div className="py-4">
+      <Fade bottom duration={2000}>
+        <div
+          //  data-aos="fade-up" 
+          className="py-4">
           <Container>
-            <Row className="m-0 p-0 align-items-center">
-              <Col className="m-0 p-0">
-                <h3>{`${projects?.attributes?.metrics_one_desc}`}</h3>
-                <div
-                  style={{
-                    color: "#FF0000",
-                  }}
-                >
-                  {`${projects?.attributes?.metrics_one_title}`}
-                </div>
-              </Col>
-              <Col className="m-0 p-0">
-                <h3>{`${projects?.attributes?.metrics_two_desc}`}</h3>
-                <div
-                  style={{
-                    color: "#FF0000",
-                  }}
-                >
-                  {`${projects?.attributes?.metrics_two_title}`}
-                </div>
-              </Col>
-              <Col className="m-0 p-0">
-                {projects?.attributes?.desc_result !== null ? (
-                  <h3>{`${projects?.attributes?.desc_result}`}</h3>
-                ) : (
-                  <></>
-                )}
-
-              </Col>
-            </Row>
+            <h1 className="pb-2">Result</h1>
+            <div
+              style={{
+                backgroundColor: "#000000",
+                height: "2px",
+                width: "180px",
+              }}
+            ></div>
           </Container>
         </div>
-      </div>
 
-      <div data-aos="fade-up" className="display-small">
-        <div className="py-4">
-          <Container>
-            <Row className="m-0 p-0 align-items-center">
-              <Col className="m-0 p-0">
-                <h3>{`${projects?.attributes?.metrics_one_desc}`}</h3>
-                <div
-                  style={{
-                    color: "#FF0000",
-                  }}
-                >
-                  {`${projects?.attributes?.metrics_one_title}`}
-                </div>
-              </Col>
-              <Col className="m-0 p-0">
-                <h3>{`${projects?.attributes?.metrics_two_desc}`}</h3>
-                <div
-                  style={{
-                    color: "#FF0000",
-                  }}
-                >
-                  {`${projects?.attributes?.metrics_two_title}`}
-                </div>
-              </Col>
-            </Row>
-            <Row className="pt-4">
-              <Col className="m-0 p-0">
-                {projects?.attributes?.desc_result !== null ? (
-                  <h1>{`${projects?.attributes?.desc_result}`}</h1>
-                ) : (
-                  <></>
-                )}
-              </Col>
-            </Row>
-          </Container>
+      </Fade>
+
+
+      <Fade bottom duration={2000}>
+        <div
+          // data-aos="fade-up"
+          className="display-large">
+          <div className="py-4">
+            <Container>
+              <Row className="m-0 p-0 align-items-center">
+                <Col className="m-0 p-0">
+                  <h3>{`${projects?.attributes?.metrics_one_desc}`}</h3>
+                  <div
+                    style={{
+                      color: "#FF0000",
+                    }}
+                  >
+                    {`${projects?.attributes?.metrics_one_title}`}
+                  </div>
+                </Col>
+                <Col className="m-0 p-0">
+                  <h3>{`${projects?.attributes?.metrics_two_desc}`}</h3>
+                  <div
+                    style={{
+                      color: "#FF0000",
+                    }}
+                  >
+                    {`${projects?.attributes?.metrics_two_title}`}
+                  </div>
+                </Col>
+                <Col className="m-0 p-0">
+                  {projects?.attributes?.desc_result !== null ? (
+                    <h3>{`${projects?.attributes?.desc_result}`}</h3>
+                  ) : (
+                    <></>
+                  )}
+
+                </Col>
+              </Row>
+            </Container>
+          </div>
         </div>
-      </div>
+      </Fade>
+
+
+      <Fade bottom duration={2000}>
+        <div
+          // data-aos="fade-up"
+          className="display-small">
+          <div className="py-4">
+            <Container>
+              <Row className="m-0 p-0 align-items-center">
+                <Col className="m-0 p-0">
+                  <h3>{`${projects?.attributes?.metrics_one_desc}`}</h3>
+                  <div
+                    style={{
+                      color: "#FF0000",
+                    }}
+                  >
+                    {`${projects?.attributes?.metrics_one_title}`}
+                  </div>
+                </Col>
+                <Col className="m-0 p-0">
+                  <h3>{`${projects?.attributes?.metrics_two_desc}`}</h3>
+                  <div
+                    style={{
+                      color: "#FF0000",
+                    }}
+                  >
+                    {`${projects?.attributes?.metrics_two_title}`}
+                  </div>
+                </Col>
+              </Row>
+              <Row className="pt-4">
+                <Col className="m-0 p-0">
+                  {projects?.attributes?.desc_result !== null ? (
+                    <h1>{`${projects?.attributes?.desc_result}`}</h1>
+                  ) : (
+                    <></>
+                  )}
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </div>
+      </Fade>
+
 
       <div className="py-4">
         <Container className="p-0">
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 box">
             {gallery.map((val) => {
               return (
-                <div data-aos="fade-up">
-                  <CardsGallery
-                    img={val.attributes?.images?.data?.attributes?.url}
-                    place={val?.attributes?.place}
-                    id={val?.attributes?.id}
-                    childTitle={val?.attributes?.title}
-                    title={val?.attributes?.project?.data?.attributes?.title_project}
-                  />
-                </div>
+                <Fade bottom duration={2000}>
+                  <div
+                  // data-aos="fade-up"
+                  >
+                    <CardsGallery
+                      img={val.attributes?.images?.data?.attributes?.url}
+                      place={val?.attributes?.place}
+                      id={val?.attributes?.id}
+                      childTitle={val?.attributes?.title}
+                      title={val?.attributes?.project?.data?.attributes?.title_project}
+                    />
+                  </div>
+                </Fade>
+
               );
             })}
           </div>
         </Container>
       </div>
       {projects?.attributes?.url_website !== null ? (
-        <div data-aos="fade-up">
-          <Container className="d-flex align-items-center justify-content-center">
-            <a href={`${projects?.attributes?.url_website}`}>
-              <a target="_blank">
-                <h3
-                  style={{
-                    padding: "15px",
-                    backgroundColor: "#000000",
-                    color: "#ffffff",
-                    borderRadius: "50px",
-                    cursor: "pointer",
-                  }}
-                >
-                  {`${projects?.attributes?.url_website}`}
-                </h3>
+        <Fade bottom duration={2000}>
+          <div
+          // data-aos="fade-up"
+          >
+            <Container className="d-flex align-items-center justify-content-center">
+              <a href={`${projects?.attributes?.url_website}`}>
+                <a target="_blank">
+                  <h3
+                    style={{
+                      padding: "15px",
+                      backgroundColor: "#000000",
+                      color: "#ffffff",
+                      borderRadius: "50px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {`${projects?.attributes?.url_website}`}
+                  </h3>
+                </a>
               </a>
-            </a>
-          </Container>
-        </div>
+            </Container>
+          </div>
+        </Fade>
+
       ) : (
         <></>
       )}
 
-
-      <div
-        data-aos="fade-up"
-        className="pt-5 d-flex align-items-center text-center justify-content-center"
-        style={{
-          paddingLeft: "30px",
-          paddingRight: "30px",
-        }}
-      >
-        {/* {previous == null ? (
+      <Fade bottom duration={2000}>
+        <div
+          // data-aos="fade-up"
+          className="pt-5 d-flex align-items-center text-center justify-content-center"
+          style={{
+            paddingLeft: "30px",
+            paddingRight: "30px",
+          }}
+        >
+          {/* {previous == null ? (
           <a href={`#`} style={{ cursor: "unset", width: "250px" }}>
             <div className="col d-flex align-items-center">
               <div className="img-nav"></div>
@@ -487,33 +542,33 @@ function Work() {
             </div>
           </a>
         )} */}
-        <div className="col">
-          <Link
-            activeClass="active"
-            to={"top_work"}
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-          >
-            <div
-              style={{
-                marginLeft: "auto",
-                marginRight: "auto",
-                cursor: "pointer",
-                width: "fit-content",
-              }}
+          <div className="col">
+            <Link
+              activeClass="active"
+              to={"top_work"}
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
             >
-              <img
-                src={require("assets/img/icons/common/up.svg")}
-                className="img-nav"
-              />
-              <div className="pt-2">TOP</div>
-            </div>
-          </Link>
-        </div>
+              <div
+                style={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  cursor: "pointer",
+                  width: "fit-content",
+                }}
+              >
+                <img
+                  src={require("assets/img/icons/common/up.svg")}
+                  className="img-nav"
+                />
+                <div className="pt-2">TOP</div>
+              </div>
+            </Link>
+          </div>
 
-        {/* {next == null ? (
+          {/* {next == null ? (
           <a href={`#`} style={{ cursor: "unset", width: "250px" }}>
             <div className="col d-flex align-items-center justify-content-end">
               <div className="text-right mr-3 text-prevnext">
@@ -537,7 +592,9 @@ function Work() {
             </div>
           </a>
         )} */}
-      </div>
+        </div>
+      </Fade>
+
 
       <HomeFooterDetails />
     </>

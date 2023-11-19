@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
-import Fade from 'react-reveal/Fade';
 
 // reactstrap components
 import { Card, Container, Row, Col } from "reactstrap";
@@ -205,6 +204,7 @@ function Home() {
   };
 
   useEffect(() => {
+    AOS.init({ duration: 2000, once: true });
     getDataMediaNew()
     getHowWeDoItNew();
     getOurTeamNew();
@@ -212,7 +212,6 @@ function Home() {
     getDataBrandsNew()
     getBannerNew()
     getDataProfileNew()
-    AOS.init({ duration: 2000, once: true });
   }, []);
 
   useEffect(() => {
@@ -269,11 +268,7 @@ function Home() {
           })}
         </Slider>
       </div>
-      <Fade bottom duration={2000}>
-        <div
-        // data-aos="fade-up"
-        >{renderFilter}</div>
-      </Fade>
+      <div data-aos="fade-up">{renderFilter}</div>
       <div
         ref={workRef}
         id="work"
@@ -281,35 +276,27 @@ function Home() {
         style={{ backgroundColor: "#000000" }}
       >
         <Container className="pb-5">
-          <Fade bottom duration={2000}>
-            <div
-              // data-aos="fade-up"
-              style={{ color: "#ffffff", paddingLeft: "15px", fontSize: "16px" }}
-            >
-              {`Work / ${newMenu}`}
-            </div>
-          </Fade>
-
+          <div
+            data-aos="fade-up"
+            style={{ color: "#ffffff", paddingLeft: "15px", fontSize: "16px" }}
+          >
+            {`Work / ${newMenu}`}
+          </div>
         </Container>
 
         <Container>
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-2 box">
             {newProject.map((val) => {
               return (
-                <Fade bottom duration={2000}>
-                  <div
-                  // data-aos="fade-up"
-                  >
-                    <CardsProject
-                      img={val.attributes?.images_cover?.data?.attributes?.url}
-                      place={val.attributes?.place_project}
-                      id={val.id}
-                      childTitle={val.attributes?.child_title}
-                      title={val.attributes?.title_project}
-                    />
-                  </div>
-                </Fade>
-
+                <div data-aos="fade-up">
+                  <CardsProject
+                    img={val.attributes?.images_cover?.data?.attributes?.url}
+                    place={val.attributes?.place_project}
+                    id={val.id}
+                    childTitle={val.attributes?.child_title}
+                    title={val.attributes?.title_project}
+                  />
+                </div>
               );
             })}
           </div>
@@ -346,315 +333,279 @@ function Home() {
       <div className="pt-5 pb-4">
         <Container>
           <div className="text-center justify-content-center">
-            <Fade bottom duration={2000}>
-              <h1
-                // data-aos="fade-up"
-                className="title_section"
-                style={{
-                  color: "#000000",
-                  fontStyle: "bold",
-                }}
-              >
-                Why Katarsis
-              </h1>
-            </Fade>
-            <Fade bottom duration={2000}>
-              <div
-                // data-aos="fade-up"
-                style={{
-                  width: "180px",
-                  height: "5px",
-                  backgroundColor: "#000000",
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                }}
-                className="my-4"
-              ></div>
-            </Fade>
-            <Fade bottom duration={2000}>
-              <h2
-                // data-aos="fade-up"
-                style={{
-                  color: "#000000",
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                }}
-                className="py-4"
-              >
-                {`${HWDI.attributes?.title}`}
-              </h2>
-            </Fade>
-
-            <Fade bottom duration={2000}>
-              <div
-                // data-aos="fade-up"
-                className="desc_section"
-                style={{
-                  maxWidth: "70%",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  color: "#000000",
-                }}
-              >
-                {`${HWDI.attributes?.description}`}
-              </div>
-            </Fade>
-
+            <h1
+              data-aos="fade-up"
+              className="title_section"
+              style={{
+                color: "#000000",
+                fontStyle: "bold",
+              }}
+            >
+              Why Katarsis
+            </h1>
+            <div
+              data-aos="fade-up"
+              style={{
+                width: "180px",
+                height: "5px",
+                backgroundColor: "#000000",
+                marginRight: "auto",
+                marginLeft: "auto",
+              }}
+              className="my-4"
+            ></div>
+            <h2
+              data-aos="fade-up"
+              style={{
+                color: "#000000",
+                marginRight: "auto",
+                marginLeft: "auto",
+              }}
+              className="py-4"
+            >
+              {`${HWDI.attributes?.title}`}
+            </h2>
+            <div
+              data-aos="fade-up"
+              className="desc_section"
+              style={{
+                maxWidth: "70%",
+                marginLeft: "auto",
+                marginRight: "auto",
+                color: "#000000",
+              }}
+            >
+              {`${HWDI.attributes?.description}`}
+            </div>
           </div>
         </Container>
       </div>
 
-      <Fade bottom duration={2000}>
-        <div
-        // data-aos="fade-up"
-        >
-          <SliderProcess />
-        </div>
-      </Fade>
-
+      <div data-aos="fade-up">
+        <SliderProcess />
+      </div>
 
       <div
         className="my-5"
         style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
       ></div>
-      <Fade bottom duration={2000}>
-        <div
-        // data-aos="fade-up"
-        >
-          <WorkflowGraph />
-        </div>
-      </Fade>
 
+      <div data-aos="fade-up">
+        <WorkflowGraph />
+      </div>
 
       <div
         className="my-5"
         style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
       ></div>
-      <Fade bottom duration={2000}>
-        <div
-          //  data-aos="fade-up" 
-          className="pb-5 pt-3">
-          <Container>
-            <div className="text-center justify-content-center">
-              <h1
-                className="title_section"
-                style={{
-                  color: "#000000",
-                  fontStyle: "bold",
-                }}
-              >
-                Media Coverage
-              </h1>
-              <div
-                style={{
-                  width: "180px",
-                  height: "5px",
-                  backgroundColor: "#000000",
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                }}
-                className="my-4"
-              ></div>
-              <div className="media_coverage">
-                <Container>
-                  <Card className="content">
-                    <Container>
-                      <Slider {...mediaCoverage}>
-                        {media.map((val) => {
-                          return (
-                            <Col>
-                              <Row
-                                className="justify-content-center mb-4 align-items-center"
-                                style={{ height: "100px", width: "100%" }}
-                              >
-                                <img
-                                  src={`https://admin.katarsis.co.id${val.attributes?.images?.data?.attributes?.url}`}
-                                  style={{ maxWidth: "100%", maxHeight: "100px" }}
-                                />
-                              </Row>
-                            </Col>
-                          );
-                        })}
-                      </Slider>
-                    </Container>
-                  </Card>
-                </Container>
-              </div>
+
+      <div data-aos="fade-up" className="pb-5 pt-3">
+        <Container>
+          <div className="text-center justify-content-center">
+            <h1
+              className="title_section"
+              style={{
+                color: "#000000",
+                fontStyle: "bold",
+              }}
+            >
+              Media Coverage
+            </h1>
+            <div
+              style={{
+                width: "180px",
+                height: "5px",
+                backgroundColor: "#000000",
+                marginRight: "auto",
+                marginLeft: "auto",
+              }}
+              className="my-4"
+            ></div>
+            <div className="media_coverage">
+              <Container>
+                <Card className="content">
+                  <Container>
+                    <Slider {...mediaCoverage}>
+                      {media.map((val) => {
+                        return (
+                          <Col>
+                            <Row
+                              className="justify-content-center mb-4 align-items-center"
+                              style={{ height: "100px", width: "100%" }}
+                            >
+                              <img
+                                src={`https://admin.katarsis.co.id${val.attributes?.images?.data?.attributes?.url}`}
+                                style={{ maxWidth: "100%", maxHeight: "100px" }}
+                              />
+                            </Row>
+                          </Col>
+                        );
+                      })}
+                    </Slider>
+                  </Container>
+                </Card>
+              </Container>
             </div>
-          </Container>
-        </div>
-      </Fade>
-
-
-      <div
-        className="my-5"
-        style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
-      ></div>
-      <Fade bottom duration={2000}>
-        <div
-          //  data-aos="fade-up" 
-          className="pb-5 pt-3">
-          <Container>
-            <div className="text-center justify-content-center">
-              <h1
-                className="title_section"
-                style={{
-                  color: "#000000",
-                  fontStyle: "bold",
-                }}
-              >
-                Trusted By
-              </h1>
-              <div
-                style={{
-                  width: "180px",
-                  height: "5px",
-                  backgroundColor: "#000000",
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                }}
-                className="my-4"
-              ></div>
-              <div className="media_coverage">
-                <Container>
-                  <Card className="content">
-                    <Container>
-                      <Slider {...mediaCoverage}>
-                        {brands.map((val) => {
-                          return (
-                            <Col>
-                              <Row
-                                className="justify-content-center mb-4 align-items-center"
-                                style={{ height: "100px", width: "100%" }}
-                              >
-                                <img
-                                  src={`https://admin.katarsis.co.id${val.attributes?.images?.data?.attributes?.url}`}
-                                  style={{ maxWidth: "100%", maxHeight: "100px" }}
-                                />
-                              </Row>
-                            </Col>
-                          );
-                        })}
-                      </Slider>
-                    </Container>
-                  </Card>
-                </Container>
-              </div>
-            </div>
-          </Container>
-        </div>
-      </Fade>
-
-
-      <div
-        className="my-5"
-        style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
-      ></div>
-      <Fade bottom duration={2000}>
-        <div
-          //  data-aos="fade-up"
-          className="pt-3">
-          <Container>
-            <div className="text-center justify-content-center">
-              <h1
-                className="title_section"
-                style={{
-                  color: "#000000",
-                  fontStyle: "bold",
-                }}
-              >
-                Our Team
-              </h1>
-              <div
-                style={{
-                  width: "180px",
-                  height: "5px",
-                  backgroundColor: "#000000",
-                  marginRight: "auto",
-                  marginLeft: "auto",
-                }}
-                className="my-4"
-              ></div>
-            </div>
-          </Container>
-        </div>
-      </Fade>
-
-      <Fade bottom duration={2000}>
-        <div className="py-3">
-          <div className="media_coverage">
-            <Container>
-              <Card className="content">
-                <Container className="profile_slider">
-                  <Slider {...profileSlide}>
-                    {profile.map((val) => {
-                      return (
-                        <div
-                        // data-aos="fade-up"
-                        >
-                          <CardsProfile
-                            img={val.attributes?.image?.data?.attributes?.url}
-                            name={val.attributes?.name}
-                            id={val?.id}
-                            url={val.attributes?.url_linlassn}
-                            position={val.attributes?.position}
-                          />
-                        </div>
-                      );
-                    })}
-                  </Slider>
-                </Container>
-              </Card>
-            </Container>
           </div>
-        </div>
-      </Fade>
+        </Container>
+      </div>
 
       <div
         className="my-5"
         style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
       ></div>
-      <Fade bottom duration={2000}><img
-        // data-aos="fade-up"
+
+      <div data-aos="fade-up" className="pb-5 pt-3">
+        <Container>
+          <div className="text-center justify-content-center">
+            <h1
+              className="title_section"
+              style={{
+                color: "#000000",
+                fontStyle: "bold",
+              }}
+            >
+              Trusted By
+            </h1>
+            <div
+              style={{
+                width: "180px",
+                height: "5px",
+                backgroundColor: "#000000",
+                marginRight: "auto",
+                marginLeft: "auto",
+              }}
+              className="my-4"
+            ></div>
+            <div className="media_coverage">
+              <Container>
+                <Card className="content">
+                  <Container>
+                    <Slider {...mediaCoverage}>
+                      {brands.map((val) => {
+                        return (
+                          <Col>
+                            <Row
+                              className="justify-content-center mb-4 align-items-center"
+                              style={{ height: "100px", width: "100%" }}
+                            >
+                              <img
+                                src={`https://admin.katarsis.co.id${val.attributes?.images?.data?.attributes?.url}`}
+                                style={{ maxWidth: "100%", maxHeight: "100px" }}
+                              />
+                            </Row>
+                          </Col>
+                        );
+                      })}
+                    </Slider>
+                  </Container>
+                </Card>
+              </Container>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      <div
+        className="my-5"
+        style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
+      ></div>
+
+      <div data-aos="fade-up" className="pt-3">
+        <Container>
+          <div className="text-center justify-content-center">
+            <h1
+              className="title_section"
+              style={{
+                color: "#000000",
+                fontStyle: "bold",
+              }}
+            >
+              Our Team
+            </h1>
+            <div
+              style={{
+                width: "180px",
+                height: "5px",
+                backgroundColor: "#000000",
+                marginRight: "auto",
+                marginLeft: "auto",
+              }}
+              className="my-4"
+            ></div>
+          </div>
+        </Container>
+      </div>
+
+      <div className="py-3">
+        <div className="media_coverage">
+          <Container>
+            <Card className="content">
+              <Container className="profile_slider">
+                <Slider {...profileSlide}>
+                  {profile.map((val) => {
+                    return (
+                      <div data-aos="fade-up">
+                        <CardsProfile
+                          img={val.attributes?.image?.data?.attributes?.url}
+                          name={val.attributes?.name}
+                          id={val?.id}
+                          url={val.attributes?.url_linkedin}
+                          position={val.attributes?.position}
+                        />
+                      </div>
+                    );
+                  })}
+                </Slider>
+              </Container>
+            </Card>
+          </Container>
+        </div>
+      </div>
+
+      <div
+        className="my-5"
+        style={{ height: "2px", backgroundColor: "#aaaaaa", width: "100%" }}
+      ></div>
+
+      <img
+        data-aos="fade-up"
         src={`https://admin.katarsis.co.id${ourTeam.attributes?.image?.data?.attributes?.url}`}
         alt="Image Out Team"
         style={{
           width: "100%",
           objectFit: "cover",
         }}
-      /></Fade>
+      />
 
-      <Fade bottom duration={2000}>
-        <div
-          // data-aos="fade-up"
-          className="pt-5 text-center justify-content-center"
+      <div
+        data-aos="fade-up"
+        className="pt-5 text-center justify-content-center"
+      >
+        <Link
+          activeClass="active"
+          to={"top"}
+          spy={true}
+          smooth={true}
+          offset={-70}
+          duration={500}
         >
-          <Link
-            activeClass="active"
-            to={"top"}
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
+          <div
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              cursor: "pointer",
+              width: "fit-content",
+            }}
           >
-            <div
-              style={{
-                marginLeft: "auto",
-                marginRight: "auto",
-                cursor: "pointer",
-                width: "fit-content",
-              }}
-            >
-              <img
-                src={require("assets/img/icons/common/up.svg")}
-                style={{ width: "50px", height: "50px" }}
-              />
-              <div className="pt-2">TOP</div>
-            </div>
-          </Link>
-        </div>
-      </Fade>
-
+            <img
+              src={require("assets/img/icons/common/up.svg")}
+              style={{ width: "50px", height: "50px" }}
+            />
+            <div className="pt-2">TOP</div>
+          </div>
+        </Link>
+      </div>
     </>
   );
 }
