@@ -13,13 +13,14 @@ function HomeFooter() {
   const [linkedin, setLinkedin] = useState("");
   const [instagram, setInstagram] = useState("");
   const [tiktok, setTiktok] = useState("");
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState("Crystal 8, Alam Sutera, Jalan Bhayangkara Pusdiklantas nomor 10-11, Kel. , Kec. , Kota Tangerang Selatan, Prop. Banten 15325");
   const [number, setNumber] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [info, setInfo] = useState("");
   const [marketing, setMarketing] = useState("");
   const [partnership, setPartnership] = useState("");
   const [career, setCareer] = useState("");
+  const [nameCompany, setNameCompany] = useState("PT. ASTANA DIGITAL NUSANTARA");
 
   const contactRef = useRef();
 
@@ -32,10 +33,11 @@ function HomeFooter() {
     }
   }
 
-  const getAddress = async () => {
-    const data = await fetchWrapper.get(`api/strapi/get-address`);
+  const getCompanyProfile = async () => {
+    const data = await fetchWrapper.get(`../api/strapi/get-address`);
     if (data) {
-      setAddress(data.data.attributes.value);
+      setNameCompany(data.data.attributes.company_name);
+      setAddress(data.data.attributes.address);
     }
   };
 
@@ -131,7 +133,7 @@ function HomeFooter() {
     getPartnership();
     getCareer();
     handleContactRef();
-    getAddress()
+    getCompanyProfile()
   }, []);
 
   return (
@@ -292,7 +294,7 @@ function HomeFooter() {
 
           <Container>
             <div className="text-center pt-5 pb-3">
-              <h3>PT. ASTANA DIGITAL NUSANTARA</h3>
+              <h3>{nameCompany}</h3>
               <div
                 style={{
                   maxWidth: "450px",
