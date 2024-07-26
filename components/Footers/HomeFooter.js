@@ -13,6 +13,7 @@ function HomeFooter() {
   const [linkedin, setLinkedin] = useState("");
   const [instagram, setInstagram] = useState("");
   const [tiktok, setTiktok] = useState("");
+  const [address, setAddress] = useState("");
   const [number, setNumber] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [info, setInfo] = useState("");
@@ -30,6 +31,13 @@ function HomeFooter() {
     } else {
     }
   }
+
+  const getAddress = async () => {
+    const data = await fetchWrapper.get(`api/strapi/get-address`);
+    if (data) {
+      setAddress(data.data.attributes.value);
+    }
+  };
 
   const getInstagram = async () => {
     const data = await fetchWrapper.get(`api/strapi/content/get-link?type=instagram`);
@@ -123,6 +131,7 @@ function HomeFooter() {
     getPartnership();
     getCareer();
     handleContactRef();
+    getAddress()
   }, []);
 
   return (
@@ -292,8 +301,7 @@ function HomeFooter() {
                 }}
                 className="pb-5"
               >
-                Crystal 8, Alam Sutera, Jalan Bhayangkara Pusdiklantas nomor
-                10-11, Kel. , Kec. , Kota Tangerang Selatan, Prop. Banten 15325
+                {address}
               </div>
               <div>© Katarsis 2022</div>
             </div>
