@@ -1,9 +1,9 @@
-import { API_APPS_HOSTE } from "../../../../config/index2";
+import { API_APPS_HOST } from "../../../../config/index";
 
 export default async (req, res) => {
   if (req.method === "GET") {
     const response = await fetch(
-      `${API_APPS_HOSTE}/api/jobs?filters[departement][id][$eq]=${req.query.id_departement}&populate[0]=departement`,
+      `${API_APPS_HOST}/api/jobs?filters[departement][id][$eq]=${req.query.id_departement}&populate[0]=departement`,
       {
         method: "GET",
         headers: {

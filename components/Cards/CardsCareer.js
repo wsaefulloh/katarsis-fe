@@ -22,7 +22,7 @@ import useCollapse from "react-collapsed";
 import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
 function CardsCareer(props) {
-  let { description_departement, title_departement, id, last } = props;
+  let { description_departement, title_departement, id, last, job_description, requirements } = props;
 
   const [job, setJob] = useState([]);
   const [length, setLength] = useState(0);
@@ -45,7 +45,6 @@ function CardsCareer(props) {
   return (
     <>
       <div>
-        <div style={{ backgroundColor: "#000000", height: "1px" }}></div>
         <div
           className="py-4"
           style={{
@@ -55,7 +54,7 @@ function CardsCareer(props) {
         >
           <Container>
             <div
-              className="d-flex align-items-center justify-content-between"
+              className="px-4 d-flex align-items-center justify-content-between"
               {...getToggleProps()}
             >
               {isExpanded ? (
@@ -63,19 +62,23 @@ function CardsCareer(props) {
                   <div>
                     <h2
                       style={{
-                        color: "#000000",
+                        color: "#FFFFFF",
                         fontStyle: "bold",
                       }}
                     >
                       {`${title_departement}`}
                     </h2>
-                    <div
+                    {/* <div
                       style={{ color: "#7B7B7B" }}
-                    >{`${length} OPEN ROLES`}</div>
+                    >{`${length} OPEN ROLES`}</div> */}
                   </div>
                   <div>
                     <img
-                      src={require("assets/img/icons/common/up_vector.png")}
+                      src={require("assets/img/icons/common/UnionDown.png")}
+                      style={{
+                        width: "20px",
+                        height: "20px",
+                      }}
                     />
                   </div>
                 </>
@@ -84,26 +87,43 @@ function CardsCareer(props) {
                   <div>
                     <h2
                       style={{
-                        color: "#000000",
+                        color: "#FFFFFF",
                         fontStyle: "bold",
                       }}
                     >
                       {`${title_departement}`}
                     </h2>
-                    <div
+                    {/* <div
                       style={{ color: "#7B7B7B" }}
-                    >{`${length} OPEN ROLES`}</div>
+                    >{`${length} OPEN ROLES`}</div> */}
                   </div>
                   <div>
                     <img
-                      src={require("assets/img/icons/common/down_vector.png")}
+                      src={require("assets/img/icons/common/UnionUp.png")}
+                      style={{
+                        width: "20px",
+                        height: "20px",
+                      }}
                     />
                   </div>
                 </>
               )}
             </div>
-            <div className="mt-4" {...getCollapseProps()}>
-              <div>{`${description_departement}`}</div>
+            <div className="px-4 mt-4" {...getCollapseProps()}>
+              <div className="py-4" style={{ paddingLeft: "0px", paddingRight: "1.5rem" }}>
+                <div className="service-title">{`job description`}</div>
+                <div className="service-desc">{`${job_description}`}</div>
+              </div>
+              <div className="py-4" style={{ paddingLeft: "0px", paddingRight: "1.5rem" }}>
+                <div className="service-title">{`requirements`}</div>
+                <div className="service-desc">{`${requirements}`}</div>
+              </div>
+              <div className="py-4 banner-box" style={{ width: "100px" }}>
+                <div className="banner-title" style={{ textAlign: "center", border: "1px solid #FFFFFF", padding: "10px", fontSize: "14px", borderRadius: "10px" }}>
+                  hit us!
+                </div>
+              </div>
+              {/* <div>{`${description_departement}`}</div>
               <div className="mt-4">
                 {job.map((val, index) => {
                   if (index % 2 == 0) {
@@ -170,7 +190,7 @@ function CardsCareer(props) {
                     );
                   }
                 })}
-              </div>
+              </div> */}
             </div>
           </Container>
         </div>

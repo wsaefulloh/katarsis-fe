@@ -1,17 +1,17 @@
-import { API_APPS_HOSTE } from "../../../config/index2";
+import { API_APPS_HOST } from "../../../config/index";
 
 export default async (req, res) => {
   if (req.method === "GET") {
     let response
     if (req.query.menu !== 'null') {
-      response = await fetch(`${API_APPS_HOSTE}/api/projects?sort[0]=id%3Adesc&filters[menu][id][$eq]=${req.query.menu}&pagination[page]=${req.query.page}&pagination[pageSize]=4&populate=*`, {
+      response = await fetch(`${API_APPS_HOST}/api/projects?sort[0]=id%3Adesc&filters[menu][id][$eq]=${req.query.menu}&pagination[page]=${req.query.page}&pagination[pageSize]=4&populate=*`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
     } else {
-      response = await fetch(`${API_APPS_HOSTE}/api/projects?sort[0]=id%3Adesc&filters[submenu][id][$eq]=${req.query.submenu}&pagination[page]=${req.query.page}&pagination[pageSize]=4&populate=*`, {
+      response = await fetch(`${API_APPS_HOST}/api/projects?sort[0]=id%3Adesc&filters[submenu][id][$eq]=${req.query.submenu}&pagination[page]=${req.query.page}&pagination[pageSize]=4&populate=*`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

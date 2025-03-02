@@ -139,54 +139,44 @@ function HomeFooter() {
   return (
     <>
       <footer id="footer_id" ref={contactRef}>
-        <Container className="pt-4 ">
-          <div className="text-center pb-4">
+        <Container style={{ paddingTop: "40px" }}>
+          <div className="text-center">
             <img
               alt="..."
-              src={require("assets/img/brand/Logo Katarsis png.png")}
-              height="40px"
+              src={require("assets/img/brand/Logo Katarsis Putih.png")}
+              height="25px"
             />
           </div>
-          <div className="pt-4 pb-3 d-flex align-items-center justify-content-center">
+          <div className="d-flex align-items-center justify-content-center" style={{ paddingTop: "40px" }}>
             <Link href={`${instagram}`}>
               <a target="_blank">
                 <div className="mx-1">
                   <img
                     style={{ width: "20px" }}
-                    src={require("assets/img/brand/logo instagram.png")}
+                    src={require("assets/img/brand/Logo Instagram Putih.png")}
                   />
                 </div>
               </a>
             </Link>
-            {/* <Link href={`${tiktok}`}>
-              <a target="_blank">
-                <div className="mx-1">
-                  <img
-                    style={{ width: "20px" }}
-                    src={require("assets/img/brand/logo tiktok.png")}
-                  />
-                </div>
-              </a>
-            </Link> */}
             <Link href={`${linkedin}`}>
               <a target="_blank">
                 <div className="mx-1">
                   <img
                     style={{ width: "20px" }}
-                    src={require("assets/img/brand/logo linkedin.png")}
+                    src={require("assets/img/brand/Logo Linkedin Putih.png")}
                   />
                 </div>
               </a>
             </Link>
           </div>
           <div className="display-large">
-            <Row className="pb-2 pt-5">
+            <Row style={{ paddingTop: "40px" }}>
               <Col className="padding_footer">
                 <div className="border-footer">
                   <div className="mx-3 py-2">
-                    <h5>INFO</h5>
+                    <h5 style={{ color: "#FFFFFF" }}>INFO</h5>
                     <a style={{ cursor: "pointer" }} href={`mailto:${info}`}>
-                      <div>{`${info}`}</div>
+                      <div style={{ color: "#FFFFFF" }}>{`${info}`}</div>
                     </a>
                   </div>
                 </div>
@@ -194,12 +184,12 @@ function HomeFooter() {
               <Col className="padding_footer">
                 <div className="border-footer">
                   <div className="mx-3 py-2">
-                    <h5>MARKETING</h5>
+                    <h5 style={{ color: "#FFFFFF" }}>MARKETING</h5>
                     <a
                       style={{ cursor: "pointer" }}
                       href={`mailto:${marketing}`}
                     >
-                      <div>{`${marketing}`}</div>
+                      <div style={{ color: "#FFFFFF" }}>{`${marketing}`}</div>
                     </a>
                   </div>
                 </div>
@@ -207,12 +197,12 @@ function HomeFooter() {
               <Col className="padding_footer">
                 <div className="border-footer">
                   <div className="mx-3 py-2">
-                    <h5>PARTNERSHIP</h5>
+                    <h5 style={{ color: "#FFFFFF" }}>PARTNERSHIP</h5>
                     <a
                       style={{ cursor: "pointer" }}
                       href={`mailto:${partnership}`}
                     >
-                      <div>{`${partnership}`}</div>
+                      <div style={{ color: "#FFFFFF" }}>{`${partnership}`}</div>
                     </a>
                   </div>
                 </div>
@@ -220,17 +210,17 @@ function HomeFooter() {
               <Col className="padding_footer">
                 <div className="border-footer">
                   <div className="mx-3 py-2">
-                    <h5>CUSTOMER SERVICE</h5>
-                    <div>{`${number}`}</div>
+                    <h5 style={{ color: "#FFFFFF" }}>CUSTOMER SERVICE</h5>
+                    <div style={{ color: "#FFFFFF" }}>{`${number}`}</div>
                   </div>
                 </div>
               </Col>
               <Col className="padding_footer">
                 <div>
                   <div className="mx-3 py-2">
-                    <h5>CAREERS</h5>
+                    <h5 style={{ color: "#FFFFFF" }}>CAREERS</h5>
                     <a style={{ cursor: "pointer" }} href={`mailto:${career}`}>
-                      <div>{`${career}`}</div>
+                      <div style={{ color: "#FFFFFF" }}>{`${career}`}</div>
                     </a>
                   </div>
                 </div>
@@ -242,9 +232,9 @@ function HomeFooter() {
             <Col className="padding_footer">
               <div className="border-footer">
                 <div className="mx-3 pt-2 pb-4">
-                  <h5>INFO</h5>
+                  <h5 style={{ color: "#FFFFFF" }}>INFO</h5>
                   <a style={{ cursor: "pointer" }} href={`mailto:${info}`}>
-                    <div>{`${info}`}</div>
+                    <div style={{ color: "#FFFFFF" }}>{`${info}`}</div>
                   </a>
                 </div>
               </div>
@@ -252,9 +242,9 @@ function HomeFooter() {
             <Col className="padding_footer">
               <div className="border-footer">
                 <div className="mx-3 pb-4">
-                  <h5>MARKETING</h5>
+                  <h5 style={{ color: "#FFFFFF" }}>MARKETING</h5>
                   <a style={{ cursor: "pointer" }} href={`mailto:${marketing}`}>
-                    <div>{`${marketing}`}</div>
+                    <div style={{ color: "#FFFFFF" }}>{`${marketing}`}</div>
                   </a>
                 </div>
               </div>
@@ -262,12 +252,12 @@ function HomeFooter() {
             <Col className="padding_footer">
               <div className="border-footer">
                 <div className="mx-3 pb-4">
-                  <h5>PARTNERSHIP</h5>
+                  <h5 style={{ color: "#FFFFFF" }}>PARTNERSHIP</h5>
                   <a
                     style={{ cursor: "pointer" }}
                     href={`mailto:${partnership}`}
                   >
-                    <div>{`${partnership}`}</div>
+                    <div style={{ color: "#FFFFFF" }}>{`${partnership}`}</div>
                   </a>
                 </div>
               </div>
@@ -275,17 +265,17 @@ function HomeFooter() {
             <Col className="padding_footer">
               <div className="border-footer">
                 <div className="mx-3 pb-4">
-                  <h5>CUSTOMER SERVICE</h5>
-                  <div>{`${number}`}</div>
+                  <h5 style={{ color: "#FFFFFF" }}>CUSTOMER SERVICE</h5>
+                  <div style={{ color: "#FFFFFF" }}>{`${number}`}</div>
                 </div>
               </div>
             </Col>
             <Col className="padding_footer">
               <div>
                 <div className="mx-3 pb-2">
-                  <h5>CAREERS</h5>
+                  <h5 style={{ color: "#FFFFFF" }}>CAREERS</h5>
                   <a style={{ cursor: "pointer" }} href={`mailto:${career}`}>
-                    <div>{`${career}`}</div>
+                    <div style={{ color: "#FFFFFF" }}>{`${career}`}</div>
                   </a>
                 </div>
               </div>
@@ -293,19 +283,20 @@ function HomeFooter() {
           </div>
 
           <Container>
-            <div className="text-center pt-5 pb-3">
-              <h3>{nameCompany}</h3>
+            <div className="text-center pb-3" style={{ paddingTop: "40px" }}>
+              <h3 style={{ color: "#FFFFFF" }}>{nameCompany}</h3>
               <div
                 style={{
                   maxWidth: "450px",
                   marginRight: "auto",
                   marginLeft: "auto",
+                  color: "#FFFFFF"
                 }}
                 className="pb-5"
               >
                 {address}
               </div>
-              <div>© Katarsis 2022</div>
+              <div style={{ color: "#FFFFFF" }}>© Katarsis 2025</div>
             </div>
           </Container>
         </Container>
@@ -317,7 +308,7 @@ function HomeFooter() {
             style={{
               position: "fixed",
               bottom: "30px",
-              right: "30px",
+              right: "60px",
               zIndex: "1234567",
               padding: "10px",
               backgroundColor: "#7EE488",

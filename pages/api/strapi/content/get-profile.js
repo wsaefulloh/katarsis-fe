@@ -1,17 +1,17 @@
-import { API_APPS_HOSTE } from "../../../../config/index2";
+import { API_APPS_HOST } from "../../../../config/index";
 
 export default async (req, res) => {
   if (req.method === "GET") {
     let response
     if (req.query.team === 'true') {
-      response = await fetch(`${API_APPS_HOSTE}/api/profiles?filters[name][$eq]=team&populate=*`, {
+      response = await fetch(`${API_APPS_HOST}/api/profiles?filters[name][$eq]=team&populate=*`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
     } else {
-      response = await fetch(`${API_APPS_HOSTE}/api/profiles?filters[name][$ne]=team&populate=*`, {
+      response = await fetch(`${API_APPS_HOST}/api/profiles?filters[name][$ne]=team&populate=*`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

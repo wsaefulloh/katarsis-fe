@@ -1,29 +1,28 @@
 import { Link, animateScroll as scroll } from "react-scroll";
-import Image from "next/image";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "../../assets/css/main/main.module.css";
 import { Container, NavbarBrand } from "reactstrap";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 
 const MENU_LIST = [
-  { text: "About", href: "/", link: "about" },
-  { text: "Work", href: "/#work", link: "work" },
-  { text: "Career", href: "/career", link: "career" },
-  { text: "Contact", href: "/#footer_id", link: "footer_id" },
+  { text: "HOME", href: "/", link: "about" },
+  { text: "ABOUT", href: "/", link: "about" },
+  { text: "SERVICES", href: "/", link: "about" },
+  { text: "EVENTS", href: "/#work", link: "work" },
+  { text: "CAREER", href: "/career", link: "career" },
+  { text: "CONTACT US", href: "/#footer_id", link: "footer_id" },
 ];
 
 const NavItem = ({ text, href, active, link }) => {
-  // console.log(active);
   const [cookies, setCookie] = useCookies(["hash"]);
   const router = useRouter();
   const url_page = router.asPath;
-  console.log(url_page);
 
   if (link == "career" || link == "about") {
     return (
       <a href={href}>
-        <div style={{ cursor: "pointer" }} className="px-3 nav__link">
+        <div style={{ cursor: "pointer", color: "#FFFFFF" }} className={`px-3 nav__link`} >
           <a>{text}</a>
         </div>
       </a>
@@ -40,18 +39,13 @@ const NavItem = ({ text, href, active, link }) => {
           duration={500}
         >
           <a href={href}>
-            <div style={{ cursor: "pointer" }} className="px-3 nav__link">
+            <div style={{ cursor: "pointer", color: "#FFFFFF" }} className={`px-3 nav__link ${active ? 'active' : ''}`}>
               <a>{text}</a>
             </div>
           </a>
         </Link>
       );
     } else {
-      // let toScroll = (hash) => {
-      //   setCookie("hash", `${hash}`, { path: "/" });
-      //   router.push("/");
-      // };
-
       return (
         <a
           href={"/"}
@@ -59,8 +53,7 @@ const NavItem = ({ text, href, active, link }) => {
             setCookie("hash", `${link}`, { path: "/" });
           }}
         >
-          {/* <a href={"/"}> */}
-          <div style={{ cursor: "pointer" }} className="px-3 nav__link">
+          <div style={{ cursor: "pointer", color: "#FFFFFF" }} className={`px-3 nav__link ${active ? 'active' : ''}`}>
             <a>{text}</a>
           </div>
         </a>
@@ -71,24 +64,22 @@ const NavItem = ({ text, href, active, link }) => {
 
 const HomeNavbar = () => {
   const [navActive, setNavActive] = useState(null);
-
   const [activeIdx, setActiveIdx] = useState(-1);
   const router = useRouter();
   const url_page = router.asPath;
   const [url, setUrl] = useState(`${url_page}`);
-  // console.log(url_page);
 
   return (
-    <header>
-      <nav className="shadow-sm">
-        <Container className="d-flex align-items-center justify-content-between">
-          <a href="/">
+    <header style={{ backgroundColor: "#000000" }}>
+      <nav style={{ backgroundColor: "#000000" }}>
+        <Container className="align-items-center justify-content-between text-center">
+          <a href="/" style={{ margin: "unset" }}>
             <span>
-              <NavbarBrand href="/">
+              <NavbarBrand href="/" style={{ margin: "unset" }}>
                 <img
                   alt="..."
-                  src={require("assets/img/brand/Logo Katarsis png.png")}
-                  height="20px"
+                  src={require("assets/img/brand/Logo Katarsis Putih.png")}
+                  height="25px"
                 />
               </NavbarBrand>
             </span>
@@ -101,11 +92,8 @@ const HomeNavbar = () => {
             <div></div>
             <div></div>
           </div>
-          <div className={`${navActive ? "active" : ""} nav__menu-list`}>
+          <div className={`${navActive ? "active" : ""} nav__menu-list`} style={{ backgroundColor: "#000000", width: "100%", justifyContent: "center", marginTop: "40px" }}>
             {MENU_LIST.map((menu, idx) => {
-              // console.log(`${menu.href}`);
-              // console.log(url_page === `${menu.href}`);
-              // console.log(idx);
               return (
                 <div
                   onClick={() => {
@@ -114,6 +102,7 @@ const HomeNavbar = () => {
                     setUrl(`${menu.href}`);
                   }}
                   key={menu.text}
+                  style={{ backgroundColor: "#000000" }}
                 >
                   <NavItem active={url === `${menu.href}`} {...menu} />
                 </div>

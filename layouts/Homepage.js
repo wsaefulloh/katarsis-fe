@@ -45,15 +45,17 @@ function HomeLayout({ children }) {
   // }, []);
 
   return (
-    <>
-      <div className="main-content">
-        <>
-          <HomeNavbar />
-          {children}
+    <div style={{ backgroundColor: "#000000" }}>
+      <div className="main-content margin">
+        <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+          <div>
+            <HomeNavbar />
+            {children}
+          </div>
           <HomeFooter />
-        </>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

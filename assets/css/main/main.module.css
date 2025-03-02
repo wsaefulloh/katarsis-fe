@@ -11,14 +11,24 @@
 @font-face {
   font-family: "MaisonNeue";
   src: url("../../fonts/MaisonNeueExtended-Medium.ttf");
-  font-style: medium;
-  font-weight: 400;
-  font-display: swap;
+}
+
+@font-face {
+  font-family: "MaisonNeue-Light";
+  src: url("../../fonts/MaisonNeue-Light.ttf");
+}
+
+.MaisonNeue-Light {
+  font-family: "MaisonNeue-Light" !important;
+}
+
+.MaisonNeue {
+  font-family: "MaisonNeue" !important;
 }
 
 body {
   font-family: "MaisonNeue";
-  font-style: normal;
+  font-style: bold;
   font-size: 12px;
   color: #000000;
   background-color: #ffffff;
@@ -132,25 +142,29 @@ header {
   z-index: 30;
   top: 0;
 }
+
 nav {
   display: flex;
-  padding: 16px;
+  padding: 40px 16px;
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
 }
+
 .nav__menu-bar {
   display: flex;
   flex-direction: column;
   row-gap: 6px;
   cursor: pointer;
 }
+
 .nav__menu-bar div {
   width: 30px;
   height: 2px;
   background-color: black;
   border-radius: 2px;
 }
+
 .nav__menu-list {
   display: flex;
   flex-direction: column;
@@ -163,6 +177,7 @@ nav {
   min-height: calc(100vh - 60px);
   background-color: #ffffff;
 }
+
 .nav__menu-list.active {
   right: 0;
   padding: 30px;
@@ -180,7 +195,7 @@ nav {
   color: #666666;
 }
 
-.nav-item > .active {
+.nav-item>.active {
   font-size: 0.875rem;
   position: relative;
   transition: all 0.2s;
@@ -189,7 +204,7 @@ nav {
 }
 
 .nav__link {
-  font-size: 0.875rem;
+  font-size: 12px;
   position: relative;
   transition: all 0.2s;
   color: #666666;
@@ -263,7 +278,7 @@ nav {
 
 .slick-next:before,
 .slick-prev:before {
-  color: #000000;
+  color: #FFFFFF;
 }
 
 .background_image {
@@ -371,6 +386,7 @@ nav {
   opacity: 0;
   transition: visibility 0s linear 0ms, opacity 900ms;
 }
+
 .m-fadeIn {
   visibility: visible;
   /* display: block; */
@@ -464,6 +480,82 @@ nav {
   width: 20px;
 }
 
+.margin {
+  margin-left: 30px;
+  margin-right: 30px;
+  border-left: 1px solid #FFFFFF;
+  border-right: 1px solid #FFFFFF;
+}
+
+.banner-box .banner-title {
+  color: #ffffff;
+}
+
+.banner-box .banner-title:hover {
+  color: #000000;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.banner-box .banner-title.hovered {
+  color: #000000;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.service-title {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.service-desc {
+  color: #FFFFFF;
+  margin-top: 15px;
+  font-size: 14px;
+  font-family: 'MaisonNeue-Light';
+}
+
+.image-banner {
+  width: 100%;
+  max-height: 300px;
+  object-fit: center;
+  padding-bottom: 7.5px;
+  display: none;
+
+  &.open {
+    display: block;
+  }
+}
+
+.button-service {
+  color: #adacaa;
+}
+
+.button-service.active-service {
+  color: #FFFFFF;
+}
+
+.button-service:hover {
+  color: #FFFFFF;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.calendar .slick-dots li.slick-active button:before {
+  color: #FFFFFF !important;
+}
+
+.calendar .slick-dots li button:before {
+  color: #adacaa !important;
+}
+
+.service:hover {
+  cursor: pointer !important;
+}
+
 @media screen and (min-width: 789px) {
   .border_filter {
     border-right: 2px solid #000000;
@@ -472,7 +564,7 @@ nav {
 
 @media screen and (min-width: 1215px) {
   .border-footer {
-    border-right: 2px solid #000000;
+    border-right: 2px solid #FFFFFF;
   }
 }
 
@@ -527,6 +619,7 @@ nav {
   .nav__menu-bar {
     display: none;
   }
+
   .nav__menu-list {
     position: unset;
     flex-direction: row;
@@ -539,18 +632,27 @@ nav {
   .nav__link::before {
     content: "";
     position: absolute;
-    width: 0%;
-    height: 6px;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+    height: 3px;
     bottom: -8px;
     left: 0;
-    background-color: black;
-    transition: all 0.2s;
+    background-color: white;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .nav__link:hover:before {
     width: 100%;
+    visibility: visible;
+    opacity: 1;
   }
+
   .nav__link.active::before {
     width: 100%;
+    visibility: visible;
+    opacity: 1;
   }
 }
