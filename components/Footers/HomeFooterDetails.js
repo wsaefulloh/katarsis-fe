@@ -140,19 +140,29 @@ function HomeFooterDetails() {
     <>
       <footer id="footer_id" ref={contactRef}>
         <Container style={{ paddingTop: "40px" }}>
-          <div className="text-center">
+          {/* <div className="text-center">
             <img
               alt="..."
               src={require("assets/img/brand/Logo Katarsis Putih.png")}
               height="25px"
             />
-          </div>
+          </div> */}
           <div className="d-flex align-items-center justify-content-center" style={{ paddingTop: "40px" }}>
+            <Link href={`mailto:${info}`}>
+              <a target="_blank">
+                <div className="mx-2">
+                  <img
+                    style={{ width: "30px" }}
+                    src={require("assets/img/brand/Vector.png")}
+                  />
+                </div>
+              </a>
+            </Link>
             <Link href={`${instagram}`}>
               <a target="_blank">
-                <div className="mx-1">
+                <div className="mx-2">
                   <img
-                    style={{ width: "20px" }}
+                    style={{ width: "30px" }}
                     src={require("assets/img/brand/Logo Instagram Putih.png")}
                   />
                 </div>
@@ -160,16 +170,16 @@ function HomeFooterDetails() {
             </Link>
             <Link href={`${linkedin}`}>
               <a target="_blank">
-                <div className="mx-1">
+                <div className="mx-2">
                   <img
-                    style={{ width: "20px" }}
+                    style={{ width: "30px" }}
                     src={require("assets/img/brand/Logo Linkedin Putih.png")}
                   />
                 </div>
               </a>
             </Link>
           </div>
-          <div className="display-large">
+          {/* <div className="display-large">
             <Row style={{ paddingTop: "40px" }}>
               <Col className="padding_footer">
                 <div className="border-footer">
@@ -280,11 +290,11 @@ function HomeFooterDetails() {
                 </div>
               </div>
             </Col>
-          </div>
+          </div> */}
 
           <Container>
             <div className="text-center pb-3" style={{ paddingTop: "40px" }}>
-              <h3 style={{ color: "#FFFFFF" }}>{nameCompany}</h3>
+              {/* <h3 style={{ color: "#FFFFFF" }}>{nameCompany}</h3>
               <div
                 style={{
                   maxWidth: "450px",
@@ -295,7 +305,7 @@ function HomeFooterDetails() {
                 className="pb-5"
               >
                 {address}
-              </div>
+              </div> */}
               <div style={{ color: "#FFFFFF" }}>© Katarsis 2025</div>
             </div>
           </Container>

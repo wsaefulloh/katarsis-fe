@@ -85,7 +85,7 @@ function HomeChildLayout({ children }) {
           </>
         ) : (
           <>
-            <HomeNavbar />
+            {/* <HomeNavbar /> */}
             {children}
             <HomeFooter />
           </>

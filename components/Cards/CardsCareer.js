@@ -22,7 +22,7 @@ import useCollapse from "react-collapsed";
 import { fetchWrapper } from "../../helpers/fetch-wrapper";
 
 function CardsCareer(props) {
-  let { description_departement, title_departement, id, last, job_description, requirements } = props;
+  let { description_departement, title_departement, id, last, job_description, requirements, url } = props;
 
   const [job, setJob] = useState([]);
   const [length, setLength] = useState(0);
@@ -119,7 +119,7 @@ function CardsCareer(props) {
                 <div className="service-desc">{`${requirements}`}</div>
               </div>
               <div className="py-4 banner-box" style={{ width: "100px" }}>
-                <div className="banner-title" style={{ textAlign: "center", border: "1px solid #FFFFFF", padding: "10px", fontSize: "14px", borderRadius: "10px" }}>
+                <div onClick={() => { window.location.href = `${url}` }} className="banner-title" style={{ textAlign: "center", border: "1px solid #FFFFFF", padding: "10px", fontSize: "14px", borderRadius: "10px" }}>
                   hit us!
                 </div>
               </div>
@@ -211,6 +211,7 @@ CardsCareer.propTypes = {
   title_departement: PropTypes.any,
   id: PropTypes.any,
   last: PropTypes.any,
+  url: PropTypes.any,
 };
 
 export default CardsCareer;

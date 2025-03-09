@@ -1,9 +1,8 @@
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 import React, { useState } from "react";
 import "../../assets/css/main/main.module.css";
 import { Container, NavbarBrand } from "reactstrap";
 import { useRouter } from "next/router";
-import { useCookies } from "react-cookie";
 
 const MENU_LIST = [
   { text: "HOME", href: "/", link: "/" },
@@ -15,11 +14,10 @@ const MENU_LIST = [
 ];
 
 const NavItem = ({ text, href, active, link, activeScroll }) => {
-  const [cookies, setCookie] = useCookies(["hash"]);
   const router = useRouter();
   const url_page = router.asPath;
 
-  if (url_page === '/') {
+  if (url_page === '/' || url_page.includes('#')) {
     if (href.includes("#")) {
       return (
         <Link
@@ -27,7 +25,7 @@ const NavItem = ({ text, href, active, link, activeScroll }) => {
           to={link}
           spy={true}
           smooth={true}
-          offset={-200}
+          offset={-230}
           duration={500}
         >
           <a href={href}>
@@ -44,7 +42,7 @@ const NavItem = ({ text, href, active, link, activeScroll }) => {
           to={'home'}
           spy={true}
           smooth={true}
-          offset={-200}
+          offset={-220}
           duration={500}
         >
           <a href={href}>
@@ -63,59 +61,39 @@ const NavItem = ({ text, href, active, link, activeScroll }) => {
         </a>
       )
     }
+  } else {
+    if (href.includes("#")) {
+      return (
+        <a href={href}>
+          <div style={{ cursor: "pointer", color: "#FFFFFF" }} className={`px-3 nav__link`}>
+            <a>{text}</a>
+          </div>
+        </a>
+      )
+    } else if (href === '/') {
+      return (
+        <a href={href}>
+          <div style={{ cursor: "pointer", color: "#FFFFFF" }} className={`px-3 nav__link`}>
+            <a>{text}</a>
+          </div>
+        </a>
+      )
+    } else {
+      return (
+        <a href={href}>
+          <div style={{ cursor: "pointer", color: "#FFFFFF" }} className={`px-3 nav__link ${active === true ? 'active' : ''}`} >
+            <a>{text}</a>
+          </div>
+        </a>
+      )
+    }
   }
-
-
-
-  // if (link == "career" || link == "about") {
-  //   return (
-  //     <a href={href}>
-  //       <div style={{ cursor: "pointer", color: "#FFFFFF" }} className={`px-3 nav__link ${active === true ? 'active' : ''}`} >
-  //         <a>{text}</a>
-  //       </div>
-  //     </a>
-  //   );
-  // } else {
-  //   if (url_page == "/") {
-  //     return (
-  //       <Link
-  //         activeClass="active"
-  //         to={link}
-  //         spy={true}
-  //         smooth={true}
-  //         offset={-500}
-  //         duration={500}
-  //       >
-  //         <a href={href}>
-  //           <div style={{ cursor: "pointer", color: "#FFFFFF" }} className={`px-3 nav__link ${active === true ? 'active' : ''}`}>
-  //             <a>{text}</a>
-  //           </div>
-  //         </a>
-  //       </Link>
-  //     );
-  //   } else {
-  //     return (
-  //       <a
-  //         href={"/"}
-  //         onClick={() => {
-  //           setCookie("hash", `${link}`, { path: "/" });
-  //         }}
-  //       >
-  //         <div style={{ cursor: "pointer", color: "#FFFFFF" }} className={`px-3 nav__link ${active === true ? 'active' : ''}`}>
-  //           <a>{text}</a>
-  //         </div>
-  //       </a>
-  //     );
-  //   }
-  // }
 };
 
-const HomeNavbar = ({ activeScroll }) => {
+const HomeNavbar = ({ activeScroll, logoUrl }) => {
   const [navActive, setNavActive] = useState(null);
-  const [activeIdx, setActiveIdx] = useState(-1);
   const router = useRouter();
   const url_page = router.asPath;
-  console.log(url_page)
   const [url, setUrl] = useState(`${url_page}`);
 
   return (
@@ -125,11 +103,20 @@ const HomeNavbar = ({ activeScroll }) => {
           <a href="/" style={{ margin: "unset" }}>
             <span>
               <NavbarBrand href="/" style={{ margin: "unset" }}>
-                <img
-                  alt="..."
-                  src={require("assets/img/brand/Logo Katarsis Putih.png")}
-                  height="25px"
-                />
+                {logoUrl.includes('undefined') ? (
+
+                  <img
+                    alt="..."
+                    src={require("assets/img/Rectangle 5.png")}
+                    height="25px"
+                  />
+                ) : (
+                  <img
+                    alt="..."
+                    src={logoUrl}
+                    height="25px"
+                  />
+                )}
               </NavbarBrand>
             </span>
           </a>
@@ -181,14 +168,12 @@ const HomeNavbar = ({ activeScroll }) => {
               return (
                 <div
                   onClick={() => {
-                    setActiveIdx(idx);
                     setNavActive(false);
-                    setUrl(`${menu.href}`);
                   }}
                   key={menu.text}
                   style={{ backgroundColor: "#000000" }}
                 >
-                  <NavItem active={url === `${menu.href}`} {...menu} />
+                  <NavItem active={url === `${menu.href}`} activeScroll={activeScroll} {...menu} />
                 </div>
               );
             })}

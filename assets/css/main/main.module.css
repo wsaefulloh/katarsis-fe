@@ -586,6 +586,10 @@ nav {
   width: 450px;
 }
 
+.title-text {
+  font-size: 40px;
+}
+
 @media screen and (min-width: 789px) {
   .border_filter {
     border-right: 2px solid #000000;
@@ -723,4 +727,29 @@ nav {
   .img-how-we-do {
     width: 300px;
   }
+}
+
+/* Start */
+@media screen and (min-width: 0px) and (max-width: 576px) {
+
+  .title-text {
+    font-size: 28px !important;
+  }
+
+  .service-desc {
+    font-size: 14px !important;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {
+
+  .get-in-touch {
+    padding-left: 50px !important;
+  }
+
+  .border-service {
+    border-right: 3px solid #FFFFFF !important;
+  }
+
 }

@@ -12,7 +12,6 @@ function HomeLayout({ children }) {
       <div className="main-content margin">
         <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
           <div>
-            {/* <HomeNavbar /> */}
             {children}
           </div>
           <HomeFooter />
