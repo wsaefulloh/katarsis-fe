@@ -26,12 +26,17 @@
   font-family: "MaisonNeue" !important;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "MaisonNeue";
   font-style: bold;
   font-size: 12px;
   color: #000000;
   background-color: #ffffff;
+  scroll-behavior: smooth !important;
 }
 
 h1,
@@ -196,7 +201,7 @@ nav {
 }
 
 .nav-item>.active {
-  font-size: 0.875rem;
+  /* font-size: 0.875rem; */
   position: relative;
   transition: all 0.2s;
   font-weight: bold;
@@ -211,11 +216,24 @@ nav {
 }
 
 .nav__link.active {
-  font-size: 0.875rem;
+  /* font-size: 0.875rem; */
   position: relative;
   transition: all 0.2s;
   font-weight: bold;
   color: #434343;
+}
+
+.nav__link.active::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  height: 3px;
+  bottom: -8px;
+  left: 0;
+  background-color: white;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .nav__link:hover {
@@ -515,13 +533,13 @@ nav {
   color: #FFFFFF;
   margin-top: 15px;
   font-size: 14px;
-  font-family: 'MaisonNeue-Light';
+  font-family: 'MaisonNeue';
 }
 
 .image-banner {
   width: 100%;
   max-height: 300px;
-  object-fit: center;
+  object-fit: cover;
   padding-bottom: 7.5px;
   display: none;
 
@@ -554,6 +572,18 @@ nav {
 
 .service:hover {
   cursor: pointer !important;
+}
+
+.text-subtitle {
+  font-size: 28px;
+}
+
+.img-action-service {
+  width: 350px;
+}
+
+.img-how-we-do {
+  width: 450px;
 }
 
 @media screen and (min-width: 789px) {
@@ -654,5 +684,43 @@ nav {
     width: 100%;
     visibility: visible;
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 995px) {
+  .d-desktop {
+    display: block;
+  }
+
+  .d-mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 994px) {
+  .d-desktop {
+    display: none;
+  }
+
+  .d-mobile {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .banner-title {
+    font-size: 10px;
+  }
+
+  .text-subtitle {
+    font-size: 20px !important;
+  }
+
+  .img-action-service {
+    width: 250px;
+  }
+
+  .img-how-we-do {
+    width: 300px;
   }
 }

@@ -124,7 +124,7 @@ function Career() {
                       fontStyle: "bold",
                     }}
                   >
-                    we're making magic... - just a bit longer
+                    Coming Soon ...
                   </h1>
                 </div>
               </Container>

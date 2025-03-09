@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card, Container, Row, Col, Input, Spinner } from "reactstrap";
 import { fetchWrapper } from "../helpers/fetch-wrapper";
 // import { API_APPS_HOST } from "../config/index";
@@ -9,6 +9,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "../assets/css/main/main.module.css";
 import "../assets/fonts/Maison Neue/fonts.css";
+import CardsEvent from "../components/Cards/CardsEvent";
+import HomeNavbar from "../components/Navbars/HomeNavbar";
+import { throttle } from 'lodash'; // Untuk optimasi throttling
 
 function Home() {
 
@@ -62,10 +65,13 @@ function Home() {
   };
 
   const API_APPS_HOST = process.env.NEXT_PUBLIC_API_HOST;
+  const NEXT_PUBLIC_HOST = process.env.NEXT_PUBLIC_HOST;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [subject, setSubject] = useState("");
+  const [noWhatsapp, setNoWhatsapp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const [media, setMedia] = useState([]);
@@ -77,11 +83,13 @@ function Home() {
   const [imageSubtitle, setImageSubtitle] = useState([null, null]);
   const [activationService, setActivationService] = useState([]);
   const [whyKatarsis, setWhyKatarsis] = useState([]);
+  const [events, setEvents] = useState([]);
   const [descService, setDescService] = useState(
     "We believe inquality-experiental entertainment to empower Indonesia's creative potential."
   );
   const [month, setMonth] = useState([]);
   const [team, setTeam] = useState();
+  const [homepage, setHomepage] = useState({});
 
   const [activeService, setActiveService] = useState(0);
   const [services, setServices] = useState({
@@ -113,11 +121,11 @@ function Home() {
       let newData = data.data
       for (let i = 0; i < newData.length; i++) {
         const element = newData[i];
-        if (element.attributes.service_type.data.attributes.name === "Katarsis Experience") {
+        if (element.attributes.service_type === "Katarsis Experience") {
           katarsisExperience.push({ id: element.id, image: `${API_APPS_HOST}${element.attributes.image_logo.data.attributes.url}` })
-        } else if (element.attributes.service_type.data.attributes.name === "Katarsis Live") {
+        } else if (element.attributes.service_type === "Katarsis Live") {
           katarsisLive.push({ id: element.id, image: `${API_APPS_HOST}${element.attributes.image_logo.data.attributes.url}` })
-        } else if (element.attributes.service_type.data.attributes.name === "Katarsis Solutions") {
+        } else if (element.attributes.service_type === "Katarsis Solutions") {
           katarsisSolutions.push({ id: element.id, image: `${API_APPS_HOST}${element.attributes.image_logo.data.attributes.url}` })
         } else {
           katarsisEntertaiment.push({ id: element.id, image: `${API_APPS_HOST}${element.attributes.image_logo.data.attributes.url}` })
@@ -178,16 +186,18 @@ function Home() {
   const getDataActivation = async () => {
     const data = await fetchWrapper.get(`api/strapi/get-activation-service`);
     if (data) {
-      setActivationService(data.data.slice(0, 3));
+      setActivationService(data.data.slice(0, 5));
     }
   };
 
   const postContact = async () => {
     setIsLoading(true)
     const data = await fetchWrapper.post(`api/strapi/post-contact-us`, {
-      name: "New Activation Service",
-      email: "dasda",
-      message: "https://example.com/activation-service"
+      name: name,
+      email: email,
+      message: message,
+      subject: subject,
+      no_whatsapp: noWhatsapp
     });
     if (data?.data !== null) {
       toast.success('Success send message. Thank you!');
@@ -219,8 +229,9 @@ function Home() {
   };
 
   const getDataMediaNew = async () => {
-    const data = await fetchWrapper.get(`api/strapi/content/get-media`);
+    const data = await fetchWrapper.get(`api/strapi/content/get-new-media`);
     if (data) {
+      console.log(data)
       setMedia(data.data);
     }
   };
@@ -260,69 +271,127 @@ function Home() {
     }
   };
 
+  const getHomepage = async () => {
+    const data = await fetchWrapper.get(`api/strapi/get-homepage`);
+    if (data) {
+      setHomepage(data?.data?.attributes)
+    }
+  };
+
+  const getEvents = async () => {
+    const data = await fetchWrapper.get(`api/strapi/get-new-event`);
+    if (data) {
+      setEvents(data?.data)
+    }
+  };
+
   useEffect(() => {
     getDataMediaNew();
-    getDataBanner();
-    getDataSubMenu();
+    getHomepage();
+    getEvents();
+    // getDataBanner();
+    // getDataSubMenu();
     getDataActivation();
     getWhyKatarsis();
-    getDescService();
+    // getDescService();
     getDataService();
-    getCalendar();
-    getDataTeam();
+    // getCalendar();
+    // getDataTeam();
     AOS.init({ duration: 2000, once: true });
     window.scrollTo(0, 0);
   }, []);
 
-  // Pastikan interval dibersihkan saat komponen unmount
-  useEffect(() => {
-    return () => {
-      if (runBanner) {
-        clearInterval(intervalId); // Membersihkan interval saat komponen unmount
-      }
-    };
-  }, [runBanner]);
+  // // Pastikan interval dibersihkan saat komponen unmount
+  // useEffect(() => {
+  //   return () => {
+  //     if (runBanner) {
+  //       clearInterval(intervalId); // Membersihkan interval saat komponen unmount
+  //     }
+  //   };
+  // }, [runBanner]);
 
-  const startInterval = () => {
-    if (!runBanner) {
-      const id = setInterval(() => {
-        setActiveBanner((prevActiveBanner) => {
-          if (prevActiveBanner === 3) {
-            return 0;
-          } else {
-            return prevActiveBanner + 1;
+  // const startInterval = () => {
+  //   if (!runBanner) {
+  //     const id = setInterval(() => {
+  //       setActiveBanner((prevActiveBanner) => {
+  //         if (prevActiveBanner === 3) {
+  //           return 0;
+  //         } else {
+  //           return prevActiveBanner + 1;
+  //         }
+  //       }); // Tambah 1 setiap 3 detik
+  //     }, 3000); // 3000 ms = 3 detik
+  //     setIntervalId(id); // Simpan ID interval
+  //     setRunBanner(true); // Set status interval aktif
+  //   }
+  // };
+
+  // // Fungsi untuk menghentikan interval (pause)
+  // const stopInterval = () => {
+  //   if (runBanner) {
+  //     clearInterval(intervalId); // Hentikan interval dengan ID yang disimpan
+  //     setRunBanner(false); // Set status interval tidak aktif
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   startInterval();
+  // }, []); // Empty array berarti efek ini hanya dipanggil sekali saat komponen mount
+
+  const [visibleId, setVisibleId] = useState(null);
+
+  useEffect(() => {
+    const handleScroll = throttle(() => {
+      const sections = ['home', 'about', 'service', 'event']; // Daftar id komponen
+      let currentVisibleId = null;
+
+      sections.forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Cek apakah komponen terlihat di viewport
+          if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            currentVisibleId = id;
           }
-        }); // Tambah 1 setiap 3 detik
-      }, 3000); // 3000 ms = 3 detik
-      setIntervalId(id); // Simpan ID interval
-      setRunBanner(true); // Set status interval aktif
-    }
-  };
+        }
+      });
 
-  // Fungsi untuk menghentikan interval (pause)
-  const stopInterval = () => {
-    if (runBanner) {
-      clearInterval(intervalId); // Hentikan interval dengan ID yang disimpan
-      setRunBanner(false); // Set status interval tidak aktif
-    }
-  };
+      // Perbarui state dengan id komponen yang terlihat
+      setVisibleId(currentVisibleId);
 
-  useEffect(() => {
-    startInterval();
-  }, []); // Empty array berarti efek ini hanya dipanggil sekali saat komponen mount
+      // Log id yang sedang terlihat ke console
+      console.log('ID yang sedang terlihat:', currentVisibleId);
+    }, 100); // Throttle setiap 100ms
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Bersihkan event listener saat komponen di-unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <>
-      <Container>
-        <div
-          style={{ width: "100%", height: "1px", backgroundColor: "#FFFFFF" }}
-        ></div>
-      </Container>
-      <Container className="py-4">
+      <HomeNavbar activeScroll={visibleId} />
+      <Container className="py-6" id="home">
         <Row>
           <Col
-            className="py-4 d-flex flex-column"
-            style={{ alignItems: "center", justifyContent: "space-between" }}
+            xl="12"
+            className="p-4 d-flex flex-column"
+            style={{
+              alignItems: "start",
+              justifyContent: "space-between",
+              minHeight: "400px",
+              maxHeight: "600px",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundImage:
+                "url(" +
+                `${API_APPS_HOST}${homepage?.main_banner?.data?.attributes.url}` +
+                // `https://drive.google.com/uc?export=view&id=${img}` +
+                ")",
+            }}
           >
             <Row>
               <img
@@ -331,7 +400,7 @@ function Home() {
                 height="150px"
               />
             </Row>
-            <Row style={{ width: "100%" }}>
+            {/* <Row style={{ width: "100%" }}>
               <div
                 className="banner-box"
                 style={{ padding: "7.5px", width: "50%" }}
@@ -420,9 +489,9 @@ function Home() {
                   Venue Management
                 </div>
               </div>
-            </Row>
+            </Row> */}
           </Col>
-          <Col className="py-4 d-flex">
+          {/* <Col xl='6' className="py-4 d-flex">
             {banner.map((val, idx) => {
               return (
                 <img
@@ -432,12 +501,11 @@ function Home() {
                       ? require("assets/img/Rectangle 5.png")
                       : `${val}`
                   }
-                  className={`image-banner ${activeBanner == idx ? "open" : ""
-                    }`}
+                  className={`image-banner ${activeBanner == idx ? "open" : ""}`}
                 />
               );
             })}
-          </Col>
+          </Col> */}
         </Row>
       </Container>
       <Container>
@@ -445,8 +513,94 @@ function Home() {
           style={{ width: "100%", height: "1px", backgroundColor: "#FFFFFF" }}
         ></div>
       </Container>
-      <Container className="py-4">
-        <Row>
+      <div id="about">
+        <Container className="py-6"  >
+          <Row className="pb-6 justify-content-center">
+            <div
+              style={{ color: "#FFFFFF", fontSize: "40px", fontWeight: "bold", textAlign: "center" }}
+            >
+              {homepage?.title_about_us}
+            </div>
+          </Row>
+          <Row className="d-flex align-items-center">
+            <Col xl="6" className="pb-4 px-6 d-flex align-items-center">
+              <img
+                alt="..."
+                src={require("assets/img/Group 1 (2).png")}
+                style={{
+                  height: "50px",
+                  width: "50px",
+                }}
+              />
+              <div className="service-desc" style={{ marginTop: "0px", marginLeft: "20px", fontSize: "18px" }}>
+                {homepage?.sub_about_us_1}
+              </div>
+            </Col>
+            <Col xl="6" className="pb-4 px-6 d-flex align-items-center">
+              <img
+                alt="..."
+                src={require("assets/img/Group 1 (2).png")}
+                style={{
+                  height: "50px",
+                  width: "50px",
+                }}
+              />
+              <div className="service-desc" style={{ marginTop: "0px", marginLeft: "20px", fontSize: "18px" }}>
+                {homepage?.sub_about_us_2}
+              </div>
+            </Col>
+          </Row>
+          <Row className="py-4">
+            <Col xl="4" md="6" className="d-flex flex-column" style={{ paddingTop: "15px", paddingBottom: "15px" }}>
+              <img
+                alt="..."
+                src={
+                  homepage?.images_about_us?.data[0]?.attributes.url == null
+                    ? require("assets/img/Rectangle 5.png")
+                    : `${API_APPS_HOST}${homepage?.images_about_us?.data[0]?.attributes.url}`
+                }
+                style={{
+                  width: "100%",
+                  height: "250px",
+                  objectFit: "cover",
+                  paddingBottom: "7.5px",
+                }}
+              />
+            </Col>
+            <Col xl="4" md="6" className="d-flex flex-column" style={{ paddingTop: "15px", paddingBottom: "15px" }}>
+              <img
+                alt="..."
+                src={
+                  homepage?.images_about_us?.data[1]?.attributes.url == null
+                    ? require("assets/img/Rectangle 5.png")
+                    : `${API_APPS_HOST}${homepage?.images_about_us?.data[1]?.attributes.url}`
+                }
+                style={{
+                  width: "100%",
+                  height: "250px",
+                  objectFit: "cover",
+                  paddingBottom: "7.5px",
+                }}
+              />
+            </Col>
+            <Col xl="4" md="6" className="d-flex flex-column" style={{ paddingTop: "15px", paddingBottom: "15px" }}>
+              <img
+                alt="..."
+                src={
+                  homepage?.images_about_us?.data[2]?.attributes.url == null
+                    ? require("assets/img/Rectangle 5.png")
+                    : `${API_APPS_HOST}${homepage?.images_about_us?.data[2]?.attributes.url}`
+                }
+                style={{
+                  width: "100%",
+                  height: "250px",
+                  objectFit: "cover",
+                  paddingBottom: "7.5px",
+                }}
+              />
+            </Col>
+          </Row>
+          {/* <Row>
           <Col xl="3" className="py-4 d-flex flex-column">
             <img
               alt="..."
@@ -461,14 +615,13 @@ function Home() {
               }}
             />
           </Col>
-          <Col className="py-4 d-flex">
+          <Col className="py-4 d-flex text-subtitle">
             <div
               style={{
                 color: "#FFFFFF",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "end",
-                fontSize: "28px",
                 padding: "30px",
               }}
             >
@@ -511,149 +664,166 @@ function Home() {
               </div>
             </div>
           </Col>
-        </Row>
-        <Row>
+        </Row> */}
+          {/* <Row>
           <Col className="py-4 d-flex">
             <img
               alt="..."
               src={require("assets/img/Group 1.png")}
-              style={{
-                width: "450px",
-              }}
+              className="img-how-we-do"
             />
           </Col>
-        </Row>
-        <Row>
-          <Col xl="3"></Col>
-          <Col className="py-4 d-flex">
-            <img
+        </Row> */}
+
+        </Container>
+        <Container>
+          <div
+            style={{ width: "100%", height: "1px", backgroundColor: "#FFFFFF" }}
+          ></div>
+        </Container>
+        <Container className="pt-6">
+          <Row>
+            <Col md={2} className="py-2 d-flex align-items-center" style={{ justifyContent: "center" }}>
+              <img
+                alt="..."
+                src={require("assets/img/Group 1 (2).png")}
+                style={{
+                  height: "100px",
+                  width: "100px",
+                }}
+              />
+            </Col>
+            <Col md={10} className="py-2 d-flex align-items-center">
+              {/* <img
               alt="..."
-              src={require("assets/img/Activation Services.png")}
-              style={{
-                width: "350px",
-              }}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col xl="3"></Col>
-          <Col className="py-4 d-flex justify-content-end">
-            {activationService.map((val, idx) => {
-              return (
-                <Col className="py-4 d-flex justify-content-end px-0">
-                  <div
-                    style={{
-                      borderTop: "1px solid #FFFFFF",
-                      width: "100%",
-                      color: "#FFFFFF",
-                    }}
-                  >
-                    <div
-                      style={{
-                        borderRadius: "50%",
-                        width: "10px",
-                        height: "10px",
-                        backgroundColor: "#FFFFFF",
-                        marginTop: "-5px",
-                      }}
-                    ></div>
-                    <div
-                      className="py-4"
-                      style={{ paddingLeft: "0px", paddingRight: "1.5rem" }}
-                    >
-                      <div className="service-title">
-                        {val.attributes.title}
-                      </div>
-                      <div className="service-desc">
-                        {val.attributes.description}
-                      </div>
-                    </div>
-                  </div>
-                </Col>
-              );
-            })}
-          </Col>
-        </Row>
-        <Row>
-          <Col xl="3"></Col>
-          <Col className="pt-4 d-flex">
-            <div
-              style={{ color: "#FFFFFF", fontSize: "40px", fontWeight: "bold" }}
-            >
-              Why katarsis?
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col xl="3"></Col>
-          <Col className="py-4 d-flex justify-content-end">
-            <Row className="py-4 d-flex justify-content-end px-0 w-100">
-              {whyKatarsis.map((val, idx) => {
-                if (idx === whyKatarsis.length - 1) {
+              src={require("assets/img/How we do it_.png")}
+              style={{ height: "60px", marginLeft: "20px" }}
+            // className="img-action-service"
+            /> */}
+              <div
+                style={{ color: "#FFFFFF", fontSize: "40px", fontWeight: "bold" }}
+              >
+                How we do it?
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Row className="pb-4 d-flex justify-content-end">
+                <Col xl="2" className="py-4 d-flex justify-content-end px-0"></Col>
+                {activationService.map((val, idx) => {
                   return (
-                    <div
-                      style={{
-                        borderTop: "1px solid #FFFFFF",
-                        borderBottom: "1px solid #FFFFFF",
-                        width: "100%",
-                        color: "#FFFFFF",
-                      }}
-                    >
+                    <Col xl="2" className="py-2 d-flex justify-content-end px-0">
                       <div
-                        className="py-4 d-flex justify-content-between"
-                        style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
+                        style={{
+                          borderTop: "1px solid #FFFFFF",
+                          width: "100%",
+                          color: "#FFFFFF",
+                        }}
                       >
-                        <div style={{ color: "#FFFFFF" }}>
-                          {val.attributes.title}
-                        </div>
                         <div
-                          className="MaisonNeue-Light"
-                          style={{ color: "#FFFFFF", fontSize: "12px" }}
+                          style={{
+                            borderRadius: "50%",
+                            width: "10px",
+                            height: "10px",
+                            backgroundColor: "#FFFFFF",
+                            marginTop: "-5px",
+                          }}
+                        ></div>
+                        <div
+                          className="py-4"
+                          style={{ paddingLeft: "0px", paddingRight: "1.5rem" }}
                         >
-                          {val.attributes.short_description}
+                          <div className="service-title">
+                            {val.attributes.title}
+                          </div>
+                          <div className="service-desc">
+                            {val.attributes.description}
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </Col>
                   );
-                } else {
-                  return (
-                    <div
-                      style={{
-                        borderTop: "1px solid #FFFFFF",
-                        width: "100%",
-                        color: "#FFFFFF",
-                      }}
-                    >
+                })}
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <Col xl="3"></Col>
+            <Col className="py-4 d-flex">
+              <div
+                style={{ color: "#FFFFFF", fontSize: "40px", fontWeight: "bold" }}
+              >
+                Why katarsis?
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col xl="3"></Col>
+            <Col className="py-4 d-flex justify-content-end">
+              <Row className="py-4 d-flex justify-content-end px-0 w-100">
+                {whyKatarsis.map((val, idx) => {
+                  if (idx === whyKatarsis.length - 1) {
+                    return (
                       <div
-                        className="py-4 d-flex justify-content-between"
-                        style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
+                        style={{
+                          borderTop: "1px solid #FFFFFF",
+                          borderBottom: "1px solid #FFFFFF",
+                          width: "100%",
+                          color: "#FFFFFF",
+                        }}
                       >
-                        <div style={{ color: "#FFFFFF" }}>
-                          {val.attributes.title}
-                        </div>
                         <div
-                          className="MaisonNeue-Light"
-                          style={{ color: "#FFFFFF", fontSize: "12px" }}
+                          className="py-4 d-flex justify-content-between"
+                          style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
                         >
-                          {val.attributes.short_description}
+                          <div style={{ color: "#FFFFFF" }}>
+                            {val.attributes.title}
+                          </div>
+                          <div
+                            className="MaisonNeue-Light"
+                            style={{ color: "#FFFFFF", fontSize: "12px" }}
+                          >
+                            {val.attributes.short_description}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                }
-              })}
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-      <Container>
-        <div
-          style={{ width: "100%", height: "1px", backgroundColor: "#FFFFFF" }}
-        ></div>
-      </Container>
-      <Container className="py-4">
+                    );
+                  } else {
+                    return (
+                      <div
+                        style={{
+                          borderTop: "1px solid #FFFFFF",
+                          width: "100%",
+                          color: "#FFFFFF",
+                        }}
+                      >
+                        <div
+                          className="py-4 d-flex justify-content-between"
+                          style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
+                        >
+                          <div style={{ color: "#FFFFFF" }}>
+                            {val.attributes.title}
+                          </div>
+                          <div
+                            className="MaisonNeue-Light"
+                            style={{ color: "#FFFFFF", fontSize: "12px" }}
+                          >
+                            {val.attributes.short_description}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <Container className="py-4" id="service">
         <Row>
-          <Col className="pt-4 d-flex justify-content-center">
+          <Col className="pt-4 pb-4 d-flex justify-content-center">
             <div
               style={{
                 color: "#FFFFFF",
@@ -664,24 +834,24 @@ function Home() {
                 fontWeight: "bold",
               }}
             >
-              services
+              Services
             </div>
           </Col>
         </Row>
         <Row>
           <Col className="d-flex justify-content-center">
             <div
-              className="py-4"
+              className="pb-4"
               style={{
                 color: "#F9F6EE",
                 display: "flex",
                 flexDirection: "column",
-                fontSize: "16px",
+                fontSize: "18px",
               }}
             >{`${descService}`}</div>
           </Col>
         </Row>
-        <Row className="py-4">
+        <Row className="py-5">
           <Col
             xl={3}
             className="d-flex justify-content-center"
@@ -773,19 +943,21 @@ function Home() {
 
                   }}
                 >
-                  Coming Soon ...
+                  Coming Soon
                 </div>
               ) : (
                 services.katarsisExperience.map((val, idx) => {
                   return (
                     <Col xl={3} className="d-flex p-4">
                       <img
+                        onClick={() => { window.location.href = `${NEXT_PUBLIC_HOST}/work/${val.id}` }}
                         className="service"
                         alt="..."
                         src={val.image}
                         style={{
                           width: "100%",
                           aspectRatio: "1/1",
+                          objectFit: "cover"
                         }}
                       />
                     </Col>
@@ -810,19 +982,21 @@ function Home() {
 
                   }}
                 >
-                  Coming Soon ...
+                  Coming Soon
                 </div>
               ) : (
                 services.katarsisLive.map((val, idx) => {
                   return (
                     <Col xl={3} className="d-flex p-4">
                       <img
+                        onClick={() => { window.location.href = `${NEXT_PUBLIC_HOST}/work/${val.id}` }}
                         className="service"
                         alt="..."
                         src={val.image}
                         style={{
                           width: "100%",
                           aspectRatio: "1/1",
+                          objectFit: "cover"
                         }}
                       />
                     </Col>
@@ -847,19 +1021,21 @@ function Home() {
 
                   }}
                 >
-                  Coming Soon ...
+                  Coming Soon
                 </div>
               ) : (
                 services.katarsisSolutions.map((val, idx) => {
                   return (
                     <Col xl={3} className="d-flex p-4">
                       <img
+                        onClick={() => { window.location.href = `${NEXT_PUBLIC_HOST}/work/${val.id}` }}
                         className="service"
                         alt="..."
                         src={val.image}
                         style={{
                           width: "100%",
                           aspectRatio: "1/1",
+                          objectFit: "cover"
                         }}
                       />
                     </Col>
@@ -884,20 +1060,21 @@ function Home() {
 
                   }}
                 >
-                  Coming Soon ...
+                  Coming Soon
                 </div>
               ) : (
                 services.katarsisEntertaiment.map((val, idx) => {
                   return (
                     <Col xl={3} className="d-flex p-4">
                       <img
-                        onClick={() => { window.location.href = `http://localhost:3002/work/${val.id}` }}
+                        onClick={() => { window.location.href = `${NEXT_PUBLIC_HOST}/work/${val.id}` }}
                         className="service"
                         alt="..."
                         src={val.image}
                         style={{
                           width: "100%",
                           aspectRatio: "1/1",
+                          objectFit: "cover"
                         }}
                       />
                     </Col>
@@ -908,12 +1085,12 @@ function Home() {
           )}
         </Row>
       </Container>
-      <Container>
+      <Container className="pt-5">
         <div
           style={{ width: "100%", height: "1px", backgroundColor: "#FFFFFF" }}
         ></div>
       </Container>
-      <Container className="py-4">
+      <Container className="py-6" id="event">
         <Row>
           <Col
             xl="3"
@@ -925,24 +1102,63 @@ function Home() {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "end",
-                fontSize: "36px",
+                fontSize: "40px",
                 fontWeight: "bold",
               }}
             >
-              event calendar 2025
+              Upcoming Event
             </div>
-            <img
+            {/* <img
               alt="..."
               src={require("assets/img/Group 24.png")}
               style={{
-                width: "50%",
+                width: "130px",
                 aspectRatio: "1/1",
+                marginTop: "30px"
               }}
-            />
+            /> */}
           </Col>
           <Col xl="9" className="py-4">
             <Row>
-              {month.map((val, idx) => {
+              {events.map((val, index) => {
+                if (index == events.length - 1) {
+                  return (
+                    <div style={{ width: "100%" }}>
+                      <Container>
+                        <div style={{ width: "100%", height: "1px", backgroundColor: "#FFFFFF" }}></div>
+                      </Container>
+                      <div>
+                        <CardsEvent
+                          title={val.attributes.title}
+                          list_data={val?.attributes?.list_events?.data ?? []}
+                          id={index}
+                          last={true}
+                        />
+                      </div>
+                      <Container>
+                        <div style={{ width: "100%", height: "1px", backgroundColor: "#FFFFFF" }}></div>
+                      </Container>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div style={{ width: "100%" }}>
+                      <Container>
+                        <div style={{ width: "100%", height: "1px", backgroundColor: "#FFFFFF" }}></div>
+                      </Container>
+                      <div>
+                        <CardsEvent
+                          title={val.attributes.title}
+                          list_data={val?.attributes?.list_events?.data ?? []}
+                          id={index}
+                          last={false}
+                        />
+                      </div>
+                    </div>
+                  );
+                }
+              })}
+              {/* {month.map((val, idx) => {
                 return (
                   <Col
                     xl={4}
@@ -1012,7 +1228,7 @@ function Home() {
                     </div>
                   </Col>
                 )
-              })}
+              })} */}
             </Row>
           </Col>
         </Row>
@@ -1022,8 +1238,23 @@ function Home() {
           style={{ width: "100%", height: "1px", backgroundColor: "#FFFFFF" }}
         ></div>
       </Container>
-      <Container className="py-4">
+      <Container className="py-6">
         <Row className="align-items-center">
+          <Col xl="3" className="py-4 d-flex justify-content-start">
+            <div
+              style={{
+                color: "#FFFFFF",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "start",
+                fontSize: "40px",
+                fontWeight: "bold",
+                lineHeight: "2.7rem",
+              }}
+            >
+              Our Clients
+            </div>
+          </Col>
           <Col xl="9">
             <Card className="content mb-0">
               <Container>
@@ -1036,7 +1267,7 @@ function Home() {
                           style={{ height: "100px", width: "100%" }}
                         >
                           <img
-                            src={`${API_APPS_HOST}${val.attributes?.images?.data?.attributes?.url}`}
+                            src={`${API_APPS_HOST}${val.attributes?.image?.data?.attributes?.url}`}
                             style={{ maxWidth: "100%", maxHeight: "100px" }}
                           />
                         </Row>
@@ -1047,22 +1278,6 @@ function Home() {
               </Container>
             </Card>
           </Col>
-          <Col xl="3" className="py-4 d-flex justify-content-end">
-            <div
-              style={{
-                color: "#FFFFFF",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "end",
-                fontSize: "42px",
-                fontWeight: "bold",
-                paddingLeft: "50px",
-                lineHeight: "2.7rem",
-              }}
-            >
-              our clients
-            </div>
-          </Col>
         </Row>
       </Container>
       <Container>
@@ -1070,7 +1285,7 @@ function Home() {
           style={{ width: "100%", height: "1px", backgroundColor: "#FFFFFF" }}
         ></div>
       </Container>
-      <Container className="py-4">
+      {/* <Container className="py-4">
         <Row>
           <Col xl="3" className="py-4 d-flex">
             <div
@@ -1114,8 +1329,8 @@ function Home() {
         <div
           style={{ width: "100%", height: "1px", backgroundColor: "#FFFFFF" }}
         ></div>
-      </Container>
-      <Container className="py-4">
+      </Container> */}
+      <Container className="py-6">
         <Row className="py-4">
           <Col
             xl="3"
@@ -1127,6 +1342,7 @@ function Home() {
               src={require("assets/img/Layer_1.png")}
               style={{
                 width: "250px",
+                marginBottom: "50px"
               }}
             />
           </Col>
@@ -1137,24 +1353,24 @@ function Home() {
                   color: "#FFFFFF",
                   display: "flex",
                   flexDirection: "column",
-                  fontSize: "42px",
+                  fontSize: "40px",
                   fontWeight: "bold",
-                  lineHeight: "2.7rem",
+                  lineHeight: "3rem",
                 }}
               >
-                get in
+                Get in
               </div>
               <div
                 style={{
                   color: "#FFFFFF",
                   display: "flex",
                   flexDirection: "column",
-                  fontSize: "42px",
+                  fontSize: "40px",
                   fontWeight: "bold",
-                  lineHeight: "2.7rem",
+                  lineHeight: "3rem",
                 }}
               >
-                touch
+                Touch
               </div>
               <div className="service-desc" style={{ marginBottom: "30px" }}>
                 We believe in quality-experiential entertainment to empower
@@ -1174,6 +1390,36 @@ function Home() {
                 }}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Name*"
+              />
+              <Input
+                style={{
+                  marginTop: "10px",
+                  backgroundColor: "black",
+                  borderBottom: "2px solid #FFFFFF",
+                  borderTop: "unset",
+                  borderRight: "unset",
+                  borderLeft: "unset",
+                  boxShadow: "unset",
+                  borderRadius: "unset",
+                  color: "#FFFFFF",
+                }}
+                onChange={(e) => setSubject(e.target.value)}
+                placeholder="Subject*"
+              />
+              <Input
+                style={{
+                  marginTop: "10px",
+                  backgroundColor: "black",
+                  borderBottom: "2px solid #FFFFFF",
+                  borderTop: "unset",
+                  borderRight: "unset",
+                  borderLeft: "unset",
+                  boxShadow: "unset",
+                  borderRadius: "unset",
+                  color: "#FFFFFF",
+                }}
+                onChange={(e) => setNoWhatsapp(e.target.value)}
+                placeholder="No. Whatsapp*"
               />
               <Input
                 style={{
