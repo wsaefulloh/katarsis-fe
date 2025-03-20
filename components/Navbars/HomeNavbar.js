@@ -10,7 +10,7 @@ const MENU_LIST = [
   { text: "SERVICES", href: "/#service", link: "service" },
   { text: "UPCOMING", href: "/#event", link: "event" },
   { text: "CAREER", href: "/career", link: "career" },
-  { text: "CONTACT US", href: "/#footer_id", link: "footer_id" },
+  { text: "CONTACT US", href: "/#", link: "contact_us" },
 ];
 
 const NavItem = ({ text, href, active, link, activeScroll }) => {
@@ -90,7 +90,7 @@ const NavItem = ({ text, href, active, link, activeScroll }) => {
   }
 };
 
-const HomeNavbar = ({ activeScroll, logoUrl }) => {
+const HomeNavbar = ({ activeScroll, logoUrl, whatsapp }) => {
   const [navActive, setNavActive] = useState(null);
   const router = useRouter();
   const url_page = router.asPath;
@@ -104,17 +104,16 @@ const HomeNavbar = ({ activeScroll, logoUrl }) => {
             <span>
               <NavbarBrand href="/" style={{ margin: "unset" }}>
                 {logoUrl.includes('undefined') ? (
-
                   <img
                     alt="..."
                     src={require("assets/img/Rectangle 5.png")}
-                    height="25px"
+                    width="120px"
                   />
                 ) : (
                   <img
                     alt="..."
                     src={logoUrl}
-                    height="25px"
+                    width="120px"
                   />
                 )}
               </NavbarBrand>
@@ -130,14 +129,25 @@ const HomeNavbar = ({ activeScroll, logoUrl }) => {
           </div>
           <div className={`${navActive ? "active" : ""} nav__menu-list`} style={{ backgroundColor: "#000000", width: "100%", justifyContent: "center", marginTop: "40px" }}>
             {MENU_LIST.map((menu, idx) => {
-              return (
-                <div
-                  key={menu.text}
-                  style={{ backgroundColor: "#000000" }}
-                >
-                  <NavItem active={url === `${menu.href}`} activeScroll={activeScroll} {...menu} />
-                </div>
-              );
+              if (menu.text === "CONTACT US") {
+                return (
+                  <div
+                    key={menu.text}
+                    style={{ backgroundColor: "#000000" }}
+                  >
+                    <NavItem active={url === `https://wa.me/${whatsapp}`} activeScroll={activeScroll} text={menu.text} href={`https://wa.me/${whatsapp}`} link={'contact_us'} />
+                  </div>
+                );
+              } else {
+                return (
+                  <div
+                    key={menu.text}
+                    style={{ backgroundColor: "#000000" }}
+                  >
+                    <NavItem active={url === `${menu.href}`} activeScroll={activeScroll} {...menu} />
+                  </div>
+                );
+              }
             })}
           </div>
 
@@ -147,11 +157,19 @@ const HomeNavbar = ({ activeScroll, logoUrl }) => {
           <a href="/" style={{ margin: "unset" }}>
             <span>
               <NavbarBrand href="/" style={{ margin: "unset" }}>
-                <img
-                  alt="..."
-                  src={require("assets/img/brand/Logo Katarsis Putih.png")}
-                  height="25px"
-                />
+                {logoUrl.includes('undefined') ? (
+                  <img
+                    alt="..."
+                    src={require("assets/img/Rectangle 5.png")}
+                    width="100px"
+                  />
+                ) : (
+                  <img
+                    alt="..."
+                    src={logoUrl}
+                    width="100px"
+                  />
+                )}
               </NavbarBrand>
             </span>
           </a>
@@ -165,17 +183,31 @@ const HomeNavbar = ({ activeScroll, logoUrl }) => {
           </div>
           <div className={`${navActive ? "active" : ""} nav__menu-list`} style={{ backgroundColor: "#000000", marginTop: "40px" }}>
             {MENU_LIST.map((menu, idx) => {
-              return (
-                <div
-                  onClick={() => {
-                    setNavActive(false);
-                  }}
-                  key={menu.text}
-                  style={{ backgroundColor: "#000000" }}
-                >
-                  <NavItem active={url === `${menu.href}`} activeScroll={activeScroll} {...menu} />
-                </div>
-              );
+              if (menu.text === "CONTACT US") {
+                return (
+                  <div
+                    onClick={() => {
+                      setNavActive(false);
+                    }}
+                    key={menu.text}
+                    style={{ backgroundColor: "#000000" }}
+                  >
+                    <NavItem active={url === `https://wa.me/${whatsapp}`} activeScroll={activeScroll} text={menu.text} href={`https://wa.me/${whatsapp}`} link={'contact_us'} />
+                  </div>
+                );
+              } else {
+                return (
+                  <div
+                    onClick={() => {
+                      setNavActive(false);
+                    }}
+                    key={menu.text}
+                    style={{ backgroundColor: "#000000" }}
+                  >
+                    <NavItem active={url === `${menu.href}`} activeScroll={activeScroll} {...menu} />
+                  </div>
+                );
+              }
             })}
           </div>
         </Container>

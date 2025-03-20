@@ -71,6 +71,7 @@ function Home() {
   const [whyKatarsis, setWhyKatarsis] = useState([]);
   const [events, setEvents] = useState([]);
   const [homepage, setHomepage] = useState({});
+  const [whatsapp, setWhatsapp] = useState("");
 
   const [activeService, setActiveService] = useState(0);
   const [services, setServices] = useState({
@@ -162,15 +163,25 @@ function Home() {
     }
   };
 
+  const getWhatsapp = async () => {
+    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=whatsapp`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setWhatsapp(link.attributes.url);
+    }
+  };
+
   const getAllData = async () => {
     setIsLoadingPage(true)
-    await getDataMediaNew();
     await getHomepage();
+    setIsLoadingPage(false)
+    await getDataMediaNew();
     await getEvents();
     await getDataActivation();
     await getWhyKatarsis();
     await getDataService();
-    setIsLoadingPage(false)
+    await getWhatsapp();
   };
 
   const [visibleId, setVisibleId] = useState(null);
@@ -214,7 +225,7 @@ function Home() {
 
   return (
     <>
-      <HomeNavbar activeScroll={visibleId} logoUrl={`${API_APPS_HOST}${homepage?.logo?.data?.attributes?.url ?? undefined}`} />
+      <HomeNavbar whatsapp={whatsapp} activeScroll={visibleId} logoUrl={`${API_APPS_HOST}${homepage?.logo?.data?.attributes?.url ?? undefined}`} />
       {isLoadingPage ? (
         <Container className="py-4 text-center">
           <Spinner
@@ -456,20 +467,20 @@ function Home() {
                               color: "#FFFFFF",
                             }}
                           >
-                            <div
+                            <Row
                               className="py-4 d-flex justify-content-between"
                               style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
                             >
-                              <div style={{ color: "#FFFFFF" }}>
+                              <Col style={{ color: "#FFFFFF", display: "flex", alignItems: "center" }}>
                                 {val.attributes.title}
-                              </div>
-                              <div
+                              </Col>
+                              <Col
                                 className="MaisonNeue-Light"
                                 style={{ color: "#FFFFFF", fontSize: "12px" }}
                               >
                                 {val.attributes.short_description}
-                              </div>
-                            </div>
+                              </Col>
+                            </Row>
                           </div>
                         );
                       } else {
@@ -481,20 +492,20 @@ function Home() {
                               color: "#FFFFFF",
                             }}
                           >
-                            <div
+                            <Row
                               className="py-4 d-flex justify-content-between"
                               style={{ paddingLeft: "1rem", paddingRight: "1rem" }}
                             >
-                              <div style={{ color: "#FFFFFF" }}>
+                              <Col style={{ color: "#FFFFFF", display: "flex", alignItems: "center" }}>
                                 {val.attributes.title}
-                              </div>
-                              <div
+                              </Col>
+                              <Col
                                 className="MaisonNeue-Light"
                                 style={{ color: "#FFFFFF", fontSize: "12px" }}
                               >
                                 {val.attributes.short_description}
-                              </div>
-                            </div>
+                              </Col>
+                            </Row>
                           </div>
                         );
                       }
@@ -530,7 +541,7 @@ function Home() {
                     display: "flex",
                     flexDirection: "column",
                   }}
-                >We believe inquality-experiental entertainment to empower Indonesia's creative potential.</div>
+                >We believe in quality-experiental entertainment to empower Indonesia's creative potential.</div>
               </Col>
             </Row>
             <Row className="py-5">
