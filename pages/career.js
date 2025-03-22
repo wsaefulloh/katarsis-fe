@@ -32,7 +32,8 @@ function Career() {
   const [status, setStatus] = useState({});
   const [video, setVideo] = useState();
   const [isLoadingPage, setIsLoadingPage] = useState(true);
-  const [homepage, setHomepage] = useState({})
+  const [homepage, setHomepage] = useState({});
+  const [whatsapp, setWhatsapp] = useState("");
 
   const API_APPS_HOST = process.env.NEXT_PUBLIC_API_HOST;
 
@@ -51,15 +52,6 @@ function Career() {
     }
   };
 
-  const getVideo = async () => {
-    const data = await fetchWrapper.get(`api/strapi/career/get-video`);
-    if (data) {
-      let obj = data.data;
-      setVideo(obj.attributes.video.data.attributes.url);
-      // console.log(`https://admin.katarsis.co.id${obj.attributes.video.data.attributes.url}`)
-    }
-  };
-
   const getHomepage = async () => {
     const data = await fetchWrapper.get(`api/strapi/get-homepage`);
     if (data) {
@@ -67,12 +59,22 @@ function Career() {
     }
   };
 
+  const getWhatsapp = async () => {
+    const data = await fetchWrapper.get(`api/strapi/content/get-link?type=whatsapp`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setWhatsapp(link.attributes.url);
+    }
+  };
+
   const getAllData = async () => {
     setIsLoadingPage(true)
-    await getHomepage();
-    await getAllDepartement();
     await getStatus();
     setIsLoadingPage(false)
+    await getWhatsapp();
+    await getHomepage();
+    await getAllDepartement();
   };
 
   useEffect(() => {
@@ -85,7 +87,7 @@ function Career() {
 
   return (
     <>
-      <HomeNavbar activeScroll={null} logoUrl={`${API_APPS_HOST}${homepage?.logo?.data?.attributes?.url ?? undefined}`} />
+      <HomeNavbar whatsapp={whatsapp} activeScroll={null} logoUrl={`${API_APPS_HOST}${homepage?.logo?.data?.attributes?.url ?? undefined}`} />
       {isLoadingPage ? (
         <Container className="py-4 text-center">
           <Spinner

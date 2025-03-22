@@ -11,6 +11,12 @@ const port = process.env.port || 8080;
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 
+console.log = () => { }
+console.error = () => { }
+console.debug = () => { }
+console.info = () => { }
+console.warn = () => { }
+
 app.prepare().then(() => {
   createServer(async (req, res) => {
     try {
@@ -33,6 +39,6 @@ app.prepare().then(() => {
     }
   }).listen(port, (err) => {
     if (err) throw err;
-    console.log(`> Ready on http://${hostname}:${port}`);
+    // console.log(`> Ready on http://${hostname}:${port}`);
   });
 });

@@ -198,7 +198,7 @@ function Home() {
   const getBannerNew = async () => {
     const data = await fetchWrapper.get(`api/strapi/new-banner`);
     if (data) {
-      console.log(data.data[0].attributes.url_link)
+      // console.log(data.data[0].attributes.url_link)
       setBanner(data.data);
     }
   };

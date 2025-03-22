@@ -25,7 +25,51 @@ function Work() {
     speed: 2000,
     autoplaySpeed: 2000,
     cssEase: "linear",
-    arrows: false
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1150,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          speed: 2000,
+          autoplaySpeed: 2000,
+          cssEase: "linear",
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          autoplay: true,
+          speed: 2000,
+          autoplaySpeed: 2000,
+          cssEase: "linear",
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          speed: 2000,
+          autoplaySpeed: 2000,
+          cssEase: "linear",
+          arrows: false,
+        },
+      },
+    ],
   };
 
   const mediaCoverage2 = {
@@ -38,7 +82,54 @@ function Work() {
     autoplaySpeed: 2000,
     cssEase: "linear",
     rtl: true,
-    arrows: false
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1150,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          speed: 2000,
+          autoplaySpeed: 2000,
+          cssEase: "linear",
+          arrows: false,
+          rtl: true,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          autoplay: true,
+          speed: 2000,
+          autoplaySpeed: 2000,
+          cssEase: "linear",
+          arrows: false,
+          rtl: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          speed: 2000,
+          autoplaySpeed: 2000,
+          cssEase: "linear",
+          arrows: false,
+          rtl: true,
+        },
+      },
+    ],
   };
 
   const router = useRouter();
@@ -48,6 +139,7 @@ function Work() {
   const [projects, setProjects] = useState({});
   const [homepage, setHomepage] = useState({});
   const [isLoadingPage, setIsLoadingPage] = useState(true);
+  const [whatsapp, setWhatsapp] = useState("");
 
   const getDetailProject = async () => {
     const data = await fetchWrapper.get(
@@ -65,11 +157,21 @@ function Work() {
     }
   };
 
+  const getWhatsapp = async () => {
+    const data = await fetchWrapper.get(`../api/strapi/content/get-link?type=whatsapp`);
+    if (data) {
+      let newData = data.data;
+      let link = newData[0];
+      setWhatsapp(link.attributes.url);
+    }
+  };
+
   const getAlldata = async () => {
     setIsLoadingPage(true)
     await getDetailProject();
-    await getHomepage();
     setIsLoadingPage(false)
+    await getWhatsapp();
+    await getHomepage();
   };
 
   const [visibleId, setVisibleId] = useState(null);
@@ -100,7 +202,7 @@ function Work() {
       setVisibleId(currentVisibleId);
 
       // Log id yang sedang terlihat ke console
-      console.log('ID yang sedang terlihat:', currentVisibleId);
+      // console.log('ID yang sedang terlihat:', currentVisibleId);
     }, 100); // Throttle setiap 100ms
 
     window.addEventListener('scroll', handleScroll);
@@ -113,7 +215,7 @@ function Work() {
 
   return (
     <>
-      <HomeNavbar activeScroll={null} logoUrl={`${API_APPS_HOST}${homepage?.logo?.data?.attributes?.url ?? undefined}`} />
+      <HomeNavbar whatsapp={whatsapp} activeScroll={null} logoUrl={`${API_APPS_HOST}${homepage?.logo?.data?.attributes?.url ?? undefined}`} />
       {isLoadingPage ? (
         <Container className="py-4 text-center">
           <Spinner

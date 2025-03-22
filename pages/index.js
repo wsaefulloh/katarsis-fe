@@ -12,6 +12,7 @@ import "../assets/fonts/Maison Neue/fonts.css";
 import CardsEvent from "../components/Cards/CardsEvent";
 import HomeNavbar from "../components/Navbars/HomeNavbar";
 import { throttle } from 'lodash'; // Untuk optimasi throttling
+import { useRouter } from "next/router";
 
 function Home() {
 
@@ -81,6 +82,9 @@ function Home() {
     katarsisEntertaiment: [],
   });
 
+  const router = useRouter();
+  const url_page = router.asPath;
+
   const getDataService = async () => {
     const data = await fetchWrapper.get(`api/strapi/get-services`);
     let katarsisExperience = []
@@ -144,7 +148,7 @@ function Home() {
   const getDataMediaNew = async () => {
     const data = await fetchWrapper.get(`api/strapi/content/get-new-media`);
     if (data) {
-      console.log(data)
+      // console.log(data)
       setMedia(data.data);
     }
   };
@@ -173,15 +177,29 @@ function Home() {
   };
 
   const getAllData = async () => {
-    setIsLoadingPage(true)
-    await getHomepage();
-    setIsLoadingPage(false)
-    await getDataMediaNew();
-    await getEvents();
-    await getDataActivation();
-    await getWhyKatarsis();
-    await getDataService();
-    await getWhatsapp();
+    if (url_page.includes('#')) {
+      setIsLoadingPage(true)
+      await getHomepage();
+      await getDataMediaNew();
+      await getEvents();
+      await getDataActivation();
+      await getWhyKatarsis();
+      await getDataService();
+      await getWhatsapp();
+      setIsLoadingPage(false)
+      document.getElementById('service').scrollIntoView({ behavior: 'smooth' })
+    } else {
+      window.scrollTo(0, 0);
+      setIsLoadingPage(true)
+      await getHomepage();
+      setIsLoadingPage(false)
+      await getDataMediaNew();
+      await getEvents();
+      await getDataActivation();
+      await getWhyKatarsis();
+      await getDataService();
+      await getWhatsapp();
+    }
   };
 
   const [visibleId, setVisibleId] = useState(null);
@@ -191,7 +209,6 @@ function Home() {
     getAllData();
 
     AOS.init({ duration: 2000 });
-    window.scrollTo(0, 0);
 
     const handleScroll = throttle(() => {
       const sections = ['home', 'about', 'service', 'event']; // Daftar id komponen
@@ -212,7 +229,7 @@ function Home() {
       setVisibleId(currentVisibleId);
 
       // Log id yang sedang terlihat ke console
-      console.log('ID yang sedang terlihat:', currentVisibleId);
+      // console.log('ID yang sedang terlihat:', currentVisibleId);
     }, 100); // Throttle setiap 100ms
 
     window.addEventListener('scroll', handleScroll);

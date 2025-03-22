@@ -36,7 +36,7 @@ function SliderProcess() {
 
   const getAllProcess = async () => {
     const data = await fetchWrapper.get(`api/strapi/content/get-process`);
-    console.log(data)
+    // console.log(data)
     if (data) {
       let obj = data.data;
       setResult1(obj[0]);

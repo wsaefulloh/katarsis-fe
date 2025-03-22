@@ -147,7 +147,7 @@ function HomeFooterDetails() {
               height="25px"
             />
           </div> */}
-          <div className="d-flex align-items-center justify-content-center" style={{ paddingTop: "40px" }}>
+          <div className="d-flex align-items-center justify-content-center" style={{ paddingTop: "40px", paddingBottom: "40px" }}>
             <Link href={`mailto:${info}`}>
               <a target="_blank">
                 <div className="mx-2">

@@ -2,6 +2,12 @@ import React from "react";
 import Link from "next/link";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
+console.log = () => { }
+console.error = () => { }
+console.debug = () => { }
+console.info = () => { }
+console.warn = () => { }
+
 class MyDocument extends Document {
   render() {
     return (

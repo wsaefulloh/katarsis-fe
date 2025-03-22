@@ -36,6 +36,12 @@ Router.events.on("routeChangeError", () => {
   document.body.classList.remove("body-page-transition");
 });
 
+console.log = () => { }
+console.error = () => { }
+console.debug = () => { }
+console.info = () => { }
+console.warn = () => { }
+
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};

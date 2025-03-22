@@ -35,7 +35,7 @@ function Filter() {
 
   const getMenuOriginalIPNew = async () => {
     const data = await fetchWrapper.get(`api/strapi/content/get-submenu?id=1`);
-    console.log(data)
+    // console.log(data)
     if (data) {
       setMenuOriginalIP(data.data);
     }
@@ -43,7 +43,7 @@ function Filter() {
 
   const getMenuB2BNew = async () => {
     const data = await fetchWrapper.get(`api/strapi/content/get-submenu?id=2`);
-    console.log(data)
+    // console.log(data)
     if (data) {
       setMenuB2B(data.data);
     }
